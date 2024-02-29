@@ -1,6 +1,0 @@
-
-kphp:S103"KSplit this 123 characters long line (which is greater than 120 authorized).(ΰάƒµψÿÿÿÿ8Γ£χ ί1
-G	php:S2003"&Replace "include" with "include_once".(®έα©ϋÿÿÿÿ8€ψ ί1
-B	php:S2003	"&Replace "include" with "include_once".(°λ8€ψ ί1
-m	php:S4833"LReplace "include" with namespace import mechanism through the "use" keyword.(®έα©ϋÿÿÿÿ8€ψ ί1
-h	php:S4833	"LReplace "include" with namespace import mechanism through the "use" keyword.(°λ8€ψ ί1
