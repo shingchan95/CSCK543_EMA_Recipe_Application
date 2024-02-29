@@ -1,0 +1,4 @@
+
+n	php:S1301"MReplace this "switch" statement with "if" statements to increase readability.(ªùÈ›úÿÿÿÿ8£÷Ž¡ß1
+G	php:S2003"&Replace "require" with "require_once".(¾ñšŸûÿÿÿÿ8£÷Ž¡ß1
+m	php:S4833"LReplace "require" with namespace import mechanism through the "use" keyword.(¾ñšŸûÿÿÿÿ8£÷Ž¡ß1
