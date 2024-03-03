@@ -37,6 +37,12 @@ if (!empty($segments[2])) {
         case 'login':
             $authController->index();
             break;
+        case 'logout':
+            session_start();
+            $_SESSION = array();
+            session_destroy();
+            header("Location: home"); 
+            exit();
         default:
             echo "404 Not Found";
             break;
