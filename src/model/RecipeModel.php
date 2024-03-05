@@ -63,6 +63,7 @@ class RecipeModel {
         }
     }
  
+
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -76,5 +77,121 @@ class RecipeModel {
             return null;
         }
     }
+
+    public function getRecipeDetailsById($recipeId) {
+        $sql = "
+            SELECT
+                r.id,
+                r.recipe,
+                r.servings,
+                r.tagline,
+                r.preparation,
+                r.cooking,
+                r.image_path,
+                r.added,
+                d.diet,
+                c.course,
+                a.author
+            FROM
+                recipe r
+            LEFT JOIN diet d ON r.diet_id = d.id
+            LEFT JOIN course c ON r.course_id = c.id
+            LEFT JOIN author a ON r.author_id = a.id
+            WHERE
+                r.id = ?
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    public function getStepsByRecipeId($recipeId) {
+        $sql = "
+            SELECT
+                step_no,
+                step,
+                minutes
+            FROM
+                step
+            WHERE
+                recipe_id = ?
+            ORDER BY
+                step_no
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $steps = [];
+        while ($row = $result->fetch_assoc()) {
+            $steps[] = $row;
+        }
+
+        return $steps;
+    }
+
+    public function getTipsByRecipeId($recipeId) {
+        $sql = "
+            SELECT
+                tip_no,
+                tip
+            FROM
+                tip
+            WHERE
+                recipe_id = ?
+            ORDER BY
+                tip_no
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $tips = [];
+        while ($row = $result->fetch_assoc()) {
+            $tips[] = $row;
+        }
+
+        return $tips;
+    }
+
+    public function getIngredientsByRecipeId($recipeId) {
+        $sql = "
+            SELECT
+                amount,
+                unit,
+                preprep,
+                suffix,
+                ingredient
+            FROM
+                recipe_ingredient ri
+            LEFT JOIN
+                ingredient i ON ri.ingredient_id = i.id
+            WHERE
+                recipe_id = ?
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $ingredients = [];
+        while ($row = $result->fetch_assoc()) {
+            $ingredients[] = $row;
+        }
+
+        return $ingredients;
+    }
+
 }
 ?>
+
+
