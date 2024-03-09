@@ -32,7 +32,12 @@ if (!empty($segments[2])) {
             $profileController->index();
             break;
         case 'recipe':
-            $recipeController->index();
+            if (!empty($segments[3]) && is_numeric($segments[3])) {
+                $recipeId = intval($segments[3]);
+                $recipeController->showRecipe($recipeId);
+            } else {
+                $recipeController->index();
+            }
             break;
         case 'login':
             $authController->index();
