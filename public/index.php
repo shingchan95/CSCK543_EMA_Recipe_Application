@@ -10,7 +10,7 @@ require '../src/controller/AuthController.php';
 // $userController = new ExampleUserController();
 $homeController = new HomeController();
 $profileController = new ProfileController();
-$recipeController = new RecipeController();
+$recipeController = new RecipeController($conn); // Passing the database connection here
 $authController = new AuthController();
 
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
