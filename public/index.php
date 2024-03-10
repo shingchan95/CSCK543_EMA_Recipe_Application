@@ -1,14 +1,11 @@
 <?php
 
-// require 'controller/ExampleUserController.php';
 require '../src/controller/HomeController.php';
 require '../src/controller/ProfileController.php';
 require '../src/controller/RecipeController.php';
 require '../src/controller/AuthController.php';
 require '../src/controller/SearchController.php';
 
-// Here we instantiate all the classes that will be required by our app, in this example the only existing controller.
-// $userController = new ExampleUserController();
 $homeController = new HomeController();
 $profileController = new ProfileController();
 $recipeController = new RecipeController();
@@ -18,31 +15,33 @@ $searchController = new SearchController();
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 
+print("segments 0: $segments[0]; 1: $segments[1], 2: $segments[2]");
+
+$currentPage = "";
+$loggedUser = "";
+
 // Get the current path from the URL and prepare it for parsing
 // Basic routing
-if (!empty($segments[2])) {
-    switch ($segments[2]) {
-        // case 'hello':
-            // This is an example for the path /hello/{name}, as "/hello/miguel
-            // $name = $segments[1];
-            // $userController->sayHello($name);
-            // break;
+if (!empty($segments[1])) {
+    $currentPage = $segments[1];
+    switch ($segments[1]) {
         case 'home':
-            $homeController->index();
+            $homeController->index($currentPage, $loggedUser);
             break;
         case 'profile':
-            $profileController->index();
+            $profileController->index($currentPage, $loggedUser);
             break;
         case 'recipe':
-            if (!empty($segments[3]) && is_numeric($segments[3])) {
-                $recipeId = intval($segments[3]);
+            if (!empty($segments[2]) && is_numeric($segments[2])) {
+                $recipeId = intval($segments[2]);
                 $recipeController->showRecipe($recipeId);
             } else {
-                $recipeController->index();
+                $recipeController->index($currentPage, $loggedUser);
             }
             break;
         case 'login':
             $authController->index();
+            $currentPage = $segments[1];
             break;
         case 'search':
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -57,17 +56,12 @@ if (!empty($segments[2])) {
             session_start();
             $_SESSION = array();
             session_destroy();
-            header("Location: home"); 
+            header("Location: home");
             exit();
         default:
             echo "404 Not Found";
             break;
     }
 } else {
-    /*
-    If there is no path,we should have a homepage controller of some sorts that we call here
-    to render the homepage.
-    So: $homeController->render()
-    */
-    $homeController->index();
+    $homeController->index($currentPage, $loggedUser);
 }
