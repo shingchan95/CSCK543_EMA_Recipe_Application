@@ -137,3 +137,7 @@ nav ul li a {
 .form_div {
     padding: 10px;
 }
+
+#homepage_body {
+    justify-content: space-between;
+}

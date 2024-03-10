@@ -61,5 +61,6 @@ if (!empty($segments[1])) {
             break;
     }
 } else {
+    $currentPage = 'home';
     $homeController->index($currentPage, $loggedUser);
 }
