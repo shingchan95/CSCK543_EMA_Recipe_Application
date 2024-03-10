@@ -15,8 +15,6 @@ $searchController = new SearchController();
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 
-print("segments 0: $segments[0]; 1: $segments[1], 2: $segments[2]");
-
 $currentPage = "";
 $loggedUser = "";
 
