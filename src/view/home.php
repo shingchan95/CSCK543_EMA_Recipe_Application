@@ -14,7 +14,7 @@
 
     <div class="container" id="homepage_body">
         <section>
-            <h2>Our Latest Posts...</h2>
+            <h2>Our Latest Tips...</h2>
 
         </section>
         <section>
