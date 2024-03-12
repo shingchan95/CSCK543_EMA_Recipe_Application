@@ -1,0 +1,20 @@
+#homepage_body {
+    justify-content: space-between;
+}
+
+#featured_recipes_container {
+    flex-direction: column;
+}
+
+#feature_recipe_list {
+    margin: 0;
+}
+
+#intro_image {
+    max-height: 500px;
+    width: auto;
+}
+
+#intro_container {
+    max-width: 50%;
+}

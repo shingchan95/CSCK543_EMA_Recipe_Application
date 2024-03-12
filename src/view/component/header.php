@@ -50,7 +50,7 @@
                     Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!
 
                 <form id="logout_form" action="/CSCK543_EMA_Recipe_Application/logout" method="POST" class="container">
-                    <input class="logout_form_button" type="submit" value="logout">
+                    <input type="submit" value="logout">
                 </form>
 
                 <?php else: ?>

@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+main {
+    margin-bottom: 30px;
+}
+
 footer {
     background-color: lightcoral;
     padding: 30px;
@@ -96,10 +100,6 @@ nav ul li a {
     background-color: lightblue;
 }
 
-#logout_form_button {
-
-}
-
 #logout_form {
     padding-left: 10px;
     align-items: center;
@@ -138,10 +138,6 @@ nav ul li a {
     padding: 10px;
 }
 
-#homepage_body {
-    justify-content: space-between;
-}
-
 .alert {
     padding: 20px;
     background-color: #f44336;
@@ -161,4 +157,10 @@ nav ul li a {
 
 .close_btn:hover {
     color: black;
+}
+
+.dashed-border {
+    border-style: dashed;
+    border-color: lightcoral;
+    margin: 10px;
 }

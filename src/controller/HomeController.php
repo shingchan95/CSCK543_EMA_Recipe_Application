@@ -32,15 +32,16 @@ class HomeController
     //     $recipes = $this->recipeModel->getRecipeByDietId($dietId);
     //     $this->render('home', ['recipes' => $recipes]);
     // }
- 
+
     // public function searchRecipes($searchTerm) {
     //     $recipes = $this->recipeModel->searchRecipes($searchTerm);
     //     // $recipes = $this->recipeModel->getRecipeByDietId($searchTerm);
     //     $this->render('home', ['recipes' => $recipes]);
     // }
-   
-    public function render($view, $data = []) {
+
+    public function render($view, $data = [])
+    {
+        extract($data);
         include __DIR__ . "/../view/$view.php";
     }
 }
-?>
