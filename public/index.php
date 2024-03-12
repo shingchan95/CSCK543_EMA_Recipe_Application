@@ -15,6 +15,12 @@ $searchController = new SearchController();
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 
+// Remove "public" from path
+$segments = array_filter($segments, function($segment) {
+    return $segment !== "public";
+});
+$segments = array_values($segments);
+
 // Get the current path from the URL and prepare it for parsing
 // Basic routing
 if (!empty($segments[1])) {

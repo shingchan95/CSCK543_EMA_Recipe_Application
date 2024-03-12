@@ -86,7 +86,7 @@ nav ul li a {
 }
 
 #search_form_button {
-    background-image: url("../image/search_icon.svg");
+    background-image: url("../images/search_icon.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/home.css">
 </head>
 <body>
 <?php include 'component/header.php'; ?>
@@ -23,7 +23,7 @@
                 recipes are a celebration of flavor, a dance of textures, and a harmony of aromas, meticulously crafted
                 to delight the senses.</p>
 
-            <img src="/image/food-image.webp" id="intro_image">
+            <img src="/public/images/food-image.webp" id="intro_image">
 
             <p>
                 The history of recipes is as old as humanity's discovery of cooking. The act of recording these culinary
@@ -52,6 +52,6 @@
 
 <?php include 'component/footer.php'; ?>
 
-<script src="/js/script.js"></script>
+<script src="/public/js/script.js"></script>
 </body>
 </html>
