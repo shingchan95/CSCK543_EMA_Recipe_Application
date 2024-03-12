@@ -7,7 +7,10 @@ class RecipeModel {
     }
  
     public function getAllRecipes() {
-        $sql = "SELECT * FROM recipe";
+        $sql = "SELECT r.*, a.author, d.diet, c.course FROM recipe AS r
+                LEFT JOIN diet AS d ON r.diet_id = d.id
+                LEFT JOIN author AS a ON r.author_id = a.id
+                LEFT JOIN course AS c ON r.course_id = c.id";
         $result = $this->conn->query($sql);
  
         if ($result) {
@@ -33,12 +36,13 @@ class RecipeModel {
     }
  
     public function searchRecipes($searchTerm) {
-        $sql = "SELECT r.* FROM recipe AS r
+        $sql = "SELECT r.* , a.author, d.diet, c.course FROM recipe AS r
                 LEFT JOIN diet AS d ON r.diet_id = d.id
-                WHERE r.recipe LIKE CONCAT('%', ?, '%')
-                OR d.diet LIKE CONCAT('%', ?, '%')";
+                LEFT JOIN author AS a ON r.author_id = a.id
+                LEFT JOIN course AS c ON r.course_id = c.id
+                WHERE r.recipe LIKE CONCAT('%', ?, '%')";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ss", $searchTerm, $searchTerm);
+        $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
         $result = $stmt->get_result();
  
@@ -48,6 +52,28 @@ class RecipeModel {
             return [];
         }
     }
+    public function searchRecipesWithType($searchTerm, $searchType) {
+        //course, author, diet, ingredient
+        $sql = "SELECT DISTINCT r.* , a.author, d.diet, c.course FROM recipe AS r
+                LEFT JOIN diet AS d ON r.diet_id = d.id
+                LEFT JOIN author AS a ON r.author_id = a.id
+                LEFT JOIN course AS c ON r.course_id = c.id
+                LEFT JOIN recipe_ingredient AS ri ON r.id = ri.recipe_id
+                LEFT JOIN ingredient AS i ON ri.ingredient_id = i.id
+                WHERE  $searchType LIKE CONCAT('%', ?, '%')";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
+
  
     public function getAllSavedRecipes($userId) {
         $sql = "SELECT r.* FROM recipe AS r JOIN saved_recipes AS sr ON r.id = sr.recipe_id WHERE sr.user_id = ?";
@@ -63,6 +89,7 @@ class RecipeModel {
         }
     }
  
+    
 
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe WHERE id = ?";
@@ -189,6 +216,21 @@ class RecipeModel {
         }
 
         return $ingredients;
+    }
+
+    public function getFeaturedRecipes() {
+        $sql = "SELECT r.*, a.author, d.diet, c.course FROM recipe AS r
+        LEFT JOIN diet AS d ON r.diet_id = d.id
+        LEFT JOIN author AS a ON r.author_id = a.id
+        LEFT JOIN course AS c ON r.course_id = c.id
+        WHERE r.featured = '1'";
+        $result = $this->conn->query($sql);
+
+        if ($result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }                               
     }
 
 }

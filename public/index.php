@@ -5,6 +5,7 @@ require '../src/controller/HomeController.php';
 require '../src/controller/ProfileController.php';
 require '../src/controller/RecipeController.php';
 require '../src/controller/AuthController.php';
+require '../src/controller/SearchController.php';
 
 // Here we instantiate all the classes that will be required by our app, in this example the only existing controller.
 // $userController = new ExampleUserController();
@@ -12,6 +13,7 @@ $homeController = new HomeController();
 $profileController = new ProfileController();
 $recipeController = new RecipeController();
 $authController = new AuthController();
+$searchController = new SearchController();
 
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
@@ -41,6 +43,15 @@ if (!empty($segments[2])) {
             break;
         case 'login':
             $authController->index();
+            break;
+        case 'search':
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
+                $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+                $searchController->searchRecipes($searchTerm, $searchType);
+            } else {
+                $searchController->index();
+            }
             break;
         case 'logout':
             session_start();

@@ -20,18 +20,21 @@ class HomeController {
     }
     public function index() {
         $recipes = $this->recipeModel->getAllRecipes();
-        $this->render('home', ['recipes' => $recipes]);
+        $featuredRecipes = $this->recipeModel->getFeaturedRecipes();
+        $this->render('home', ['recipes' => $recipes, 'featuredRecipes' => $featuredRecipes]);
     }
-    public function getRecipeByDietId($dietId) {
-        $recipes = $this->recipeModel->getRecipeByDietId($dietId);
-        $this->render('home', ['recipes' => $recipes]);
-    }
+
+
+    // public function getRecipeByDietId($dietId) {
+    //     $recipes = $this->recipeModel->getRecipeByDietId($dietId);
+    //     $this->render('home', ['recipes' => $recipes]);
+    // }
  
-    public function searchRecipes($searchTerm) {
-        $recipes = $this->recipeModel->searchRecipes($searchTerm);
-        // $recipes = $this->recipeModel->getRecipeByDietId($searchTerm);
-        $this->render('home', ['recipes' => $recipes]);
-    }
+    // public function searchRecipes($searchTerm) {
+    //     $recipes = $this->recipeModel->searchRecipes($searchTerm);
+    //     // $recipes = $this->recipeModel->getRecipeByDietId($searchTerm);
+    //     $this->render('home', ['recipes' => $recipes]);
+    // }
    
     public function render($view, $data = []) {
         include __DIR__ . "/../view/$view.php";
