@@ -1,67 +1,57 @@
-<?php 
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <p>Hello, <?php echo $_SESSION['username']; ?>! You are logged in.</p>
-        <a href="logout">Logout</a>
-    <?php else: ?>
-        <p>You are not logged in.</p>
-        <a href="login">Login</a>
-        <a href="login">Register</a>
-    <?php endif; ?>
-    <h1>Welcome to the Homepage</h1>
-    <form action="" method="GET">
-        <label for="dietId">Select Diet:</label>
-        <select name="dietId" id="dietId">
-            <option value="all">All</option>
-            <option value="1">Vegan</option>
-            <option value="2">Vegetarian</option>
-            <option value="3">Pescetarian</option>
-            <option value="4">Omni</option>
-        </select>
-        <label for="search">Search:</label>
-        <input type="text" name="search" id="search" placeholder="Enter search term">
-        <button type="submit">Search</button>
-    </form>
+<?php include 'component/header.php'; ?>
+<main>
 
-    <?php
-        if (!empty($_GET['search'])) {
-        $recipes = $this->recipeModel->searchRecipes($_GET['search']);
-        foreach ($recipes as $recipe):
-            ?>
-                    <p><?php echo $recipe['recipe']; ?></p>
-            <?php
-                endforeach;
-                }  
- 
-        elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['dietId']) && $_GET['dietId'] !== 'all') {
-            $selectedDietId = $_GET['dietId'];
-            $recipes = $this->recipeModel->getRecipeByDietId($selectedDietId);
-        foreach ($recipes as $recipe):
-    ?>
-            <p><?php echo $recipe['recipe']; ?></p>
-    <?php
-        endforeach;
-        }
- 
-        else {
-            $recipes = $data['recipes'] ?? [];
-            foreach ($recipes as $recipe):
-    ?>
-            <p><?php echo $recipe['recipe']; ?></p>
-    <?php
-            endforeach;
-        }
-   
-   
-    ?>
+    <h1>All About Recipes!</h1>
+
+    <div class="container" id="homepage_body">
+        <section class="dashed-border" id="intro_container">
+            <h2>This is who we are...</h2>
+            <p>In every corner of the world, recipes serve as a bridge between generations, a testament to cultural
+                heritage, and a medium for creative expression in the culinary arts. A recipe, at its core, is more than
+                just a list of ingredients and instructions; it is a story, a legacy, and an invitation to partake in a
+                ritual as old as civilization itself. From the simplest of meals to the most intricate of dishes,
+                recipes are a celebration of flavor, a dance of textures, and a harmony of aromas, meticulously crafted
+                to delight the senses.</p>
+
+            <img src="/image/food-image.webp" id="intro_image">
+
+            <p>
+                The history of recipes is as old as humanity's discovery of cooking. The act of recording these culinary
+                experiments evolved from oral traditions to beautifully illustrated manuscripts, and now to digital
+                formats accessible with a simple click. Each recipe carries with it the nuances of its creator's touch,
+                the regional ingredients it celebrates, and the cultural contexts that shaped its creation. It's
+                fascinating to observe how recipes adapt over time, with each cook adding their personal twist, thereby
+                contributing to the living history of the dish.</p>
+
+        </section>
+        <section class="dashed-border">
+            <h2>PLACEHOLDER FOR THE SEARCH BOX</h2>
+        </section>
+        <aside class="container dashed-border" id="featured_recipes_container">
+            <h2>Featured Recipes</h2>
+            <ul id="feature_recipe_list">
+                <?php foreach ($featuredRecipes as $recipe): ?>
+                    <li><h3><?php echo $recipe['recipe']; ?></h3></li><?php endforeach; ?>
+            </ul>
+
+
+        </aside>
+    </div>
+
+</main>
+
+<?php include 'component/footer.php'; ?>
+
+<script src="/js/script.js"></script>
 </body>
 </html>
