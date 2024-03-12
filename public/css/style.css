@@ -82,6 +82,7 @@ nav ul li a {
     color: #4a4a4a;
     font-size: 16px;
     width: inherit;
+    min-width: 400px;
 }
 
 #search_form_button {
@@ -135,6 +136,8 @@ nav ul li a {
 }
 
 .form_div {
+    display: grid;
+    place-content: center;
     padding: 10px;
 }
 
