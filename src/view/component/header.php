@@ -7,8 +7,8 @@
             </a>
             <span id="header_catchphrase">The Best Recipes Around!</span>
         </div>
-        <form class="container" id="search_bar" action="/recipe/search" method="GET">
-            <input class="form_input" value placeholder="Search recipes">
+        <form class="container" id="search_bar" action="/CSCK543_EMA_Recipe_Application/search" method="GET">
+            <input class="form_input" name="search" placeholder="Search recipes" required>
             <input id="search_form_button" type="submit" value>
         </form>
 
