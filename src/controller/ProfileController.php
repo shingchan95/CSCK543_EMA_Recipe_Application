@@ -1,7 +1,7 @@
 <?php
 class ProfileController {
 
-    public function index($currentPage, $loggedUser) {
+    public function index() {
         include __DIR__. '/../view/profile.php';
     }
 }

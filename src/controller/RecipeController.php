@@ -11,7 +11,7 @@ class RecipeController {
         global $conn;
         $this->recipeModel = new RecipeModel($conn);
     }
-    public function index($currentPage, $loggedUser) {
+    public function index() {
         include __DIR__. '/../view/recipe.php';
     }
 

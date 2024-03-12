@@ -15,26 +15,39 @@
     </section>
 
     <div>
+        <?php
+        if (isset($_SESSION['register_error']) || isset($_SESSION['login_error'])) {
+            $errorKey = isset($_SESSION['register_error']) ? 'register_error' : 'login_error';
+            $errorMessage = $_SESSION[$errorKey];
+            ?>
+            <div class="alert">
+                <span class="close_btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong><?php echo htmlspecialchars($errorMessage); ?></strong>
+            </div>
+            <?php unset($_SESSION[$errorKey]); ?>
+        <?php } ?>
+
         <nav class="container" id="navbar">
             <ul class="container">
                 <li>
-                    <a class="<?php echo ($currentPage == 'home') ? 'current_page' : ''; ?>"
+                    <a class="<?php echo ($_SESSION['current_page'] == 'home' || $_SESSION['current_page'] == '')
+                        ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/home">Home</a>
                 </li>
                 <li>
-                    <a class="<?php echo ($currentPage == 'recipe') ? 'current_page' : ''; ?>"
+                    <a class="<?php echo ($_SESSION['current_page'] == 'recipe') ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/recipe">Recipe</a>
                 </li>
                 <li>
-                    <a class="<?php echo ($currentPage == 'profile') ? 'current_page' : ''; ?>"
+                    <a class="<?php echo ($_SESSION['current_page'] == 'profile') ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/profile">Profile</a>
                 </li>
             </ul>
 
             <section id="user_login" class="container">
                 <p>
-                    <?php if ($loggedUser): ?>
-                    Welcome, <?php echo htmlspecialchars($loggedUser); ?>!
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!
 
                 <form id="logout_form" action="/CSCK543_EMA_Recipe_Application/logout" method="POST" class="container">
                     <input class="logout_form_button" type="submit" value="logout">

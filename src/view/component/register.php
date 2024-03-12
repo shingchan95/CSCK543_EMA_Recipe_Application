@@ -1,24 +1,37 @@
 <div id="register_form">
     <h2>Create an account</h2>
-    <form action="/CSCK543_EMA_Recipe_Application/register" method="POST">
+    <form action="/CSCK543_EMA_Recipe_Application/login" method="POST">
 
         <div class="form_div">
             <label>Username:</label>
-            <input class="form_input" type="text" name="username" placeholder="✉️ Insert username...">
+            <input class="form_input" type="text" name="register_username" placeholder="📇 Insert username..."
+                   required>
+        </div>
+
+        <div class="form_div">
+            <label>Email:</label>
+            <input class="form_input" type="text" name="register_email" placeholder="✉️ Insert email..."
+                   required>
         </div>
 
         <div class="form_div">
             <label>Password:</label>
-            <input class="form_input" type="password" name="password" placeholder="🔑 Insert password...">
+            <input class="form_input" type="password" name="register_password" placeholder="🔑 Insert password..."
+                   required>
         </div>
 
         <div class="form_div">
-            <input type="submit" value="Submit">
+            <input type="submit" name="register_submit" value="Register">
         </div>
 
     </form>
     <p>
-        Already have an account?
-        <button onclick="toggleLoginForms()">Login</button>
+        <?php
+        if (isset($_SESSION['register_error'])):
+            echo htmlspecialchars($_SESSION['register_error']);
+        endif;
+        ?>
     </p>
+    Already have an account?
+    <button onclick="toggleLoginForms()">Login</button>
 </div>

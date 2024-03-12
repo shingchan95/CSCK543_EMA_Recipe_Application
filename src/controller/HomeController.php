@@ -21,7 +21,7 @@ class HomeController
         $this->recipeModel = new RecipeModel($conn);
     }
 
-    public function index($currentPage, $loggedUser)
+    public function index()
     {
         $recipes = $this->recipeModel->getAllRecipes();
         $featuredRecipes = $this->recipeModel->getFeaturedRecipes();

@@ -15,32 +15,36 @@ $searchController = new SearchController();
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 
-$currentPage = "";
-$loggedUser = "";
-
 // Get the current path from the URL and prepare it for parsing
 // Basic routing
 if (!empty($segments[1])) {
-    $currentPage = $segments[1];
+    session_start();
+
     switch ($segments[1]) {
         case 'home':
-            $homeController->index($currentPage, $loggedUser);
+            $_SESSION['current_page'] = $segments[1];
+            $homeController->index();
             break;
+
         case 'profile':
-            $profileController->index($currentPage, $loggedUser);
+            $_SESSION['current_page'] = $segments[1];
+            $profileController->index();
             break;
+
         case 'recipe':
+            $_SESSION['current_page'] = $segments[1];
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 $recipeId = intval($segments[2]);
                 $recipeController->showRecipe($recipeId);
             } else {
-                $recipeController->index($currentPage, $loggedUser);
+                $recipeController->index();
             }
             break;
+
         case 'login':
             $authController->index();
-            $currentPage = $segments[1];
             break;
+
         case 'search':
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
@@ -50,17 +54,17 @@ if (!empty($segments[1])) {
                 $searchController->index();
             }
             break;
+
         case 'logout':
-            session_start();
             $_SESSION = array();
             session_destroy();
             header("Location: home");
             exit();
+
         default:
             echo "404 Not Found";
             break;
     }
 } else {
-    $currentPage = 'home';
-    $homeController->index($currentPage, $loggedUser);
+    $homeController->index();
 }
