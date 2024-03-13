@@ -8,7 +8,7 @@ require '../src/controller/SearchController.php';
 
 $homeController = new HomeController();
 $profileController = new ProfileController();
-$recipeController = new RecipeController();
+$recipeController = new RecipeController($conn); // Passing the database connection here
 $authController = new AuthController();
 $searchController = new SearchController();
 

@@ -20,8 +20,42 @@ class RecipeModel {
         }
     }
  
+    public function getRecipeByID($recipeId) {
+        $sql = "SELECT * FROM recipe WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+ 
+        if ($result) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
+    public function getRecipeDetailsById($recipeId) {
+        $sql = "SELECT *
+                FROM recipe r
+                LEFT JOIN r.author_id ON a.author_id = a.id
+                LEFT JOIN rating rr ON r.id = rr.recipe_id
+                WHERE r.id = ?
+                GROUP BY r.id";
+                
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        return $result ? $result->fetch_assoc() : null;
+    }
+
     public function getRecipeByDietId($dietId) {
-        $sql = "SELECT * FROM recipe WHERE diet_id = ?";
+        $sql = "SELECT * 
+                FROM recipe r
+                JOIN diet d
+                ON r.recipe.diet_id = d.diet_id
+                WHERE d.diet_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $dietId);
         $stmt->execute();
@@ -88,8 +122,8 @@ class RecipeModel {
             return [];
         }
     }
- 
-    
+
+     
 
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe WHERE id = ?";
@@ -97,12 +131,32 @@ class RecipeModel {
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
         $result = $stmt->get_result();
- 
-        if ($result) {
-            return $result->fetch_assoc();
-        } else {
-            return null;
-        }
+    
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+    }
+
+    public function getStepsByRecipeId($recipeId) {
+        $sql = "SELECT * FROM step WHERE recipe_id = ? ORDER BY step_no ASC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+    }
+
+    public function getCommentsByRecipeId($recipeId) {
+        $sql = "SELECT c.*, u.username AS user_name 
+                FROM comments c 
+                JOIN user u ON c.user_id = u.id 
+                WHERE c.recipe_id = ?";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $recipeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
     public function getRecipeDetailsById($recipeId) {
