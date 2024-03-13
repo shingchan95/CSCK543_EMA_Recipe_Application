@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: medium;
+    color: black;
+    text-align: center;
+}
+
+main {
+    margin-bottom: 30px;
+}
+
+footer {
+    background-color: lightcoral;
+    padding: 30px;
+}
+
+nav {
+    margin: 0;
+    padding: 5px;
+    align-items: center;
+    background-color: lightcoral;
+}
+
+nav ul {
+    list-style-type: none; /* Remove list item's dots */
+}
+
+#navbar {
+    justify-content: space-between;
+}
+
+#user_login {
+    padding-right: 40px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+}
+
+#image_logo {
+    max-height: 80px;
+    width: auto;
+}
+
+.current_page {
+    background-color: deepskyblue;
+}
+
+nav ul li a:hover:not(.current_page) {
+    background-color: lightblue;
+}
+
+nav ul li a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+#header_container {
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header_catchphrase {
+    padding-left: 15px;
+}
+
+#logo_container {
+    padding: 20px;
+    align-items: center;
+    min-width: 30%;
+}
+
+#search_bar {
+    width: 80%;
+    justify-content: end;
+}
+
+.form_input {
+    color: #4a4a4a;
+    font-size: 16px;
+    width: inherit;
+    min-width: 400px;
+}
+
+#search_form_button {
+    background-image: url("../image/search_icon.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    cursor: pointer;
+}
+
+.form_submit:hover {
+    background-color: lightblue;
+}
+
+#logout_form {
+    padding-left: 10px;
+    align-items: center;
+    margin: 0;
+}
+
+/* Auth Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#register_form {
+    display: none;
+}
+
+.form_div {
+    display: grid;
+    place-content: center;
+    padding: 10px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.close_btn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close_btn:hover {
+    color: black;
+}
+
+.dashed-border {
+    border-style: dashed;
+    border-color: lightcoral;
+    margin: 10px;
+}
