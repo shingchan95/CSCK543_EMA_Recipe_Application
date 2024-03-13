@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../public/css/recipestyle.css"> 
 </head>
 <body>
-    <?php include 'header.php'; // TBD from Miguel ?>
+   
     <main>
         <section class="top-container">
             <img src="<?php echo htmlspecialchars($recipeDetails['photo_url']); ?>" alt="Recipe Photo" class="recipe-photo">
