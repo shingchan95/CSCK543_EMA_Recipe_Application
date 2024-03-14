@@ -1,17 +1,3 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-main {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-}
-
 .top-container, .middle-container, .bottom-container {
     border: 1px solid #ccc; /* Adds a border */
     padding: 20px;
@@ -51,43 +37,43 @@ main {
     flex-basis: 20%;
 }
 
-/* User star rating for the recipe */
-*{
-    margin: 0;
-    padding: 0;
-}
 .rate {
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
     flex-wrap: wrap;
-    float: left;
     height: auto;
     padding: 0 10px;
 }
+
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+    position: absolute;
+    top: -9999px;
 }
+
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
 }
+
 .rate:not(:checked) > label:before {
     content: '★ ';
 }
+
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
+
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
+
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
@@ -96,12 +82,10 @@ main {
     color: #c59b08;
 }
 
-
 /* Slider details*/
 
 .slideContainer {
     width: 75%;
-    margin-top: 20px 0;
     padding-top: 10px;
 }
 
@@ -124,7 +108,7 @@ main {
 }
 
 /* Slider for all browsers */
-.slider::webkit-slider-thumb{
+.slider::webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 40px;
@@ -135,7 +119,7 @@ main {
 }
 
 /* Slider for Firefox */
-.slider::moz-range-thumb{
+.slider::moz-range-thumb {
     width: 40px;
     height: 40px;
     background: #4caf50;
@@ -156,6 +140,7 @@ main {
 
 .ingredients, .steps {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .comment {
@@ -207,11 +192,20 @@ main {
 .ingredients-time {
     flex: 0 0 30%; /* Fixes width to 30% and prevents it from growing or shrinking */
     max-width: 30%; /* Ensures it does not exceed 30% width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cooking-method {
     flex: 0 0 70%; /* Fixes width to 70% and prevents it from growing or shrinking */
     max-width: 70%; /* Ensures it does not exceed 70% width */
+}
+
+.interactive-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -234,19 +228,19 @@ main {
     .right-box {
         order: -2;
     }
-    
+
     /* Specific styles inside right box */
     .right-box .interactive-features {
-    display: flex; 
-    justify-content: space-around; 
-    flex-wrap: wrap; 
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
 
     .right-box .save-recipe, .right-box .rate {
-    flex: 1 1 auto; 
-    min-width: 120px; 
-    text-align: center; 
-    margin: 20px; 
+        flex: 1 1 auto;
+        min-width: 120px;
+        text-align: center;
+        margin: 20px;
     }
 
     .middle-container {
@@ -255,7 +249,7 @@ main {
 
     /* Ensures text wraps within the containers */
     .ingredients li, .cooking-method li, .steps li {
-    word-wrap: break-word; 
+        word-wrap: break-word;
     }
 
     .ingredients-time, .cooking-method {
