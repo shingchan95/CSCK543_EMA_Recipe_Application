@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($recipeDetails['recipe'] ?? 'Recipe Title'); ?></title>
-    <link rel="stylesheet" href="../css/recipestyle.css">
+    <link rel="stylesheet" href="/css/recipestyle.css">
 </head>
 <body>
     <main>
@@ -54,7 +54,7 @@
 
                 <h2>Ingredients</h2>
                 <div class = "slideContainer">
-                    <input type="range" min="1" max="100" value="<?php echo $recipeDetails['servings']; ?>" id="myRange" class="slider">
+                    <input type="range" min="1" max="20" value="<?php echo $recipeDetails['servings']; ?>" id="myRange" class="slider">
                     <p><b>Servings: </b><span id="Value"><?php echo $recipeDetails['servings']; ?></span></p>
                     <p></p>
                 </div>
@@ -108,18 +108,34 @@
         // Function to scale ingredient amounts
         function scaleIngredients(servingsRatio) {
             var scaledIngredients = ingredients.map(function(ingredient) {
-                var scaledAmount = ingredient.amount * servingsRatio;
-                // Round to two decimal places
-                scaledAmount = Math.round(scaledAmount * 100) / 100;
-                return { ...ingredient, amount: scaledAmount };
-            });
+                    // Check if value is NULL, return the ingredient without an amount
+                    if (ingredient.amount === null || ingredient.amount === "") {
+                        return {...ingredient, amount: ""};
+                    // Check value is numerical before applying MATH
+                    } else if (!isNaN(parseFloat(ingredient.amount))) {
+                        var scaledAmount = ingredient.amount * servingsRatio;
+                        // Round to two decimal places
+                        scaledAmount = Math.round(scaledAmount * 100) / 100;
+                        return { ...ingredient, amount: scaledAmount };
+                    } else {
+                        // If ingredient isn't a numerical value
+                    } return ingredient;
+                });
             updateIngredientsList(scaledIngredients);
         }
         
         // Function to update the ingredients list in the HTML
         function updateIngredientsList(scaledIngredients) {
             var ingredientsListHtml = scaledIngredients.map(function(ingredient) {
-                return '<li>' + ingredient.ingredient + ': ' + ingredient.amount + ' ' + ingredient.unit + '</li>';
+                var displayAmount = ingredient.amount;
+                if (ingredient.amount === "") {
+                    displayAmount = ""; //Displays nothing
+                } else if (!isNaN(parseFloat(ingredient.amount))) {
+                    displayAmount = ingredient.amount + ' ' + ingredient.unit; // Numerical, include unit;
+                } else {
+                    displayAmount = ingredient.amount; // Non-numerical value, display as text
+                }
+                return '<li>' + ingredient.ingredient + (displayAmount ? ': ' + displayAmount : '') + '</li>';
             }).join('');
             document.querySelector('.ingredients').innerHTML = ingredientsListHtml;
         }
