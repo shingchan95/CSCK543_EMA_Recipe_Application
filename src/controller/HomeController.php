@@ -1,16 +1,24 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+// Include required files
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../model/UserModel.php';
 require_once __DIR__ . '/../model/RecipeModel.php';
 
+/**
+ * HomeController class handles home-related operations.
+ */
 class HomeController
 {
+     /**
+     * @var UserModel $userModel The UserModel instance.
+     */
     private $userModel;
+
+    /**
+     * @var RecipeModel $recipeModel The RecipeModel instance.
+     */
     private $recipeModel;
 
 
@@ -21,11 +29,21 @@ class HomeController
         $this->recipeModel = new RecipeModel($conn);
     }
 
+    /**
+     * Renders the home page.
+     * Retrieves all recipes and featured recipes from the database.
+     * @throws Exception if an error occurs while retrieving recipes.
+     */
     public function index()
     {
-        $recipes = $this->recipeModel->getAllRecipes();
-        $featuredRecipes = $this->recipeModel->getFeaturedRecipes();
-        $this->render('home', ['recipes' => $recipes, 'featuredRecipes' => $featuredRecipes]);
+        try {
+            $recipes = $this->recipeModel->getAllRecipes();
+            $featuredRecipes = $this->recipeModel->getFeaturedRecipes();
+            $this->render('home', ['recipes' => $recipes, 'featuredRecipes' => $featuredRecipes]);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+
+        }
     }
 
     // public function getRecipeByDietId($dietId) {
@@ -39,6 +57,13 @@ class HomeController
     //     $this->render('home', ['recipes' => $recipes]);
     // }
 
+
+    /**
+     * Renders a view with data.
+     *
+     * @param string $view The view file name.
+     * @param array $data The data to be passed to the view.
+     */
     public function render($view, $data = [])
     {
         extract($data);
