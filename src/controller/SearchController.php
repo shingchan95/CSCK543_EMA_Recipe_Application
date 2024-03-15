@@ -28,7 +28,7 @@ class SearchController {
                 $recipes = $this->recipeModel->searchRecipes($searchTerm);
             } else {
                 $recipes = $this->recipeModel->searchRecipesWithType($searchTerm, $searchType);
-            }   
+            }
             $this->render('search', ['recipes' => $recipes]);
     }
 
@@ -41,4 +41,3 @@ class SearchController {
         include __DIR__ . "/../view/$view.php";
     }
 }
-?>
