@@ -1,8 +1,16 @@
 <?php
+// Include required files
 require_once __DIR__ . '/../model/UserModel.php';
 
+
+/**
+ * AuthController class handles authentication-related operations.
+ */
 class AuthController
 {
+    /**
+     * @var UserModel $userModel The UserModel instance.
+     */
     private $userModel;
 
     public function __construct()
@@ -11,17 +19,33 @@ class AuthController
         $this->userModel = new UserModel($conn);
     }
 
+    /**
+     * Index method handles login and registration based on POST requests.
+     * Sets error messages in session if an exception occurs.
+     */
     public function index()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['login_submit'])) {
-                $this->handleLogin();
+                try {
+                    $this->handleLogin();
+                } catch (Exception $e) {
+                    $_SESSION['login_error'] = $e->getMessage();
+                }
             } elseif (isset($_POST['register_submit'])) {
-                $this->handleRegistration();
+                try {
+                    $this->handleRegistration();
+                } catch (Exception $e) {
+                    $_SESSION['register_error'] = $e->getMessage();
+                }
             }
         }
     }
 
+    /**
+     * Handles user login.
+     * Sets user session if login is successful, otherwise sets login error message.
+     */
     private function handleLogin()
     {
         $username_email = $_POST['username_email'];
@@ -39,6 +63,10 @@ class AuthController
         exit();
     }
 
+    /**
+     * Handles user registration.
+     * Sets user session if registration is successful, otherwise sets registration error message.
+     */
     private function handleRegistration()
     {
         $username = $_POST['register_username'];
