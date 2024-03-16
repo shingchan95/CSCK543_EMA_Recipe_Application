@@ -35,7 +35,12 @@
 
         </section>
         <section class="dashed-border">
-            <h2>PLACEHOLDER FOR THE SEARCH BOX</h2>
+            <h2>Looking for a specific recipe?</h2>
+            <br>
+            <p>With over 1000 recipes on our application, we know we got what you are looking for!</p>
+            <br>
+            <?php include 'component/advanced_search.php'; ?>
+
         </section>
         <aside class="container dashed-border" id="featured_recipes_container">
             <h2>Featured Recipes</h2>

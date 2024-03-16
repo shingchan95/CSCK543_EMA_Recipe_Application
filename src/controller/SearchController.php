@@ -48,7 +48,7 @@ class SearchController {
             if (!$recipes) {
                 throw new Exception("No recipes found matching the search criteria");
             }
-    
+          
             $this->render('search', ['recipes' => $recipes]);
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -71,4 +71,3 @@ class SearchController {
         include __DIR__ . "/../view/$view.php";
     }
 }
-?>
