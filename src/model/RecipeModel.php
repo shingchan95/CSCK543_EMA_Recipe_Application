@@ -90,7 +90,6 @@ class RecipeModel {
     }
  
     
- 
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe WHERE id = ?";
         $stmt = $this->conn->prepare($sql);

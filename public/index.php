@@ -15,10 +15,9 @@ $searchController = new SearchController();
 $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 
-// Get the current path from the URL and prepare it for parsing
-// Basic routing
 if (!empty($segments[1])) {
     session_start();
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 
     switch ($segments[1]) {
         case 'home':
@@ -28,18 +27,41 @@ if (!empty($segments[1])) {
 
         case 'profile':
             $_SESSION['current_page'] = $segments[1];
-            $profileController->index();
+            $profileController->index($user_id);
             break;
 
         case 'recipe':
             $_SESSION['current_page'] = $segments[1];
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 $recipeId = intval($segments[2]);
-                $recipeController->showRecipe($recipeId);
-            } else {
+                $recipeController->showRecipe($recipeId, "");
+            } 
+            elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+                $action = $_POST['action']; 
+                switch ($action) { 
+                    case 'saveFavorite': 
+                        $recipeId = $_POST['recipeId'];
+                        $recipeController->saveFavorite($recipeId, $user_id); 
+                        break; 
+                    case 'giveRating':
+                        $recipeId = $_POST['recipeId'];
+                        $user_Id = $_POST['user_Id'];
+                        $rating = $_POST['rating'];
+                        $category_id = $_POST['category_id'];
+                        $recipeController->addRating($recipeId, $user_id, $rating, $category_id); 
+                        break; 
+                    default: 
+                          echo "Invalid action"; 
+                          break; 
+            }
+        }
+            
+            else {
                 $recipeController->index();
             }
+
             break;
+
 
         case 'login':
             $authController->index();
@@ -68,3 +90,5 @@ if (!empty($segments[1])) {
 } else {
     $homeController->index();
 }
+
+?>
