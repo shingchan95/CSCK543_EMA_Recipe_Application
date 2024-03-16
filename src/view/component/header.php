@@ -35,13 +35,15 @@
                        href="/CSCK543_EMA_Recipe_Application/home">Home</a>
                 </li>
                 <li>
-                    <a class="<?php echo ($_SESSION['current_page'] == 'recipe') ? 'current_page' : ''; ?>"
-                       href="/CSCK543_EMA_Recipe_Application/recipe">Recipe</a>
+                    <a class="<?php echo ($_SESSION['current_page'] == 'search') ? 'current_page' : ''; ?>"
+                       href="/CSCK543_EMA_Recipe_Application/search">Search</a>
                 </li>
-                <li>
+                <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
+                <li> 
                     <a class="<?php echo ($_SESSION['current_page'] == 'profile') ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/profile">Profile</a>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <section id="user_login" class="container">
