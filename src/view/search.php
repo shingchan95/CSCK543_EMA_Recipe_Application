@@ -1,3 +1,17 @@
+<?php
+
+function filterRepeated($array, $keyword): array
+{
+    $uniqueValues = [];
+    foreach ($array as $element) {
+        // Use array keys to simulate Set behaviour
+        $uniqueValues[$element[$keyword]] = $element[$keyword];
+    }
+    return $uniqueValues;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,30 +29,61 @@
     </section>
 
     <section>
-        <div class="container">
-            <!-- Filters -->
-
-            <?php print_r($recipes); ?>
-
-            <span>Filter by: </span>
-
+        <div class="container" id="search_filter_container">
+            <div id="search_filters" class="container"><h3>Filter by: </h3>
+                <div>
+                    <p>Diet</p>
+                    <select id="diet_filter" onchange="updateFilters()">
+                        <option value="all">All Diets</option>
+                        <?php
+                        $uniqueDiets = filterRepeated($recipes, "diet");
+                        foreach ($uniqueDiets as $diet) {
+                            echo "<option value='" . htmlspecialchars($diet) . "'>" .
+                                htmlspecialchars($diet) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div>
+                    <p>Course</p>
+                    <select id="course_filter" onchange="updateFilters()">
+                        <option value="all">All Courses</option>
+                        <?php
+                        $uniqueCourses = filterRepeated($recipes, "course");
+                        foreach ($uniqueCourses as $course) {
+                            echo "<option value='" . htmlspecialchars($course) . "'>" .
+                                htmlspecialchars($course) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div>
+                    <p>Author</p>
+                    <select id="author_filter" onchange="updateFilters()">
+                        <option value="all">All Authors</option>
+                        <?php
+                        $uniqueAuthors = filterRepeated($recipes, "author");
+                        foreach ($uniqueAuthors as $author) {
+                            echo "<option value='" . htmlspecialchars($author) . "'>" .
+                                htmlspecialchars($author) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <!-- Results-->
-
-        </div>
-
+    </section>
+    <section class="container" id="recipe_results">
 
     </section>
-
 
 
 </main>
 
 <?php include 'component/footer.php'; ?>
-
+<script>const recipes = <?php echo json_encode($recipes); ?>;</script>
 <script src="/js/search.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 

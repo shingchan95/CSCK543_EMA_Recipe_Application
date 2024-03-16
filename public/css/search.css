@@ -1,0 +1,20 @@
+#search_filter_container {
+    justify-content: center;
+}
+
+#search_filters {
+    justify-content: center;
+    background-color: lightcoral;
+}
+
+main section * {
+    padding: 5px;
+}
+
+#recipe_results {
+justify-content: center;
+}
+
+.card_image {
+    max-width: 300px;
+}
