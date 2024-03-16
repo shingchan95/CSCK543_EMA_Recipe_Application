@@ -67,7 +67,7 @@ class RecipeController {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-
+    }
 
     public function saveFavorite($recipeId, $userId){
         
@@ -114,6 +114,7 @@ class RecipeController {
         }
         include __DIR__ . "/../view/$view.php";
     }
+    
 }
 ?>
 
