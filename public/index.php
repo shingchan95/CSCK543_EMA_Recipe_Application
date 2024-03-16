@@ -53,13 +53,11 @@ if (!empty($segments[1])) {
                     default: 
                           echo "Invalid action"; 
                           break; 
+                }
             }
-        }
-            
             else {
                 $recipeController->index();
             }
-
             break;
 
 
