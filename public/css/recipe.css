@@ -37,50 +37,32 @@
     flex-basis: 20%;
 }
 
-.rate {
-    display: flex;
-    justify-content: center;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    height: auto;
-    padding: 0 10px;
-}
 
-.rate:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-}
-
-.rate:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
+.star {
     font-size: 30px;
-    color: #ccc;
-}
+    cursor: pointer;
+  }
+   
+  .one {
+    color: rgb(255, 106, 0);
+  }
+   
+  .two {
+    color: rgb(255, 106, 0);
+  }
+   
+  .three {
+    color: rgb(255, 106, 0);
+  }
+   
+  .four {
+    color: rgb(255, 106, 0);
+  }
+   
+  .five {
+    color: rgb(255, 106, 0);
+  }
 
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-
-.rate > input:checked ~ label {
-    color: #ffc700;
-}
-
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
-}
-
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
 
 /* Slider details*/
 

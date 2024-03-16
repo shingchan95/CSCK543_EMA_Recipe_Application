@@ -40,22 +40,15 @@
             <div class="right-box">
                 <section class="interactive-features">
                     <button class="save-recipe">Save Recipe to Favourites</button>
-                    <!-- Interactive feature for rating -->
-                    <label>Rate the Recipe:
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5"/>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4"/>
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3"/>
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2"/>
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1"/>
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                    </label>
-                </section>
+                        <div class="star-container">
+                            <span onclick="gfg(1)"class="star">★</span>
+                            <span onclick="gfg(2)"class="star">★</span>
+                            <span onclick="gfg(3)"class="star">★</span>
+                            <span onclick="gfg(4)"class="star">★</span>
+                            <span onclick="gfg(5)"class="star">★</span>
+                         </div>
+                         <div id="output_rating"></div>
+
             </div>
         </section>
 
