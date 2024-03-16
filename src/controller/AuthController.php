@@ -124,7 +124,7 @@ class AuthController
              throw new Exception("Registration failed");
          }
          // Redirect to previous page
-         header("Location: " . $currentLocation);
+         header("Location: home");
          exit();
     }
 
