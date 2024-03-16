@@ -45,6 +45,20 @@ class RatingModel {
         return $result->num_rows > 0;
     }
 
+    public function getRating($userId, $recipeId, $categoryId) {
+        $sql = "SELECT rating FROM rating WHERE user_id = ? AND recipe_id = ? AND category_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("iii", $userId, $recipeId, $categoryId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result) {
+            $row = $result->fetch_assoc();
+            return $row['rating'];
+        } else {
+            return 0;
+        }
+    }
+
     // Optional, I don't know if we want this or not
     public function getAverageRating($recipeId) {
         $sql = "SELECT AVG(rating) as average_rating FROM rating WHERE recipe_id = ?";

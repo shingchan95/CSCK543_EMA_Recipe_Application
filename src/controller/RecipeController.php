@@ -36,7 +36,7 @@ class RecipeController {
      * @param int $recipeId The ID of the recipe to show.
      * @throws Exception if recipe details, steps, tips, or ingredients are not found.
      */
-    public function showRecipe($recipeId) {
+    public function showRecipe($recipeId, $userId) {
         try {
             $recipeDetails = $this->recipeModel->getRecipeDetailsById($recipeId);
     
@@ -57,6 +57,16 @@ class RecipeController {
             $ingredients = $this->recipeModel->getIngredientsByRecipeId($recipeId);
             if (!$ingredients) {
                 throw new Exception("Error retrieving ingredients for the recipe");
+            }
+
+            if($userId){
+                $ratingC1 = $this->ratingModel->getRating($userId, $recipeId, 1);
+                $ratingC2 = $this->ratingModel->getRating($userId, $recipeId, 2); 
+                $ratingC3 = $this->ratingModel->getRating($userId, $recipeId, 3);
+
+                $recipeDetails['ratingC1'] = $ratingC1;
+                $recipeDetails['ratingC2'] = $ratingC2;
+                $recipeDetails['ratingC3'] = $ratingC3;
             }
     
             $recipeDetails['steps'] = $steps;
@@ -84,8 +94,6 @@ class RecipeController {
       
      
     public function addRating($recipeId, $userId, $rating, $category_id){
-       
-
         try { 
             
             $this->ratingModel->addRating($recipeId, $userId, $rating, $category_id); 

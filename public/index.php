@@ -34,7 +34,7 @@ if (!empty($segments[1])) {
             $_SESSION['current_page'] = $segments[1];
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 $recipeId = intval($segments[2]);
-                $recipeController->showRecipe($recipeId, "");
+                $recipeController->showRecipe($recipeId, $user_id);
             } 
             elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $action = $_POST['action']; 
