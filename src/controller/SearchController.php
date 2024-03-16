@@ -26,17 +26,17 @@ class SearchController {
      */
     public function index() {
       // Check if the request method is GET
-      if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        // Get search type and term from GET parameters
-        $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
-        $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-        // Call searchRecipes method to search for recipes
-        $this->searchRecipes($searchTerm, $searchType);
-        } else {
-            // If the request method is not GET, retrieve all recipes and render the search page
-            $recipes = $this->recipeModel->getAllRecipes();
-            $this->render('search', ['recipes' => $recipes]);
-        }
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            // Get search type and term from GET parameters
+            $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
+            $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+            // Call searchRecipes method to search for recipes
+            if(empty($searchTerm)) {
+                $this->render('search', ['recipes' => []]);
+            }else{
+                $this->searchRecipes($searchTerm, $searchType);
+            }
+        } 
     }
 
 
@@ -55,16 +55,6 @@ class SearchController {
             } else {
                 $recipes = $this->recipeModel->searchRecipesWithType($searchTerm, $searchType);
             }
-
-            // Check if recipes were found
-            if (!$recipes) {
-                // If no recipes found, set an error message and render the page with an empty recipe list
-                $this->render('search', ['recipes' => []]);
-            } else {
-                // If recipes found, render the page with the search results
-                $this->render('search', ['recipes' => $recipes]);
-            }
-          
             // Render the search page with the search results
             $this->render('search', ['recipes' => $recipes]);
         } catch (Exception $e) {
