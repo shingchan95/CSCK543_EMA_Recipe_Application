@@ -7,10 +7,7 @@ class RecipeModel {
     }
  
     public function getAllRecipes() {
-        $sql = "SELECT r.*, a.author, d.diet, c.course FROM recipe AS r
-                LEFT JOIN diet AS d ON r.diet_id = d.id
-                LEFT JOIN author AS a ON r.author_id = a.id
-                LEFT JOIN course AS c ON r.course_id = c.id";
+        $sql = "SELECT * FROM recipe_view";
         $result = $this->conn->query($sql);
  
         if ($result) {
@@ -21,7 +18,7 @@ class RecipeModel {
     }
  
     public function getRecipeByDietId($dietId) {
-        $sql = "SELECT * FROM recipe WHERE diet_id = ?";
+        $sql = "SELECT * FROM recipe_view WHERE diet_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $dietId);
         $stmt->execute();
@@ -36,11 +33,8 @@ class RecipeModel {
     }
  
     public function searchRecipes($searchTerm) {
-        $sql = "SELECT r.* , a.author, d.diet, c.course FROM recipe AS r
-                LEFT JOIN diet AS d ON r.diet_id = d.id
-                LEFT JOIN author AS a ON r.author_id = a.id
-                LEFT JOIN course AS c ON r.course_id = c.id
-                WHERE r.recipe LIKE CONCAT('%', ?, '%')";
+        $sql = "SELECT * FROM recipe_view
+                WHERE recipe LIKE CONCAT('%', ?, '%')";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
@@ -54,12 +48,9 @@ class RecipeModel {
     }
     public function searchRecipesWithType($searchTerm, $searchType) {
         //course, author, diet, ingredient
-        $sql = "SELECT DISTINCT r.* , a.author, d.diet, c.course FROM recipe AS r
-                LEFT JOIN diet AS d ON r.diet_id = d.id
-                LEFT JOIN author AS a ON r.author_id = a.id
-                LEFT JOIN course AS c ON r.course_id = c.id
-                LEFT JOIN recipe_ingredient AS ri ON r.id = ri.recipe_id
-                LEFT JOIN ingredient AS i ON ri.ingredient_id = i.id
+        $sql = "SELECT DISTINCT r.* FROM recipe_view AS r
+                INNER JOIN recipe_ingredient AS ri ON r.id = ri.recipe_id
+                INNER JOIN ingredient AS i ON ri.ingredient_id = i.id
                 WHERE  $searchType LIKE CONCAT('%', ?, '%')";
     
         $stmt = $this->conn->prepare($sql);
@@ -105,28 +96,8 @@ class RecipeModel {
     }
  
     public function getRecipeDetailsById($recipeId) {
-        $sql = "
-            SELECT
-                r.id,
-                r.recipe,
-                r.servings,
-                r.tagline,
-                r.preparation,
-                r.cooking,
-                r.image_path,
-                r.added,
-                d.diet,
-                c.course,
-                a.author
-            FROM
-                recipe r
-            LEFT JOIN diet d ON r.diet_id = d.id
-            LEFT JOIN course c ON r.course_id = c.id
-            LEFT JOIN author a ON r.author_id = a.id
-            WHERE
-                r.id = ?
-        ";
- 
+        $sql = "SELECT * FROM recipe_view
+                WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
@@ -198,7 +169,7 @@ class RecipeModel {
                 ingredient
             FROM
                 recipe_ingredient ri
-            LEFT JOIN
+            INNER JOIN
                 ingredient i ON ri.ingredient_id = i.id
             WHERE
                 recipe_id = ?
@@ -218,11 +189,8 @@ class RecipeModel {
     }
  
     public function getFeaturedRecipes() {
-        $sql = "SELECT r.*, a.author, d.diet, c.course FROM recipe AS r
-        LEFT JOIN diet AS d ON r.diet_id = d.id
-        LEFT JOIN author AS a ON r.author_id = a.id
-        LEFT JOIN course AS c ON r.course_id = c.id
-        WHERE r.featured = '1'";
+        $sql = "SELECT * FROM recipe_view
+        WHERE featured = '1'";
         $result = $this->conn->query($sql);
  
         if ($result) {

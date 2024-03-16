@@ -38,6 +38,18 @@ class AuthController
                 } catch (Exception $e) {
                     $_SESSION['register_error'] = $e->getMessage();
                 }
+            } elseif (isset($_POST['register_submit'])) {
+                try {
+                    $this->handleRegistration();
+                } catch (Exception $e) {
+                    $_SESSION['register_error'] = $e->getMessage();
+                }
+            } elseif (isset($_POST['delete_submit'])) {
+                try {
+                    $this->handleAccountDeletion();
+                } catch (Exception $e) {
+                    $_SESSION['register_error'] = $e->getMessage();
+                }
             }
         }
     }
@@ -96,6 +108,25 @@ class AuthController
             $_SESSION['register_error'] = "Registration failed";
         }
         header("Location: " . $currentLocation);
+        exit();
+    }
+
+    /**
+     * Handles user account deletion.
+     * Redirects to the current page after deletion.
+     */
+    private function handleAccountDeletion()
+    {
+        $userId = $_SESSION['user_id'];
+        $success = $this->userModel->deleteUser($userId);
+        if ($success) {
+            unset($_SESSION['user_id']);
+            unset($_SESSION['username']);
+            session_destroy();
+        } else {
+            throw new Exception("Failed to delete user account");
+        }
+        header("Location: home");
         exit();
     }
 }

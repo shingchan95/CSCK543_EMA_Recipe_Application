@@ -128,6 +128,19 @@ class UserModel
         $stmt->execute();
     }
 
+    /**
+     * Delete a user account from the database.
+     *
+     * @param int $userId ID of the user to be deleted
+     * @return bool True if user deletion is successful, false otherwise
+     */
+    public function deleteUser($userId) {
+        $sql = "DELETE FROM user WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        return $stmt->execute();
+    }
+
 }
 
 ?>
