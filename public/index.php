@@ -68,6 +68,7 @@ if (!empty($segments[1])) {
             break;
 
         case 'search':
+            $_SESSION['current_page'] = $segments[1];
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
                 $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
