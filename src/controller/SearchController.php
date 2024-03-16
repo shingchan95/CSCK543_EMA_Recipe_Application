@@ -22,11 +22,21 @@ class SearchController {
 
 
     /**
-     * Renders the search page.
+     * Index method handles rendering the search page and processing search requests.
      */
     public function index() {
-        $recipes = $this->recipeModel->getAllRecipes();
-        $this->render('search', ['recipes' => $recipes]);
+      // Check if the request method is GET
+      if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        // Get search type and term from GET parameters
+        $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
+        $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+        // Call searchRecipes method to search for recipes
+        $this->searchRecipes($searchTerm, $searchType);
+        } else {
+            // If the request method is not GET, retrieve all recipes and render the search page
+            $recipes = $this->recipeModel->getAllRecipes();
+            $this->render('search', ['recipes' => $recipes]);
+        }
     }
 
 
@@ -37,21 +47,30 @@ class SearchController {
      * @param string $searchType The search type.
      * @throws Exception if no recipes are found matching the search criteria.
      */
-    public function searchRecipes($searchTerm, $searchType) {
+    private function searchRecipes($searchTerm, $searchType) {
         try {
+            // Check if the search type is 'all', otherwise search with specific type
             if ($searchType === 'all') {
                 $recipes = $this->recipeModel->searchRecipes($searchTerm);
             } else {
                 $recipes = $this->recipeModel->searchRecipesWithType($searchTerm, $searchType);
             }
-    
+
+            // Check if recipes were found
             if (!$recipes) {
-                throw new Exception("No recipes found matching the search criteria");
+                // If no recipes found, set an error message and render the page with an empty recipe list
+                $this->render('search', ['recipes' => []]);
+            } else {
+                // If recipes found, render the page with the search results
+                $this->render('search', ['recipes' => $recipes]);
             }
           
+            // Render the search page with the search results
             $this->render('search', ['recipes' => $recipes]);
         } catch (Exception $e) {
+            // If an exception occurs, display the error message
             echo $e->getMessage();
+            throw $e;
         }
     }
 
@@ -62,7 +81,8 @@ class SearchController {
      * @param string $view The view file name.
      * @param array $data The data to be passed to the view.
      */
-    public function render($view, $data = []) {
+    private function render($view, $data = []) {
+        // Extract data if not empty, otherwise display a message
         if (!empty($data)) {
             extract($data);
         } else {

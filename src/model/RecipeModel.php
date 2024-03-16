@@ -18,7 +18,7 @@ class RecipeModel {
     }
  
     public function getRecipeByDietId($dietId) {
-        $sql = "SELECT * FROM recipe_view WHERE diet_id = ?";
+        $sql = "SELECT * FROM recipe_view WHERE diet_id <= ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $dietId);
         $stmt->execute();
@@ -82,7 +82,7 @@ class RecipeModel {
  
     
     public function getRecipeByID($recipeId) {
-        $sql = "SELECT * FROM recipe WHERE id = ?";
+        $sql = "SELECT * FROM recipe_view WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();

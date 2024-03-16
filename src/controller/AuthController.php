@@ -8,9 +8,6 @@ require_once __DIR__ . '/../model/UserModel.php';
  */
 class AuthController
 {
-    /**
-     * @var UserModel $userModel The UserModel instance.
-     */
     private $userModel;
 
     public function __construct()
@@ -26,25 +23,24 @@ class AuthController
     public function index()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Check if login form is submitted
             if (isset($_POST['login_submit'])) {
                 try {
                     $this->handleLogin();
                 } catch (Exception $e) {
                     $_SESSION['login_error'] = $e->getMessage();
                 }
-            } elseif (isset($_POST['register_submit'])) {
+            }
+            // Check if registration form is submitted 
+            elseif (isset($_POST['register_submit'])) {
                 try {
                     $this->handleRegistration();
                 } catch (Exception $e) {
                     $_SESSION['register_error'] = $e->getMessage();
                 }
-            } elseif (isset($_POST['register_submit'])) {
-                try {
-                    $this->handleRegistration();
-                } catch (Exception $e) {
-                    $_SESSION['register_error'] = $e->getMessage();
-                }
-            } elseif (isset($_POST['delete_submit'])) {
+            } 
+            // Check if delete account form is submitted 
+            elseif (isset($_POST['delete_submit'])) {
                 try {
                     $this->handleAccountDeletion();
                 } catch (Exception $e) {
@@ -55,22 +51,40 @@ class AuthController
     }
 
     /**
+     * Handles user logout.
+     * Destroys session and redirects to home page.
+     */
+    public function handleLogout() 
+    {
+        // Destroy session
+        session_destroy();
+        // Redirect to home page
+        header("Location: home");
+        exit();
+    }
+
+    /**
      * Handles user login.
      * Sets user session if login is successful, otherwise sets login error message.
      */
     private function handleLogin()
     {
+        // Retrieve login credentials
         $username_email = $_POST['username_email'];
         $password = $_POST['password'];
 
+        // Attempt to login user
         $user = $this->userModel->loginUser($username_email, $password);
 
+        // If login successful, set user session
         if ($user) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
         } else {
-            $_SESSION['login_error'] = "Invalid username or password";
+            // If login fails, set login error message
+            throw new Exception("Invalid username or password");
         }
+        // Redirect to previous page
         header("Location: " . $_SESSION['current_page']);
         exit();
     }
@@ -81,34 +95,37 @@ class AuthController
      */
     private function handleRegistration()
     {
-        $username = $_POST['register_username'];
-        $email = $_POST['register_email'];
-        $password = $_POST['register_password'];
-
-        $currentLocation = $_SESSION['current_page'];
-
-        if ($this->userModel->getUserByUsername($username)) {
-            $_SESSION['register_error'] = "Username already taken. Choose a different username.";
-            header("Location: " . $currentLocation);
-            exit();
-        }
-        if ($this->userModel->getUserByEmail($email)) {
-            $_SESSION['register_error'] = "Email already exists. Choose a different email.";
-            header("Location: " . $currentLocation);
-            exit();
-        }
-
-        $success = $this->userModel->createUser($username, $email, $password);
-
-        if ($success) {
-            $user = $this->userModel->getUserByUsername($username);
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-        } else {
-            $_SESSION['register_error'] = "Registration failed";
-        }
-        header("Location: " . $currentLocation);
-        exit();
+         // Retrieve registration data
+         $username = $_POST['register_username'];
+         $email = $_POST['register_email'];
+         $password = $_POST['register_password'];
+ 
+         // Get current page location
+         $currentLocation = $_SESSION['current_page'];
+ 
+         // Check if username is already taken
+         if ($this->userModel->getUserByUsername($username)) {
+             throw new Exception("Username already taken. Choose a different username.");
+         }
+         // Check if email is already registered
+         if ($this->userModel->getUserByEmail($email)) {
+             throw new Exception("Email already exists. Choose a different email.");
+         }
+ 
+         // Create user
+         $success = $this->userModel->createUser($username, $email, $password);
+ 
+         // If user creation successful, set user session
+         if ($success) {
+             $user = $this->userModel->getUserByUsername($username);
+             $_SESSION['user_id'] = $user['id'];
+             $_SESSION['username'] = $user['username'];
+         } else {
+             throw new Exception("Registration failed");
+         }
+         // Redirect to previous page
+         header("Location: " . $currentLocation);
+         exit();
     }
 
     /**
@@ -117,8 +134,11 @@ class AuthController
      */
     private function handleAccountDeletion()
     {
+        // Get user ID
         $userId = $_SESSION['user_id'];
+        // Attempt to delete user account
         $success = $this->userModel->deleteUser($userId);
+        // If deletion successful, unset session and destroy session
         if ($success) {
             unset($_SESSION['user_id']);
             unset($_SESSION['username']);
@@ -126,6 +146,7 @@ class AuthController
         } else {
             throw new Exception("Failed to delete user account");
         }
+        // Redirect to home page
         header("Location: home");
         exit();
     }
