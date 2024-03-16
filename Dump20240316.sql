@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `recipedb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `recipedb`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: recipedb
@@ -240,7 +238,7 @@ CREATE TABLE `recipe` (
 
 LOCK TABLES `recipe` WRITE;
 /*!40000 ALTER TABLE `recipe` DISABLE KEYS */;
-INSERT INTO `recipe` VALUES (1,4,2,1,'Spaghetti Bolognese',6,'Once you\'ve got this grown-up spag bol going, the hob will do the rest. Any leftovers will taste even better the next day. ',30,60,'spaghettibolognese_67868_16x9.jpg','2019-05-12',1),(2,1,3,2,'Vegan Pancakes',2,'Try this vegan fluffy American pancake recipe for a perfect start to the day. Serve these pancakes with fresh berries, maple syrup or chocolate sauce for a really luxurious start to the day.',30,15,'vegan_american_pancakes_76094_16x9.jpg','2019-11-23',1),(3,2,2,2,'Healthy Pizza',2,'No yeast required for this easy, healthy pizza, topped with colourful vegetables that\'s ready in 30 minutes. This is a great recipe if you want to feed the kids in a hurry!',30,15,'healthy_pizza_55143_16x9.jpg','2020-04-05',0),(4,4,2,3,'Easy Lamb Biryani',6,'This lamb biryani is real centrepiece dish, but it\'s actually easy as anything to make. Serve garnished with pomegranate seeds to make it look really special.',480,90,'easy_lamb_biryani_46729_16x9.jpg','2020-08-17',0),(5,1,2,4,'Couscous Salad',6,'A nutritious and satisfying vegan couscous salad packed with colour, flavour and texture, from dried cranberries, pistachios and pine nuts.',30,10,'dried_fruits_and_nuts_18053_16x9.jpg','2021-01-29',0),(6,2,3,5,'Plum Clafoutis',4,'Halved plums are covered in a light batter and then baked in the oven to make this traditional French dessert. British plums are at their best in September, so make the most of them then and try this simple pud.',30,45,'plumclafoutis_11536_16x9.jpg','2021-06-14',0),(7,2,3,6,'Mango Pie',16,'This mouthwatering mango dessert is an Indian take on a traditional Thanksgiving pie.',45,45,'mango_pie_18053_16x9.jpg','2022-07-03',0),(8,2,2,7,'Mushroom Doner',4,'A meat-free mushroom \'doner\' kebab packed with two types of sauces, pickles and veg. A mighty delicious vegetarian dish.',30,20,'mushroom_doner_22676_16x9.jpg','2023-03-30',0);
+INSERT INTO `recipe` VALUES (1,4,2,1,'Spaghetti Bolognese',6,'Once you\'ve got this grown-up spag bol going, the hob will do the rest. Any leftovers will taste even better the next day. ',30,60,'spaghetti_bolognese.jpg','2019-05-12',1),(2,1,3,2,'Vegan Pancakes',2,'Try this vegan fluffy American pancake recipe for a perfect start to the day. Serve these pancakes with fresh berries, maple syrup or chocolate sauce for a really luxurious start to the day.',30,15,'vegan_american_pancakes.jpg','2019-11-23',1),(3,2,2,2,'Healthy Pizza',2,'No yeast required for this easy, healthy pizza, topped with colourful vegetables that\'s ready in 30 minutes. This is a great recipe if you want to feed the kids in a hurry!',30,15,'healthy_pizza.jpg','2020-04-05',0),(4,4,2,3,'Easy Lamb Biryani',6,'This lamb biryani is real centrepiece dish, but it\'s actually easy as anything to make. Serve garnished with pomegranate seeds to make it look really special.',480,90,'easy_lamb_biryani.jpg','2020-08-17',0),(5,1,2,4,'Couscous Salad',6,'A nutritious and satisfying vegan couscous salad packed with colour, flavour and texture, from dried cranberries, pistachios and pine nuts.',30,10,'couscous_salad.jpg','2021-01-29',0),(6,2,3,5,'Plum Clafoutis',4,'Halved plums are covered in a light batter and then baked in the oven to make this traditional French dessert. British plums are at their best in September, so make the most of them then and try this simple pud.',30,45,'plum_clafoutis.jpg','2021-06-14',0),(7,2,3,6,'Mango Pie',16,'This mouthwatering mango dessert is an Indian take on a traditional Thanksgiving pie.',45,45,'mango_pie.jpg','2022-07-03',0),(8,2,2,7,'Mushroom Doner',4,'A meat-free mushroom \'doner\' kebab packed with two types of sauces, pickles and veg. A mighty delicious vegetarian dish.',30,20,'mushroom_doner.jpg','2023-03-30',0);
 /*!40000 ALTER TABLE `recipe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,6 +274,32 @@ LOCK TABLES `recipe_ingredient` WRITE;
 INSERT INTO `recipe_ingredient` VALUES (1,1,1,2,'tbs',NULL,NULL),(2,1,2,6,'rashers',NULL,NULL),(3,1,3,2,'',NULL,NULL),(4,1,4,3,'cloves','crushed',NULL),(5,1,5,1,'kg',NULL,NULL),(6,1,6,2,'large glasses',NULL,NULL),(7,1,7,800,'g',NULL,NULL),(8,1,8,290,'g','drained',NULL),(9,1,9,2,'leaves',NULL,NULL),(10,1,10,1,'tsp','chopped',NULL),(11,1,11,1,'tsp','chopped',NULL),(12,1,12,1,'drizzle',NULL,NULL),(13,1,13,12,NULL,NULL,NULL),(14,1,14,NULL,NULL,NULL,NULL),(15,1,15,NULL,NULL,NULL,NULL),(16,1,16,1,'handful','torn into small pieces',NULL),(17,1,17,1,'kg',NULL,NULL),(18,1,18,NULL,'lots',NULL,NULL),(19,2,19,125,'g',NULL,NULL),(20,2,20,2,'tbsp',NULL,NULL),(21,2,21,1,'tsp',NULL,NULL),(22,2,22,1,'good pinch',NULL,NULL),(23,2,23,150,'ml',NULL,NULL),(24,2,24,0.25,'tsp',NULL,NULL),(25,2,25,4,'tsp',NULL,'for frying'),(26,3,26,125,'g',NULL,'plus extra for dusting'),(27,3,22,1,'pinch',NULL,NULL),(28,3,27,125,'g',NULL,NULL),(29,3,28,1,NULL,'seeds removed and thinly sliced',NULL),(30,3,29,1,NULL,'cut into 1cm slices',NULL),(31,3,30,1,NULL,'cut into thin wedges',NULL),(32,3,31,1,'tbsp',NULL,'plus extra for drizzling'),(33,3,32,0.5,'tsp',NULL,NULL),(34,3,33,50,'g',NULL,NULL),(35,3,15,NULL,NULL,NULL,NULL),(36,3,16,NULL,NULL,NULL,'to serve'),(37,3,34,6,'tbsp',NULL,NULL),(38,3,35,1,'tsp',NULL,NULL),(39,4,36,5,'tbsp',NULL,NULL),(40,4,3,2,NULL,'finely sliced',NULL),(41,4,37,200,'g',NULL,NULL),(42,4,38,4,'tbsp','finely grated',NULL),(43,4,4,3,'tbsp','finely grated',NULL),(44,4,39,2,'tsp',NULL,NULL),(45,4,40,5,'tsp',NULL,NULL),(46,4,41,1,'tsp',NULL,NULL),(47,4,22,4,'tsp',NULL,NULL),(48,4,42,1,NULL,NULL,'juice only'),(49,4,43,30,'g','finely chopped',NULL),(50,4,44,30,'g','finely chopped',NULL),(51,4,45,3,NULL,'finely chopped',NULL),(52,4,46,800,'g','cut into bit- sized pieces',NULL),(53,4,47,4,'tbsp',NULL,NULL),(54,4,48,1.5,'tbsp',NULL,NULL),(55,4,49,1,'tsp',NULL,'(a large pinch)'),(56,4,50,400,'g',NULL,NULL),(57,4,51,2,'tbsp',NULL,'to garnish'),(58,5,52,225,'g','use packet instructions',NULL),(59,5,53,8,'small','flesh and rind finely chopped',NULL),(60,5,54,180,'g',NULL,NULL),(61,5,55,120,'g','toasted',NULL),(62,5,56,160,'g','roughtly chopped',NULL),(63,5,57,125,'ml',NULL,NULL),(64,5,58,60,'g','finely chopped',NULL),(65,5,4,4,'cloves','crushed',NULL),(66,5,59,4,'tbsp',NULL,NULL),(67,5,30,NULL,NULL,'finely chopped',NULL),(68,5,14,1,'tsp',NULL,'or to taste'),(69,5,60,80,'g',NULL,NULL),(70,6,70,125,'ml',NULL,NULL),(71,6,47,125,'ml',NULL,NULL),(72,6,24,3,'drops',NULL,NULL),(73,6,71,4,NULL,NULL,NULL),(74,6,20,170,'g',NULL,NULL),(75,6,73,1,'tbsp',NULL,NULL),(76,6,74,30,'g',NULL,NULL),(77,6,75,500,'g',NULL,'cut in half, stones removed'),(78,6,76,2,'tbsp',NULL,NULL),(79,6,77,30,'g',NULL,'(optional)'),(80,6,72,NULL,NULL,NULL,'for dusting'),(81,6,47,NULL,NULL,NULL,'to serve'),(82,7,79,280,'g',NULL,NULL),(83,7,80,65,'g',NULL,NULL),(84,7,41,0.25,'tsp',NULL,NULL),(85,7,81,128,'g',NULL,'melted'),(86,7,22,NULL,'large pinch',NULL,NULL),(87,7,80,100,'g',NULL,NULL),(88,7,82,2.25,'tsp',NULL,NULL),(89,7,47,120,'ml',NULL,NULL),(90,7,83,115,NULL,NULL,'at room temperature'),(91,7,84,850,'g',NULL,NULL),(92,7,22,NULL,'large pinch',NULL,NULL),(93,8,7,400,'g',NULL,NULL),(94,8,85,2,'tbsp',NULL,NULL),(95,8,20,2,'tsp',NULL,NULL),(96,8,86,NULL,'good squeeze',NULL,NULL),(97,8,3,1,NULL,'very thinly sliced into half moons',NULL),(98,8,87,2,'level tsp',NULL,NULL),(99,8,58,20,'g','','finely chopped'),(100,8,27,150,'g',NULL,NULL),(101,8,88,1,'heaped tsp',NULL,NULL),(102,8,14,NULL,NULL,NULL,NULL),(103,8,15,NULL,NULL,NULL,NULL),(104,8,89,500,'g',NULL,'very thinly sliced lengthways'),(105,8,90,2,'tsp',NULL,NULL),(106,8,91,2,'tsp',NULL,NULL),(107,8,98,2,'heaped tsp',NULL,NULL),(108,8,92,2,'tsp',NULL,NULL),(109,8,93,3,'tsp',NULL,NULL),(110,8,15,0.5,'tsp',NULL,NULL),(111,8,94,4,NULL,NULL,NULL),(112,8,95,0.25,NULL,NULL,NULL),(113,8,96,2,NULL,NULL,'sliced into half moons'),(114,8,97,5,NULL,NULL,'thinly sliced (optional)');
 /*!40000 ALTER TABLE `recipe_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `recipe_view`
+--
+
+DROP TABLE IF EXISTS `recipe_view`;
+/*!50001 DROP VIEW IF EXISTS `recipe_view`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `recipe_view` AS SELECT 
+ 1 AS `id`,
+ 1 AS `diet_id`,
+ 1 AS `course_id`,
+ 1 AS `author_id`,
+ 1 AS `recipe`,
+ 1 AS `servings`,
+ 1 AS `tagline`,
+ 1 AS `preparation`,
+ 1 AS `cooking`,
+ 1 AS `image_path`,
+ 1 AS `added`,
+ 1 AS `featured`,
+ 1 AS `author`,
+ 1 AS `diet`,
+ 1 AS `course`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `step`
@@ -363,6 +387,24 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `recipe_view`
+--
+
+/*!50001 DROP VIEW IF EXISTS `recipe_view`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `recipe_view` AS select `r`.`id` AS `id`,`r`.`diet_id` AS `diet_id`,`r`.`course_id` AS `course_id`,`r`.`author_id` AS `author_id`,`r`.`recipe` AS `recipe`,`r`.`servings` AS `servings`,`r`.`tagline` AS `tagline`,`r`.`preparation` AS `preparation`,`r`.`cooking` AS `cooking`,`r`.`image_path` AS `image_path`,`r`.`added` AS `added`,`r`.`featured` AS `featured`,`a`.`author` AS `author`,`d`.`diet` AS `diet`,`c`.`course` AS `course` from (((`recipe` `r` join `diet` `d` on((`r`.`diet_id` = `d`.`id`))) join `author` `a` on((`r`.`author_id` = `a`.`id`))) join `course` `c` on((`r`.`course_id` = `c`.`id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -373,4 +415,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-10 19:36:46
+-- Dump completed on 2024-03-16 13:51:16

@@ -64,7 +64,7 @@ class RecipeModel {
             return [];
         }
     }
-
+ 
  
     public function getAllSavedRecipes($userId) {
         $sql = "SELECT r.* FROM recipe AS r JOIN saved_recipes AS sr ON r.id = sr.recipe_id WHERE sr.user_id = ?";
@@ -81,7 +81,6 @@ class RecipeModel {
     }
  
     
-
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -95,19 +94,18 @@ class RecipeModel {
             return null;
         }
     }
-
+ 
     public function getRecipeDetailsById($recipeId) {
         $sql = "SELECT * FROM recipe_view
                 WHERE id = ?";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
         $result = $stmt->get_result();
-
+ 
         return $result->fetch_assoc();
     }
-
+ 
     public function getStepsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -121,20 +119,20 @@ class RecipeModel {
             ORDER BY
                 step_no
         ";
-
+ 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
         $result = $stmt->get_result();
-
+ 
         $steps = [];
         while ($row = $result->fetch_assoc()) {
             $steps[] = $row;
         }
-
+ 
         return $steps;
     }
-
+ 
     public function getTipsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -147,20 +145,20 @@ class RecipeModel {
             ORDER BY
                 tip_no
         ";
-
+ 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
         $result = $stmt->get_result();
-
+ 
         $tips = [];
         while ($row = $result->fetch_assoc()) {
             $tips[] = $row;
         }
-
+ 
         return $tips;
     }
-
+ 
     public function getIngredientsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -176,33 +174,31 @@ class RecipeModel {
             WHERE
                 recipe_id = ?
         ";
-
+ 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $recipeId);
         $stmt->execute();
         $result = $stmt->get_result();
-
+ 
         $ingredients = [];
         while ($row = $result->fetch_assoc()) {
             $ingredients[] = $row;
         }
-
+ 
         return $ingredients;
     }
-
+ 
     public function getFeaturedRecipes() {
         $sql = "SELECT * FROM recipe_view
         WHERE featured = '1'";
         $result = $this->conn->query($sql);
-
+ 
         if ($result) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return [];
         }                               
     }
-
+ 
 }
 ?>
-
-
