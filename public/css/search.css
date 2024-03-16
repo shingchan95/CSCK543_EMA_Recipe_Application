@@ -1,5 +1,3 @@
-
-
 #search_filter_container {
     justify-content: center;
 }
@@ -14,9 +12,23 @@ main section * {
 }
 
 #recipe_results {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
 }
 
 .card_image {
-    max-width: 300px;
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto;
+}
+
+#sort_select {
+    height: fit-content;
+}
+
+.centered_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

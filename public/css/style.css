@@ -184,17 +184,3 @@ nav ul li a {
     border-color: lightcoral;
     margin: 10px;
 }
-
-#recipe_results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Adjust the gap between images as needed */
-}
-
-.card_image {
-    max-width: 100%; /* Ensure images are responsive */
-    height: auto;
-}
- 
-

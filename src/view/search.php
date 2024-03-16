@@ -30,7 +30,8 @@ function filterRepeated($array, $keyword): array
 
     <section>
         <div class="container" id="search_filter_container">
-            <div id="search_filters" class="container"><h3>Filter by: </h3>
+            <div id="search_filters" class="centered_container">
+                <h3>Filter by: </h3>
                 <div>
                     <p>Diet</p>
                     <select id="diet_filter" onchange="updateFilters()">
@@ -70,6 +71,17 @@ function filterRepeated($array, $keyword): array
                         ?>
                     </select>
                 </div>
+            </div>
+            <div id="sort_features" class="centered_container">
+                <h3>Sort by:</h3>
+                <select id="sort_select" onchange="sortRecipes()">
+                    <option value="default">Default</option>
+                    <option value="author">Author</option>
+                    <option value="preparation">Preparation Time</option>
+                    <option value="cooking">Cooking Time</option>
+                    <option value="added">Added Date</option>
+                </select>
+
             </div>
         </div>
     </section>

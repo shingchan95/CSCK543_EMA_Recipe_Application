@@ -35,27 +35,25 @@ if (!empty($segments[1])) {
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 $recipeId = intval($segments[2]);
                 $recipeController->showRecipe($recipeId, $user_id);
-            } 
-            elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-                $action = $_POST['action']; 
-                switch ($action) { 
-                    case 'saveFavorite': 
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+                $action = $_POST['action'];
+                switch ($action) {
+                    case 'saveFavorite':
                         $recipeId = $_POST['recipeId'];
-                        $recipeController->saveFavorite($recipeId, $user_id); 
-                        break; 
+                        $recipeController->saveFavorite($recipeId, $user_id);
+                        break;
                     case 'giveRating':
                         $recipeId = $_POST['recipeId'];
                         $user_Id = $_POST['user_Id'];
                         $rating = $_POST['rating'];
                         $category_id = $_POST['category_id'];
-                        $recipeController->addRating($recipeId, $user_id, $rating, $category_id); 
-                        break; 
-                    default: 
-                          echo "Invalid action"; 
-                          break; 
+                        $recipeController->addRating($recipeId, $user_id, $rating, $category_id);
+                        break;
+                    default:
+                        echo "Invalid action";
+                        break;
                 }
-            }
-            else {
+            } else {
                 $recipeController->index();
             }
             break;
@@ -68,9 +66,14 @@ if (!empty($segments[1])) {
         case 'search':
             $_SESSION['current_page'] = $segments[1];
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : 'all';
-                $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-                $searchController->searchRecipes($searchTerm, $searchType);
+                $searchType = $_GET['searchType'] ?? 'all';
+                $searchTerm = $_GET['search'] ?? '';
+
+                if (empty($searchTerm)) {
+                    $searchController->index();
+                } else {
+                    $searchController->searchRecipes($searchTerm, $searchType);
+                }
             } else {
                 $searchController->index();
             }

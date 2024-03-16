@@ -4,8 +4,9 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../model/UserModel.php';
 require_once __DIR__ . '/../model/RecipeModel.php';
- 
-class SearchController {
+
+class SearchController
+{
 
     /**
      * @var UserModel $userModel The UserModel instance.
@@ -14,7 +15,8 @@ class SearchController {
     private $userModel;
     private $recipeModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         global $conn;
         $this->userModel = new UserModel($conn);
         $this->recipeModel = new RecipeModel($conn);
@@ -24,9 +26,9 @@ class SearchController {
     /**
      * Renders the search page.
      */
-    public function index() {
-        $recipes = $this->recipeModel->getAllRecipes();
-        $this->render('search', ['recipes' => $recipes]);
+    public function index()
+    {
+        $this->render('search', ['recipes' => []]);
     }
 
 
@@ -37,18 +39,19 @@ class SearchController {
      * @param string $searchType The search type.
      * @throws Exception if no recipes are found matching the search criteria.
      */
-    public function searchRecipes($searchTerm, $searchType) {
+    public function searchRecipes($searchTerm, $searchType)
+    {
         try {
             if ($searchType === 'all') {
                 $recipes = $this->recipeModel->searchRecipes($searchTerm);
             } else {
                 $recipes = $this->recipeModel->searchRecipesWithType($searchTerm, $searchType);
             }
-    
+
             if (!$recipes) {
                 throw new Exception("No recipes found matching the search criteria");
             }
-          
+
             $this->render('search', ['recipes' => $recipes]);
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -62,7 +65,8 @@ class SearchController {
      * @param string $view The view file name.
      * @param array $data The data to be passed to the view.
      */
-    public function render($view, $data = []) {
+    public function render($view, $data = [])
+    {
         if (!empty($data)) {
             extract($data);
         } else {
