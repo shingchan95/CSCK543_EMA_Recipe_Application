@@ -12,11 +12,6 @@ main {
     max-width: 1400px;
 }
 
-main section * {
-    padding: 15px;
-}
-
-
 footer {
     background-color: lightcoral;
     padding: 30px;
