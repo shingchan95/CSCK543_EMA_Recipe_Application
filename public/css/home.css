@@ -1,3 +1,7 @@
+main section * {
+    padding: 15px;
+}
+
 #homepage_body {
    justify-content: center;
 }
