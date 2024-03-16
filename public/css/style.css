@@ -12,6 +12,11 @@ main {
     max-width: 1400px;
 }
 
+main section * {
+    padding: 15px;
+}
+
+
 footer {
     background-color: lightcoral;
     padding: 30px;
@@ -26,6 +31,16 @@ nav {
 
 nav ul {
     list-style-type: none; /* Remove list item's dots */
+}
+
+nav ul li a:hover:not(.current_page) {
+    background-color: lightblue;
+}
+
+nav ul li a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 #navbar {
@@ -51,15 +66,6 @@ nav ul {
     background-color: deepskyblue;
 }
 
-nav ul li a:hover:not(.current_page) {
-    background-color: lightblue;
-}
-
-nav ul li a {
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-}
 
 #header_container {
     align-items: center;
@@ -86,6 +92,19 @@ nav ul li a {
     font-size: 16px;
     width: inherit;
     min-width: 400px;
+    padding: 10px;
+}
+
+.form_select {
+    font-size: 16px;
+    padding: 10px
+}
+
+.form_submit_button {
+    margin: 10px;
+    font-size: large;
+    padding: 15px;
+    background-color: lightcoral;
 }
 
 #search_form_button {
