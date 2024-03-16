@@ -62,7 +62,7 @@ class RecipeController {
             $recipeDetails['steps'] = $steps;
             $recipeDetails['tips'] = $tips;
             $recipeDetails['ingredients'] = $ingredients;
-    
+          
             $this->render('recipe', ['recipeDetails' => $recipeDetails]);
         } catch (Exception $e) {
             echo $e->getMessage();
