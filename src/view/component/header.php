@@ -35,7 +35,7 @@
                        href="/CSCK543_EMA_Recipe_Application/home">Home</a>
                 </li>
                 <li>
-                    <a class="<?php echo ($_SESSION['current_page'] == 'Search') ? 'current_page' : ''; ?>"
+                    <a class="<?php echo ($_SESSION['current_page'] == 'search') ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/search">Search</a>
                 </li>
                 <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
