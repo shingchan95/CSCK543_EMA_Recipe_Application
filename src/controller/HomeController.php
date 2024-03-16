@@ -11,14 +11,7 @@ require_once __DIR__ . '/../model/RecipeModel.php';
  */
 class HomeController
 {
-     /**
-     * @var UserModel $userModel The UserModel instance.
-     */
     private $userModel;
-
-    /**
-     * @var RecipeModel $recipeModel The RecipeModel instance.
-     */
     private $recipeModel;
 
 
@@ -37,8 +30,10 @@ class HomeController
     public function index()
     {
         try {
+            // Retrieve all recipes and featured recipes
             $recipes = $this->recipeModel->getAllRecipes();
             $featuredRecipes = $this->recipeModel->getFeaturedRecipes();
+             // Render home view with recipes and featured recipes data
             $this->render('home', ['recipes' => $recipes, 'featuredRecipes' => $featuredRecipes]);
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
@@ -66,6 +61,7 @@ class HomeController
      */
     public function render($view, $data = [])
     {
+        // Extract data for easy access in the view
         extract($data);
         include __DIR__ . "/../view/$view.php";
     }
