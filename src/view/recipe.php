@@ -40,14 +40,14 @@
             <div class="right-box">
                 <section class="interactive-features">
                     <button class="save-recipe">Save Recipe to Favourites</button>
-                        <div class="star-container">
-                            <span onclick="gfg(1)"class="star">★</span>
-                            <span onclick="gfg(2)"class="star">★</span>
-                            <span onclick="gfg(3)"class="star">★</span>
-                            <span onclick="gfg(4)"class="star">★</span>
-                            <span onclick="gfg(5)"class="star">★</span>
-                         </div>
-                         <div id="output_rating"></div>
+                    <div class="star-container">
+                        <span onclick="gfg(1)" class="star">★</span>
+                        <span onclick="gfg(2)" class="star">★</span>
+                        <span onclick="gfg(3)" class="star">★</span>
+                        <span onclick="gfg(4)" class="star">★</span>
+                        <span onclick="gfg(5)" class="star">★</span>
+                    </div>
+                    <div id="output_rating"></div>
 
             </div>
         </section>
@@ -80,12 +80,14 @@
             </section>
 
             <section class="cooking-method">
-                <h2>Cooking Steps</h2>
+                <h2>Preparation Steps</h2>
                 <!-- Dynamically display cooking steps -->
                 <?php if (isset($recipeDetails['steps']) && is_array($recipeDetails['steps'])): ?>
                     <ol class="steps">
                         <?php foreach ($recipeDetails['steps'] as $step): ?>
-                            <li><?php echo htmlspecialchars($step['step']); ?></li>
+                            <li><b><?php echo htmlspecialchars($step['minutes']); ?> Minutes - </b>
+                                <?php echo htmlspecialchars($step['step']); ?>
+                            </li>
                         <?php endforeach; ?>
                     </ol>
                 <?php endif; ?>
