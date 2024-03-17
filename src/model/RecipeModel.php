@@ -33,10 +33,17 @@ class RecipeModel {
     }
  
     public function searchRecipes($searchTerm) {
-        $sql = "SELECT * FROM recipe_view
-                WHERE recipe LIKE CONCAT('%', ?, '%')";
+        $sql = "SELECT DISTINCT r.*
+                FROM recipe_view AS r
+                INNER JOIN recipe_ingredient AS ri ON r.id = ri.recipe_id
+                INNER JOIN ingredient AS i ON ri.ingredient_id = i.id
+                WHERE author LIKE CONCAT('%', ?, '%')
+                OR diet LIKE CONCAT('%', ?, '%')
+                OR course LIKE CONCAT('%', ?, '%')
+                OR ingredient LIKE CONCAT('%', ?, '%')";
+ 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $searchTerm);
+        $stmt->bind_param("ssss", $searchTerm,$searchTerm,$searchTerm,$searchTerm);
         $stmt->execute();
         $result = $stmt->get_result();
  
