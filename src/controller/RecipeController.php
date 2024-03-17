@@ -46,11 +46,6 @@ class RecipeController {
                       break; 
             }
         }
-        // Handle DELETE requests
-        elseif($_SERVER['REQUEST_METHOD'] === 'DELETE'){
-            // Handle deleting favorite recipes
-            $this->handleDeleteFavorite($user_id);
-        }
         else{
             // If the request method is not POST or action parameter is not set, render the recipe view
             include __DIR__. '/../view/recipe.php';
@@ -154,7 +149,7 @@ class RecipeController {
         }
     }
 
-    private function handleDeleteFavorite($user_id) {
+    public function handleDeleteFavorite($user_id) {
         if (isset($_POST['recipeId'])) {
             try {
                 // Try to delete the recipe as favorite
