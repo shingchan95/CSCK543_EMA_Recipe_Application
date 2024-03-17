@@ -164,7 +164,7 @@ nav ul li a {
     color: white;
 }
 
-.close_btn {
+.close_btn, .remove_favorite_btn {
     margin-left: 15px;
     color: black;
     font-weight: bold;
@@ -173,6 +173,7 @@ nav ul li a {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 1;
 }
 
 .close_btn:hover {
