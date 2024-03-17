@@ -143,7 +143,7 @@ class RecipeController {
                 // Add the rating for the recipe by the user
                 $this->ratingModel->addRating($recipeId, $user_id, $rating, $category_id);
             } catch (Exception $e) {
-                http_response_code(400);
+                http_response_code(500);
                 // Echo error message if an exception occurs
                 echo json_encode(['error' => $e->getMessage()]);
             }
