@@ -2,8 +2,8 @@
     <section id="header_container" class="container">
         <div id="logo_container" class="container">
             <a href="/CSCK543_EMA_Recipe_Application/home">
-                <img id="image_logo" src="/image/temporary _logo.jpg"
-                     alt="Image logo">
+                <img id="image_logo" src="/image/yummy-chef.png"
+                     alt="The Yummy Chef logo">
             </a>
             <span id="header_catchphrase">The Best Recipes Around!</span>
         </div>

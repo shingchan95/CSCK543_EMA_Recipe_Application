@@ -1,19 +1,3 @@
-<?php
-
-// $favoriteRecipes = [
-//     ["id" => "31",
-//         "recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
-//         "course" => "Main", "preparation" => "", "cooking" => "32",
-//         "author" => "Mike", "added" => "Today"],
-//     ["id" => "22",
-//         "recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
-//         "course" => "Main", "preparation" => "", "cooking" => "32",
-//         "author" => "Mike", "added" => "Today"]
-// ]
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +24,14 @@
             <p><b>Email: </b> <?php echo htmlspecialchars($profileDetails['email']); ?></p>
         </div>
         <div>
-            <p><b>Account Created: </b> <?php echo htmlspecialchars($profileDetails['created']); ?></p>
+            <p><b>Account Created: </b> <?php
+                $date = date_create($profileDetails['created']);
+                echo htmlspecialchars(date_format($date, "d/m/Y")); ?></p>
         </div>
         <div>
-            <p><b>Last Login: </b> <?php echo htmlspecialchars($profileDetails['last_login']); ?></p>
+            <p><b>Last Login: </b> <?php
+                $date = date_create($profileDetails['last_login']);
+                echo htmlspecialchars(date_format($date, "d/m/Y")); ?></p>
         </div>
         <?php endif; ?>
     </section>
