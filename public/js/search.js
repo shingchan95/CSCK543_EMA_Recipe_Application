@@ -32,9 +32,11 @@ function renderRecipeList(filters) {
     presentedRecipes.forEach(recipe => {
         let divElement = document.createElement("div");
         divElement.className = "card"
-        divElement.onclick = function() {
+        divElement.onclick = function () {
             goTo('/CSCK543_EMA_Recipe_Application/recipe', recipe.id);
         };
+        // Keeping a reference to format the Date in a more convenient way
+        const addedDate = new Date(recipe.added)
         divElement.innerHTML = `
             <h3>${recipe.recipe}</h3>
             <img class="card_image" src="/image/600/${recipe.image_path}" alt="Recipe Image">
@@ -43,7 +45,7 @@ function renderRecipeList(filters) {
             <p><b>Preparation: </b>${recipe.preparation} minutes</p>
             <p><b>Cooking: </b>${recipe.cooking} minutes</p>      
             <p><b>Author: </b>${recipe.author}</p>
-            <p><b>Added: </b>${recipe.added}</p>
+            <p><b>Added: </b>${addedDate.toLocaleDateString()}</p>
         `;
         recipeResultsElement.appendChild(divElement);
     });
