@@ -118,7 +118,7 @@ class RecipeController {
             try {
                 $this->favouritesModel->addToFavorites($user_id, $recipeId);
             } catch (Exception $e) {
-                http_response_code(400);
+                http_response_code(500);
                 echo json_encode(['error' => $e->getMessage()]);
             }
         } else {
@@ -162,7 +162,7 @@ class RecipeController {
                 // Respond with success message
                 echo json_encode(['success' => true, 'message' => 'Recipe removed from favorites successfully.']);
             } catch (Exception $e) {
-                http_response_code(400);
+                http_response_code(500);
                 // If an exception occurs during favorite deletion, echo error message
                 echo json_encode(['error' => $e->getMessage()]);   
             }
