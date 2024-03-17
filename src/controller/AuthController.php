@@ -29,6 +29,7 @@ class AuthController
                     $this->handleLogin();
                 } catch (Exception $e) {
                     $_SESSION['login_error'] = $e->getMessage();
+                    header("Location: " . $_SESSION['current_page']);
                 }
             } // Check if registration form is submitted
             elseif (isset($_POST['register_submit'])) {
@@ -36,6 +37,7 @@ class AuthController
                     $this->handleRegistration();
                 } catch (Exception $e) {
                     $_SESSION['register_error'] = $e->getMessage();
+                    header("Location: " . $_SESSION['current_page']);
                 }
             } // Check if delete account form is submitted
             elseif (isset($_POST['delete_submit'])) {
@@ -43,6 +45,7 @@ class AuthController
                     $this->handleAccountDeletion();
                 } catch (Exception $e) {
                     $_SESSION['register_error'] = $e->getMessage();
+                    header("Location: " . $_SESSION['current_page']);
                 }
             }
         }

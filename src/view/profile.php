@@ -1,3 +1,17 @@
+<?php
+
+$favoriteRecipes = [
+    ["recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
+        "course" => "Main", "preparation" => "", "cooking" => "32",
+        "author" => "Mike", "added" => "Today"],
+    ["recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
+        "course" => "Main", "preparation" => "", "cooking" => "32",
+        "author" => "Mike", "added" => "Today"]
+]
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +54,22 @@
                 No saved favorites.
             </strong>
         <?php else: ?>
-            <ul id="feature_recipe_list">
+            <div class="recipe_container">
                 <?php foreach ($favoriteRecipes as $recipe): ?>
-                    <li><h3><?php echo $recipe['recipe']; ?></h3></li><?php endforeach; ?>
-            </ul>
+                    <div class="card"
+                         onclick="goTo('/CSCK543_EMA_Recipe_Application/recipe', <?php echo $recipe['id']; ?>)">
+                        <h3><?php echo $recipe['recipe']; ?></h3>
+                        <img class="card_image" src="/image/600/<?php echo $recipe['image_path']; ?>"
+                             alt="Recipe Image">
+                        <p><b>Diet: </b><?php echo $recipe['diet']; ?></p>
+                        <p><b>Course: </b><?php echo $recipe['course']; ?></p>
+                        <p><b>Preparation: </b><?php echo $recipe['preparation']; ?> minutes</p>
+                        <p><b>Cooking: </b><?php echo $recipe['cooking']; ?> minutes</p>
+                        <p><b>Author: </b><?php echo $recipe['author']; ?></p>
+                        <p><b>Added: </b><?php echo $recipe['added']; ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
     </section>
 </main>

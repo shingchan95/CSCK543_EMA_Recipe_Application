@@ -47,8 +47,8 @@
                     <img class="card_image" src="/image/600/<?php echo $recipe['image_path']; ?>" alt="Recipe Image">
                     <p><b>Diet: </b><?php echo $recipe['diet']; ?></p>
                     <p><b>Course: </b><?php echo $recipe['course']; ?></p>
-                    <p><b>Preparation: </b><?php echo $recipe['preparation']; ?></p>
-                    <p><b>Cooking: </b><?php echo $recipe['cooking']; ?></p>
+                    <p><b>Preparation: </b><?php echo $recipe['preparation']; ?> minutes</p>
+                    <p><b>Cooking: </b><?php echo $recipe['cooking']; ?> minutes</p>
                     <p><b>Author: </b><?php echo $recipe['author']; ?></p>
                     <p><b>Added: </b><?php echo $recipe['added']; ?></p>
                 </div>

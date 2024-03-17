@@ -40,8 +40,8 @@ function renderRecipeList(filters) {
             <img class="card_image" src="/image/600/${recipe.image_path}" alt="Recipe Image">
             <p><b>Diet: </b>${recipe.diet}</p>
             <p><b>Course: </b>${recipe.course}</p>
-            <p><b>Preparation: </b>${recipe.preparation}</p>
-            <p><b>Cooking: </b>${recipe.cooking}</p>      
+            <p><b>Preparation: </b>${recipe.preparation} minutes</p>
+            <p><b>Cooking: </b>${recipe.cooking} minutes</p>      
             <p><b>Author: </b>${recipe.author}</p>
             <p><b>Added: </b>${recipe.added}</p>
         `;
