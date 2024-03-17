@@ -38,15 +38,16 @@ if (!empty($segments[1])) {
             $profileController->index($user_id);
             break;
 
-       case 'recipe':
+        case 'recipe':
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 // If recipe ID is provided, show recipe details
                 $_SESSION['current_page'] = $segments[1];
                 $recipeId = intval($segments[2]);
                 $recipeController->showRecipe($recipeId, $user_id);
+            } else {
+                // Otherwise, show recipe listing
+                $recipeController->index($user_id);
             }
-            // Otherwise, show recipe listing
-            $recipeController->index($user_id);
             break;
 
         case 'login':

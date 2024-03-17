@@ -100,8 +100,9 @@ class RecipeController {
             // Render the recipe view with recipe details
             $this->render('recipe', ['recipeDetails' => $recipeDetails]);
         } catch (Exception $e) {
-            // Echo error message if an exception occurs
-            echo $e->getMessage();
+            // Print error message to client's console
+            echo '<script>console.error(' . json_encode($e->getMessage()) . ')</script>';
+            $this->render('recipe', ['recipeDetails' => []]);
         }
     }
 
@@ -183,14 +184,9 @@ class RecipeController {
     public function render($view, $data = []) {
         if (!empty($data)) {
             extract($data);
-        } else {
-            // If data is empty, echo error message
-            echo "Recipe not found";
         }
         include __DIR__ . "/../view/$view.php";
     }
     
 }
 ?>
-
-

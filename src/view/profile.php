@@ -1,3 +1,19 @@
+<?php
+
+$favoriteRecipes = [
+    ["id" => "31",
+        "recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
+        "course" => "Main", "preparation" => "", "cooking" => "32",
+        "author" => "Mike", "added" => "Today"],
+    ["id" => "22",
+        "recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
+        "course" => "Main", "preparation" => "", "cooking" => "32",
+        "author" => "Mike", "added" => "Today"]
+]
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,14 +56,15 @@
                 No saved favorites.
             </strong>
         <?php else: ?>
-            <ul id="feature_recipe_list">
-                <?php foreach ($favoriteRecipes as $recipe): ?>
-                    <li><h3><?php echo $recipe['recipe']; ?></h3></li><?php endforeach; ?>
-            </ul>
+            <?php
+            include_once 'component/recipes.php';
+            displayRecipes($favoriteRecipes, true);
+            ?>
         <?php endif; ?>
     </section>
 </main>
 <?php include 'component/footer.php'; ?>
+<script src="/js/profile.js"></script>
 <script src="/js/script.js"></script>
 </body>
 </html>
