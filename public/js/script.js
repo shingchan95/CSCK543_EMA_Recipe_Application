@@ -9,8 +9,12 @@ if (loginButton) { // If loginButton is not null (such as when the current butto
 
 window.onclick = function (event) {
     if (event.target === loginModal) {
-        loginModal.style.display = "none";
+        closeModal()
     }
+}
+
+function closeModal() {
+    loginModal.style.display = "none";
 }
 
 function toggleLoginForms() {
