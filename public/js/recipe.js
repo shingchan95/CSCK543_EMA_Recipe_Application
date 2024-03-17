@@ -76,8 +76,7 @@ function remove() {
 
 
 function saveBtn(recipeId) {
-    console.log(recipeId)
-    fetch('recipe', {
+    fetch('/CSCK543_EMA_Recipe_Application/recipe', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -86,21 +85,11 @@ function saveBtn(recipeId) {
     })
 
         .then(response => {
-            if (response.ok) {
-                return response.json(); // Parse JSON response
+            console.log(response)
+            if (response.status == 200 || response.status == 204) {
+                window.location.reload();
             } else {
                 throw new Error('Network response was not ok');
-            }
-        })
-        .then(data => {
-            if (data && data.success) {
-                // Handle success message
-                console.log('Success:', data.message);
-                // Reload the page after successful operation
-                window.location.reload();
-            } else if (data && data.error) {
-                console.error('Error:', data.error);
-                // Handle error message
             }
         })
         .catch(error => {
@@ -109,21 +98,18 @@ function saveBtn(recipeId) {
         });
 
 
-    // Prevent the default action of the button
-    event.preventDefault();
-    event.stopPropagation();
 }
 
 
 function deleteBtn(recipeId) {
-    console.log(recipeId)
-    fetch(`recipe/${recipeId}`, {
+    fetch(`/CSCK543_EMA_Recipe_Application/recipe/${recipeId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
     })
         .then(response => {
+            console.log(response)
             if (response.ok) {
                 return response.json(); // Parse JSON response
             } else {
@@ -142,11 +128,9 @@ function deleteBtn(recipeId) {
             }
         })
         .catch(error => {
-            console.error('Fetch error:', error.message);
+            console.error('Fetch error:', error);
             // Handle fetch error
         });
 
-    // Prevent the default action of the button
-    event.preventDefault();
-    event.stopPropagation();
+
 }

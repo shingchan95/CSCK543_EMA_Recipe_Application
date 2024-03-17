@@ -10,7 +10,6 @@
 <body>
 <?php include 'component/header.php'; ?>
 <main>
-    <?php echo $recipeDetails["isFavourite"] ?>
     <?php if (!empty($recipeDetails)): ?>
         <section class="top-container">
 

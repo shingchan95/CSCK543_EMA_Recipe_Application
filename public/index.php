@@ -73,6 +73,12 @@ if (!empty($segments[1])) {
             $authController->handleLogout();
             break;
 
+        case 'favourite':
+            if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+                $recipeId = $segments[2];
+                $recipeController->handleDeleteFavorite($user_id, $recipeId);
+            }
+
         default:
             // Handle 404 Not Found error
             echo "404 Not Found";
