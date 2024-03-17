@@ -1,11 +1,13 @@
 <?php
 
 $favoriteRecipes = [
-    ["id" => "31",
+    ["recipe_id" => "1",
+        "id" => "31",
         "recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
         "course" => "Main", "preparation" => "", "cooking" => "32",
         "author" => "Mike", "added" => "Today"],
-    ["id" => "22",
+    ["recipe_id" => "2",
+        "id" => "22",
         "recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
         "course" => "Main", "preparation" => "", "cooking" => "32",
         "author" => "Mike", "added" => "Today"]
