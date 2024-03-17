@@ -1,3 +1,6 @@
+<button onclick="closeModal()" class="close_btn">
+    X
+</button>
 <div id="login_form">
     <h2>Login</h2>
     <form action="/CSCK543_EMA_Recipe_Application/login" method="POST">

@@ -1,14 +1,20 @@
 const loginModal = document.getElementById("login_modal")
 const loginButton = document.getElementById("login_button")
 
-loginButton.onclick = function () {
-    loginModal.style.display = "block";
+if (loginButton) { // If loginButton is not null (such as when the current button is the logout)
+    loginButton.onclick = function () {
+        loginModal.style.display = "block";
+    }
 }
 
 window.onclick = function (event) {
     if (event.target === loginModal) {
-        loginModal.style.display = "none";
+        closeModal()
     }
+}
+
+function closeModal() {
+    loginModal.style.display = "none";
 }
 
 function toggleLoginForms() {
@@ -22,4 +28,8 @@ function toggleLoginForms() {
         loginForm.style.display = "none";
         registerForm.style.display = "block";
     }
+}
+
+function goTo(path, id) {
+    window.location.href = `${path}/${id}`;
 }

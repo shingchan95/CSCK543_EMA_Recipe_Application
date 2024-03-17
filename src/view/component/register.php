@@ -1,5 +1,5 @@
 <div id="register_form">
-    <h2>Create an account</h2>
+    <h2>Create Account</h2>
     <form action="/CSCK543_EMA_Recipe_Application/login" method="POST">
 
         <div class="form_div">

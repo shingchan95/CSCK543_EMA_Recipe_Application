@@ -2,26 +2,26 @@ const dietFilterElement = document.getElementById("diet_filter")
 const courseFilterElement = document.getElementById("course_filter")
 const authorFilterElement = document.getElementById("author_filter")
 const recipeResultsElement = document.getElementById("recipe_results")
+const sortSelectElement = document.getElementById("sort_select")
+let presentedRecipes;
 
 function renderRecipeList(filters) {
-    let filteredRecipes = recipes;
-
     // Clear previous recipe cards
     recipeResultsElement.innerHTML = ''
 
     if (filters) {
         /* For each filter, only add the recipes that match the filterKey
             For example: if recipe['diet'] == 'vegan' and filters['diet'] == 'vegan', the recipe
-            is added to the filteredRecipes array.
+            is added to the presentedRecipes array.
          */
         Object.keys(filters).forEach(filterKey => {
             if (filters[filterKey] !== "all") {
-                filteredRecipes = filteredRecipes.filter(recipe => recipe[filterKey] === filters[filterKey]);
+                presentedRecipes = presentedRecipes.filter(recipe => recipe[filterKey] === filters[filterKey]);
             }
         });
     }
 
-    if (filteredRecipes.length === 0) {
+    if (presentedRecipes.length === 0) {
         recipeResultsElement.innerHTML += `
         <br>
         <p><strong>No Recipe Matches the Criteria</strong></p>
@@ -29,9 +29,12 @@ function renderRecipeList(filters) {
         `
     }
 
-    filteredRecipes.forEach(recipe => {
+    presentedRecipes.forEach(recipe => {
         let divElement = document.createElement("div");
-        divElement.className = "recipe_card";
+        divElement.className = "card"
+        divElement.onclick = function() {
+            goTo('/CSCK543_EMA_Recipe_Application/recipe', recipe.id);
+        };
         divElement.innerHTML = `
             <h3>${recipe.recipe}</h3>
             <img class="card_image" src="/image/600/${recipe.image_path}" alt="Recipe Image">
@@ -47,6 +50,7 @@ function renderRecipeList(filters) {
 }
 
 function updateFilters() {
+    presentedRecipes = recipes;
     let currentFilters = {}
     currentFilters["diet"] = dietFilterElement.value
     currentFilters["course"] = courseFilterElement.value
@@ -55,7 +59,31 @@ function updateFilters() {
     renderRecipeList(currentFilters)
 }
 
+function sortRecipes() {
+    const sortMethod = sortSelectElement.value;
+    if (sortMethod === "default") {
+        return;
+    }
+
+    presentedRecipes.sort((a, b) => {
+        if (sortMethod === "preparation" || sortMethod === "cooking") {
+            // We can just subtract Numbers directly
+            return a[sortMethod] - b[sortMethod];
+
+        } else if (sortMethod === "added") {
+            // Convert and compare Date values
+            return new Date(a[sortMethod]) - new Date(b[sortMethod]);
+
+        } else {
+            // LocaleCompare to compare string values
+            return a[sortMethod].localeCompare(b[sortMethod]);
+        }
+    });
+
+    renderRecipeList();
+}
 
 window.onload = function () {
+    presentedRecipes = recipes;
     renderRecipeList()
 }

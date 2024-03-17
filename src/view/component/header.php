@@ -38,11 +38,16 @@
                     <a class="<?php echo ($_SESSION['current_page'] == 'search') ? 'current_page' : ''; ?>"
                        href="/CSCK543_EMA_Recipe_Application/search">Search</a>
                 </li>
-                <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
-                <li> 
-                    <a class="<?php echo ($_SESSION['current_page'] == 'profile') ? 'current_page' : ''; ?>"
-                       href="/CSCK543_EMA_Recipe_Application/profile">Profile</a>
-                </li>
+                <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
+                    <li>
+                        <a class="<?php echo ($_SESSION['current_page'] == 'profile') ? 'current_page' : ''; ?>"
+                           href="/CSCK543_EMA_Recipe_Application/profile">Profile</a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($_SESSION["current_page"] == "recipe"): ?>
+                    <li>
+                        <a class="current_page">Recipe</a>
+                    </li>
                 <?php endif; ?>
             </ul>
 

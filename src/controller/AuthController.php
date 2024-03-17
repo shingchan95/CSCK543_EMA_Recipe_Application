@@ -30,16 +30,14 @@ class AuthController
                 } catch (Exception $e) {
                     $_SESSION['login_error'] = $e->getMessage();
                 }
-            }
-            // Check if registration form is submitted 
+            } // Check if registration form is submitted
             elseif (isset($_POST['register_submit'])) {
                 try {
                     $this->handleRegistration();
                 } catch (Exception $e) {
                     $_SESSION['register_error'] = $e->getMessage();
                 }
-            } 
-            // Check if delete account form is submitted 
+            } // Check if delete account form is submitted
             elseif (isset($_POST['delete_submit'])) {
                 try {
                     $this->handleAccountDeletion();
@@ -54,7 +52,7 @@ class AuthController
      * Handles user logout.
      * Destroys session and redirects to home page.
      */
-    public function handleLogout() 
+    public function handleLogout()
     {
         // Destroy session
         session_destroy();
@@ -84,7 +82,7 @@ class AuthController
             // If login fails, set login error message
             throw new Exception("Invalid username or password");
         }
-        // Redirect to previous page
+        // Redirect to current page
         header("Location: " . $_SESSION['current_page']);
         exit();
     }
@@ -95,37 +93,37 @@ class AuthController
      */
     private function handleRegistration()
     {
-         // Retrieve registration data
-         $username = $_POST['register_username'];
-         $email = $_POST['register_email'];
-         $password = $_POST['register_password'];
- 
-         // Get current page location
-         $currentLocation = $_SESSION['current_page'];
- 
-         // Check if username is already taken
-         if ($this->userModel->getUserByUsername($username)) {
-             throw new Exception("Username already taken. Choose a different username.");
-         }
-         // Check if email is already registered
-         if ($this->userModel->getUserByEmail($email)) {
-             throw new Exception("Email already exists. Choose a different email.");
-         }
- 
-         // Create user
-         $success = $this->userModel->createUser($username, $email, $password);
- 
-         // If user creation successful, set user session
-         if ($success) {
-             $user = $this->userModel->getUserByUsername($username);
-             $_SESSION['user_id'] = $user['id'];
-             $_SESSION['username'] = $user['username'];
-         } else {
-             throw new Exception("Registration failed");
-         }
-         // Redirect to previous page
-         header("Location: home");
-         exit();
+        // Retrieve registration data
+        $username = $_POST['register_username'];
+        $email = $_POST['register_email'];
+        $password = $_POST['register_password'];
+
+        // Get current page location
+        $currentLocation = $_SESSION['current_page'];
+
+        // Check if username is already taken
+        if ($this->userModel->getUserByUsername($username)) {
+            throw new Exception("Username already taken. Choose a different username.");
+        }
+        // Check if email is already registered
+        if ($this->userModel->getUserByEmail($email)) {
+            throw new Exception("Email already exists. Choose a different email.");
+        }
+
+        // Create user
+        $success = $this->userModel->createUser($username, $email, $password);
+
+        // If user creation successful, set user session
+        if ($success) {
+            $user = $this->userModel->getUserByUsername($username);
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+        } else {
+            throw new Exception("Registration failed");
+        }
+        // Redirect to previous page
+        header("Location: " . $currentLocation);
+        exit();
     }
 
     /**
