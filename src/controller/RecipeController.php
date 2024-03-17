@@ -35,7 +35,18 @@ class RecipeController {
                     try {
                         // Try to save the recipe as favorite
                         $recipeId = $_POST['recipeId'];
-                        $this->saveFavorite($recipeId, $user_id); 
+                        $this->favouritesModel->addToFavorites($user_id, $recipeId);         
+                        // $this->saveFavorite($recipeId, $user_id); 
+                    } catch (Exception $e) {
+                        // If an exception occurs during favorite saving, echo error message
+                        echo json_encode(['error' => $e->getMessage()]);   
+                    }
+                    break; 
+                case 'deleteFavorite': 
+                    try {
+                        // Try to delete the recipe as favorite
+                        $recipeId = $_POST['recipeId'];
+                        $this->favouritesModel->deleteFavorites($recipeId, $user_id); 
                     } catch (Exception $e) {
                         // If an exception occurs during favorite saving, echo error message
                         echo json_encode(['error' => $e->getMessage()]);   
@@ -131,18 +142,18 @@ class RecipeController {
      * @param int $userId The ID of the current user.
      * @throws Exception if an error occurs during favorite saving.
      */
-    private function saveFavorite($recipeId, $userId){
-        try { 
-            // Add the recipe to favorites for the user
-            $this->favouritesModel->addToFavorites($userId, $recipeId);         
-            // Echo success message
-            echo json_encode(['isFavorite' => true]);
-        } 
-        catch (Exception $e) {      
-            // Echo error message if an exception occurs
-            echo json_encode(['error' => $e->getMessage()]);   
-        }
-    }
+    // private function saveFavorite($recipeId, $userId){
+    //     try { 
+    //         // Add the recipe to favorites for the user
+    //         $this->favouritesModel->addToFavorites($userId, $recipeId);         
+    //         // Echo success message
+    //         echo json_encode(['isFavorite' => true]);
+    //     } 
+    //     catch (Exception $e) {      
+    //         // Echo error message if an exception occurs
+    //         echo json_encode(['error' => $e->getMessage()]);   
+    //     }
+    // }
       
     /**
      * Adds a rating for the recipe given by the user.

@@ -32,6 +32,25 @@ class FavouritesModel {
 
         }
     }
+    public function deleteFavorites($userId, $recipeId) {
+        // Check if the recipe exists in the user's favorites
+        if ($this -> isFavourite($userId, $recipeId)) {
+            // Recipe found in favorites, delete it
+            $sqlDelete = "DELETE FROM favourite WHERE user_id = ? AND recipe_id = ?";
+            $stmtDelete = $this->conn->prepare($sqlDelete);
+            $stmtDelete->bind_param("ii", $userId, $recipeId);
+            if ($stmtDelete->execute()) {
+                // Deletion successful
+                return ['success' => true, 'message' => 'Recipe removed from favorites successfully.'];
+            } else {
+                // Deletion failed
+                throw new Exception("Failed to remove favorite."); 
+            }
+        } else {
+            // Recipe not found in favorites
+            return ['success' => false, 'message' => 'Recipe not found in favorites.'];
+        }
+    }
 
     public function isFavourite($userId, $recipeId) {
         $sql = "SELECT 1 FROM favourite WHERE user_id = ? AND recipe_id = ?";
