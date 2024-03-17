@@ -4,7 +4,8 @@ function displayRecipes($recipes, $addRemoveButton)
 {
     echo '<div class="recipe_container">';
     foreach ($recipes as $recipe) {
-        echo '<div class="card" onclick="goTo(\'/CSCK543_EMA_Recipe_Application/recipe\', ' . htmlspecialchars($recipe['id']) . ')">';
+        $customId = $_SESSION["current_page"] == "profile" ? "recipe_id" : "id";
+        echo '<div class="card" onclick="goTo(\'/CSCK543_EMA_Recipe_Application/recipe\', ' . htmlspecialchars($recipe[$customId]) . ')">';
         if ($addRemoveButton) {
             echo '<button class="remove_favorite_btn" data-recipe-id="' . htmlspecialchars($recipe['recipe_id']) . '">X</button>';
         }
