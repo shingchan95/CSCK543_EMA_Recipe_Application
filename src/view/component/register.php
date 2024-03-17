@@ -10,7 +10,7 @@
 
         <div class="form_div">
             <label>Email:</label>
-            <input class="form_input" type="text" name="register_email" placeholder="✉️ Insert email..."
+            <input class="form_input" type="email" name="register_email" placeholder="✉️ Insert email..."
                    required>
         </div>
 
