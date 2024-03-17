@@ -1,8 +1,3 @@
-function deleteFavorite(id) {
-    console.log('id', id)
-    console.log("Hello!")
-}
-
 window.onload = function () {
     document.querySelectorAll('.remove_favorite_btn').forEach((button) => {
         const recipeId = button.getAttribute("data-recipe-id")

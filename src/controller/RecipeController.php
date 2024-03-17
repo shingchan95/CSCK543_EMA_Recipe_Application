@@ -64,7 +64,7 @@ class RecipeController {
         try {
             // Get recipe details by ID
             $recipeDetails = $this->recipeModel->getRecipeDetailsById($recipeId);
-    
+            $isFavourite = $this->favouritesModel->isFavourite($userId, $recipeId);
             if (!$recipeDetails) {
                 throw new Exception("Recipe not found");
             }
@@ -88,6 +88,7 @@ class RecipeController {
             }
     
             // Add steps, tips, and ingredients to recipe details
+            $recipeDetails['isFavourite'] = $isFavourite;
             $recipeDetails['steps'] = $steps;
             $recipeDetails['tips'] = $tips;
             $recipeDetails['ingredients'] = $ingredients;
