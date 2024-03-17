@@ -125,6 +125,7 @@ class RecipeController
         } catch (Exception $e) {
             // Echo error message if an exception occurs
             echo '<script>console.error(' . json_encode($e->getMessage()) . ')</script>';
+            $this->render('recipe', ['recipeDetails' => []]);
         }
     }
 
