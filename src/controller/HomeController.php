@@ -33,7 +33,7 @@ class HomeController
             // Retrieve all recipes and featured recipes
             $recipes = $this->recipeModel->getAllRecipes();
             $featuredRecipes = $this->recipeModel->getFeaturedRecipes();
-             // Render home view with recipes and featured recipes data
+            // Render home view with recipes and featured recipes data
             $this->render('home', ['recipes' => $recipes, 'featuredRecipes' => $featuredRecipes]);
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();

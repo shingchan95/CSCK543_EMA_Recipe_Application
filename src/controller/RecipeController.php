@@ -64,7 +64,7 @@ class RecipeController {
         try {
             // Get recipe details by ID
             $recipeDetails = $this->recipeModel->getRecipeDetailsById($recipeId);
-    
+            $isFavourite = $this->favouritesModel->isFavourite($userId, $recipeId);
             if (!$recipeDetails) {
                 throw new Exception("Recipe not found");
             }
@@ -88,6 +88,7 @@ class RecipeController {
             }
     
             // Add steps, tips, and ingredients to recipe details
+            $recipeDetails['isFavourite'] = $isFavourite;
             $recipeDetails['steps'] = $steps;
             $recipeDetails['tips'] = $tips;
             $recipeDetails['ingredients'] = $ingredients;
@@ -149,24 +150,19 @@ class RecipeController {
         }
     }
 
-    public function handleDeleteFavorite($user_id) {
-        if (isset($_POST['recipeId'])) {
-            try {
-                // Try to delete the recipe as favorite
-                $recipeId = $_POST['recipeId'];
-                $this->favouritesModel->deleteFavorites($recipeId, $user_id); 
-                // Respond with success message
-                echo json_encode(['success' => true, 'message' => 'Recipe removed from favorites successfully.']);
-            } catch (Exception $e) {
-                http_response_code(500);
-                // If an exception occurs during favorite deletion, echo error message
-                echo json_encode(['error' => $e->getMessage()]);   
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'Recipe ID not provided']);
+    public function handleDeleteFavorite($user_id, $recipeId) {
+        try {
+            // Try to delete the recipe as favorite
+            // $recipeId = $_POST['recipeId'];
+            $this->favouritesModel->deleteFavorites($recipeId, $user_id); 
+            // Respond with success message
+            echo json_encode(['success' => true, 'message' => 'Recipe removed from favorites successfully.']);
+        } catch (Exception $e) {
+            http_response_code(500);
+            // If an exception occurs during favorite deletion, echo error message
+            echo json_encode(['error' => $e->getMessage()]);   
         }
-    }
+    }    
     
 
     /**

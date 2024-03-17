@@ -5,13 +5,13 @@ output.innerHTML = slider.value;
 function scaleIngredients(servingsRatio) {
     const scaledIngredients = ingredients.map(function (ingredient) {
         if (ingredient.amount === null || ingredient.amount === "") {
-            return {...ingredient, amount: ""};
+            return { ...ingredient, amount: "" };
             // Check value is numerical before applying MATH
         } else if (!isNaN(parseFloat(ingredient.amount))) {
             let scaledAmount = ingredient.amount * servingsRatio;
             // Round to two decimal places
             scaledAmount = Math.round(scaledAmount * 100) / 100;
-            return {...ingredient, amount: scaledAmount};
+            return { ...ingredient, amount: scaledAmount };
         } else {
             // If ingredient isn't a numerical value
         }
@@ -46,11 +46,11 @@ slider.oninput = function () {
 
 
 // Star rating on the recipe
-let stars = 
+let stars =
     document.getElementsByClassName("star");
-let ratingOutput = 
+let ratingOutput =
     document.getElementById("output_rating");
- 
+
 // Update the rating
 function gfg(n) {
     remove();
@@ -64,7 +64,7 @@ function gfg(n) {
     }
     output_rating.innerText = "Rating is: " + n + "/5";
 }
- 
+
 // Remove the pre-applied styling
 function remove() {
     let i = 0;
@@ -72,4 +72,65 @@ function remove() {
         stars[i].className = "star";
         i++;
     }
+}
+
+
+function saveBtn(recipeId) {
+    fetch('/CSCK543_EMA_Recipe_Application/recipe', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=saveFavorite&recipeId=${recipeId}`,
+    })
+
+        .then(response => {
+            console.log(response)
+            if (response.status == 200 || response.status == 204) {
+                window.location.reload();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error.message);
+            // Handle fetch error
+        });
+
+
+}
+
+
+function deleteBtn(recipeId) {
+    fetch(`/CSCK543_EMA_Recipe_Application/recipe/${recipeId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            console.log(response)
+            if (response.ok) {
+                return response.json(); // Parse JSON response
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .then(data => {
+            if (data && data.success) {
+                // Handle success message
+                console.log('Success:', data.message);
+                // Reload the page after successful operation
+                window.location.reload();
+            } else if (data && data.error) {
+                console.error('Error:', data.error);
+                // Handle error message
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            // Handle fetch error
+        });
+
+
 }

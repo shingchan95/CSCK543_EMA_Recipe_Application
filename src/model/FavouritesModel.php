@@ -32,7 +32,7 @@ class FavouritesModel {
 
         }
     }
-    public function deleteFavorites($userId, $recipeId) {
+    public function deleteFavorites($recipeId, $userId) {
         // Check if the recipe exists in the user's favorites
         if ($this -> isFavourite($userId, $recipeId)) {
             // Recipe found in favorites, delete it
@@ -65,9 +65,9 @@ class FavouritesModel {
     public function getFavouriteRecipes($userId){
 
         $sql = "SELECT *
-        from recipe
+        from recipe_view
         LEFT join favourite
-        on recipe.id = favourite.recipe_id
+        on recipe_view.id = favourite.recipe_id
         where favourite.user_id = ?";
 
         $stmt = $this->conn->prepare($sql);

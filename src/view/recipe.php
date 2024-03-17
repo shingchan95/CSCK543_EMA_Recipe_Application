@@ -39,7 +39,11 @@
 
             <div class="right-box">
                 <section class="interactive-features">
-                    <button class="save-recipe">Save Recipe to Favourites</button>
+                <?php if($recipeDetails["isFavourite"] == 0): ?>
+                    <button class="save-recipe" onclick="saveBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Save Recipe to Favourites</button>
+                <?php else: ?>
+                    <button class="save-recipe" onclick="deleteBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Delete Recipe to Favourites</button>
+                <?php endif; ?>
                     <div class="star-container">
                         <span onclick="gfg(1)" class="star">★</span>
                         <span onclick="gfg(2)" class="star">★</span>
@@ -108,8 +112,6 @@
 <script>
     //JavaScript for rating recipes - Placeholder
     //JavaScript for favourite recipes - Placeholder
-
-
     // JavaScript for Scaling Servings
     const originalServings = <?php echo json_encode($recipeDetails['servings']); ?>;
     const ingredients = <?php echo json_encode($recipeDetails['ingredients']); ?>;
