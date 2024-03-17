@@ -15,7 +15,8 @@ function displayRecipes($recipes, $addRemoveButton)
         echo '<p><b>Preparation: </b>' . htmlspecialchars($recipe['preparation']) . ' minutes</p>';
         echo '<p><b>Cooking: </b>' . htmlspecialchars($recipe['cooking']) . ' minutes</p>';
         echo '<p><b>Author: </b>' . htmlspecialchars($recipe['author']) . '</p>';
-        echo '<p><b>Added: </b>' . htmlspecialchars($recipe['added']) . '</p>';
+        $date = date_create($recipe['added']);
+        echo '<p><b>Added: </b>' . htmlspecialchars(date_format($date, "d/m/Y")) . '</p>';
         echo '</div>';
     }
     echo '</div>';

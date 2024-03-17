@@ -8,7 +8,7 @@
         <option value="author">Author</option>
         <option value="diet">Diet</option>
         <option value="course">Course</option>
-        <option value="recipe_ingredient">Recipe Ingredient</option>
+        <option value="ingredient">Recipe Ingredient</option>
     </select>
 
     <input class="form_submit_button" type="submit" value="search">

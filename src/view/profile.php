@@ -40,10 +40,14 @@ $favoriteRecipes = [
             <p><b>Email: </b> <?php echo htmlspecialchars($profileDetails['email']); ?></p>
         </div>
         <div>
-            <p><b>Account Created: </b> <?php echo htmlspecialchars($profileDetails['created']); ?></p>
+            <p><b>Account Created: </b> <?php
+                $date = date_create($profileDetails['created']);
+                echo htmlspecialchars(date_format($date, "d/m/Y")); ?></p>
         </div>
         <div>
-            <p><b>Last Login: </b> <?php echo htmlspecialchars($profileDetails['last_login']); ?></p>
+            <p><b>Last Login: </b> <?php
+                $date = date_create($profileDetails['created']);
+                echo htmlspecialchars(date_format($date, "d/m/Y")); ?></p>
         </div>
         <?php endif; ?>
     </section>
