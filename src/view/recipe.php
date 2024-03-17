@@ -39,11 +39,17 @@
 
             <div class="right-box">
                 <section class="interactive-features">
-                <?php if($recipeDetails["isFavourite"] == 0): ?>
-                    <button class="save-recipe" onclick="saveBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Save Recipe to Favourites</button>
-                <?php else: ?>
-                    <button class="save-recipe" onclick="deleteBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Delete Recipe to Favourites</button>
-                <?php endif; ?>
+                    <?php if ($recipeDetails["isFavourite"] == 0): ?>
+                        <button class="save-recipe"
+                                onclick="saveBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Save Recipe
+                            to Favourites
+                        </button>
+                    <?php else: ?>
+                        <button class="save-recipe"
+                                onclick="deleteBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Delete
+                            Recipe to Favourites
+                        </button>
+                    <?php endif; ?>
                     <div class="star-container">
                         <span onclick="gfg(1)" class="star">★</span>
                         <span onclick="gfg(2)" class="star">★</span>
@@ -117,7 +123,7 @@
     const ingredients = <?php echo json_encode($recipeDetails['ingredients']); ?>;
 </script>
 <script src="/js/recipe.js"></script>
-
+<script src="/js/script.js"></script>
 </body>
 </html>
 

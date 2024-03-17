@@ -1,6 +1,9 @@
 <form method="GET" action="/CSCK543_EMA_Recipe_Application/search">
-    <input class="form_input" name="search" value="<?php echo htmlspecialchars($_SESSION["currentSearch"] ?: ""); ?>"
-           Search recipes" required>
+    <input class="form_input" name="search" value="<?php
+    if (isset($_SESSION["currentSearch"])) {
+        echo htmlspecialchars($_SESSION["currentSearch"]);
+    }
+    ?>" required>
 
     <select name="searchType" class="form_select" required>
         <option value disabled selected>Select Type</option>
