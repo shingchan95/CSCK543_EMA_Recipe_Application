@@ -1,16 +1,16 @@
-function deleteFavorite($id) {
-    fetch('recipe/' + $id, {
-        method: 'DELETE',
-        headers: {
+function deleteFavorite(id) {
+    fetch(`recipe/${id}`, {
+        method: 'DELETE', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     })
         .then(response => {
-            if (response.status === 200) {
-            } else {
+            if (response.status === 204) {
                 location.reload()
+            } else {
                 alert("Couldn't delete favorite.")
                 console.error(response.status)
+                console.error(response.body)
             }
         })
         .catch(error => {

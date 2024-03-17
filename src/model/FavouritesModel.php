@@ -44,7 +44,7 @@ class FavouritesModel {
                 return ['success' => true, 'message' => 'Recipe removed from favorites successfully.'];
             } else {
                 // Deletion failed
-                throw new Exception("Failed to remove favorite."); 
+                throw new Exception("Failed to remove favorite.");
             }
         } else {
             // Recipe not found in favorites
