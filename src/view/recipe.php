@@ -39,15 +39,20 @@
 
             <div class="right-box">
                 <section class="interactive-features">
-                    <button class="save-recipe">Save Recipe to Favourites</button>
+
+                    <button id="save-recipe-btn" class="save-recipe">Save Recipe to Favourites</button>                        
+                        <div id="login-prompt" style="display:none;">
+                            <p>Please log in to save recipes to favourites.</p>
+                        </div>    
+                    <div id="output_fav_message"></div>  
                     <div class="star-container">
-                        <span onclick="gfg(1)" class="star">★</span>
-                        <span onclick="gfg(2)" class="star">★</span>
-                        <span onclick="gfg(3)" class="star">★</span>
-                        <span onclick="gfg(4)" class="star">★</span>
-                        <span onclick="gfg(5)" class="star">★</span>
-                    </div>
-                    <div id="output_rating"></div>
+                            <span onclick="rateRecipe(1)"class="star">★</span>
+                            <span onclick="rateRecipe(2)"class="star">★</span>
+                            <span onclick="rateRecipe(3)"class="star">★</span>
+                            <span onclick="rateRecipe(4)"class="star">★</span>
+                            <span onclick="rateRecipe(5)"class="star">★</span>
+                         </div>
+                         <div id="output_rating"></div>
 
             </div>
         </section>
@@ -106,10 +111,10 @@
 <?php include 'component/footer.php'; ?>
 
 <script>
-    //JavaScript for rating recipes - Placeholder
-    //JavaScript for favourite recipes - Placeholder
-
-
+    //JavaScript for saving to favourites and rating recipes
+    const recipeId = <?php echo json_encode($recipeId); ?>;
+    const userId = <?php echo json_encode($userId); ?>;
+    
     // JavaScript for Scaling Servings
     const originalServings = <?php echo json_encode($recipeDetails['servings']); ?>;
     const ingredients = <?php echo json_encode($recipeDetails['ingredients']); ?>;

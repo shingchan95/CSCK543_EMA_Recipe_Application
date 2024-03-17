@@ -7,7 +7,7 @@ class RecipeModel {
     }
  
     public function getAllRecipes() {
-        $sql = "SELECT * FROM recipe_view";
+        $sql = "SELECT * FROM recipe_view" ;
         $result = $this->conn->query($sql);
  
         if ($result) {
