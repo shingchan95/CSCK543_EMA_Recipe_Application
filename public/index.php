@@ -40,15 +40,18 @@ if (!empty($segments[1])) {
 
         case 'recipe':
             if (!empty($segments[2]) && is_numeric($segments[2])) {
-                if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
-                    $recipeController->handleDeleteFavorite($user_id);
-                }else{
+                if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+                    $recipeId = $segments[2];
+                    $recipeController->handleDeleteFavorite($user_id, $recipeId);
+                }
+                else{
                     // If recipe ID is provided, show recipe details
                     $_SESSION['current_page'] = $segments[1];
                     $recipeId = intval($segments[2]);
                     $recipeController->showRecipe($recipeId, $user_id);
                 }
-            } else {
+            }
+             else {
                 // Otherwise, show recipe listing
                 $recipeController->index($user_id);
             }

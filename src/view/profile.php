@@ -1,15 +1,15 @@
 <?php
 
-$favoriteRecipes = [
-    ["id" => "31",
-        "recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
-        "course" => "Main", "preparation" => "", "cooking" => "32",
-        "author" => "Mike", "added" => "Today"],
-    ["id" => "22",
-        "recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
-        "course" => "Main", "preparation" => "", "cooking" => "32",
-        "author" => "Mike", "added" => "Today"]
-]
+// $favoriteRecipes = [
+//     ["id" => "31",
+//         "recipe" => "d1221d", "image_path" => "easy_lamb_biryani.jpg", "diet" => "Omni",
+//         "course" => "Main", "preparation" => "", "cooking" => "32",
+//         "author" => "Mike", "added" => "Today"],
+//     ["id" => "22",
+//         "recipe" => "213123", "image_path" => "mango_pie.jpg", "diet" => "Omni",
+//         "course" => "Main", "preparation" => "", "cooking" => "32",
+//         "author" => "Mike", "added" => "Today"]
+// ]
 
 
 ?>
@@ -58,6 +58,7 @@ $favoriteRecipes = [
         <?php else: ?>
             <?php
             include_once 'component/recipes.php';
+            // displayRecipes($favoriteRecipes, true);
             displayRecipes($favoriteRecipes, true);
             ?>
         <?php endif; ?>
