@@ -31,7 +31,10 @@ function renderRecipeList(filters) {
 
     presentedRecipes.forEach(recipe => {
         let divElement = document.createElement("div");
-        divElement.className = "recipe_card";
+        divElement.className = "card"
+        divElement.onclick = function() {
+            goTo('/CSCK543_EMA_Recipe_Application/recipe', recipe.id);
+        };
         divElement.innerHTML = `
             <h3>${recipe.recipe}</h3>
             <img class="card_image" src="/image/600/${recipe.image_path}" alt="Recipe Image">

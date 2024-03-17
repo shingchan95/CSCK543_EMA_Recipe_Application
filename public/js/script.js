@@ -25,3 +25,7 @@ function toggleLoginForms() {
         registerForm.style.display = "block";
     }
 }
+
+function goTo(path, id) {
+    window.location.href = `${path}/${id}`;
+}

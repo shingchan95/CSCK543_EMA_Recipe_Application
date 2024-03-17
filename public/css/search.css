@@ -11,13 +11,6 @@ main section * {
     padding: 5px;
 }
 
-#recipe_results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
 .card_image {
     max-width: 100%; /* Ensure images are responsive */
     height: auto;

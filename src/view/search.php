@@ -85,7 +85,7 @@ function filterRepeated($array, $keyword): array
             </div>
         </div>
     </section>
-    <section class="container" id="recipe_results">
+    <section class="container recipe_container" id="recipe_results">
 
     </section>
 
