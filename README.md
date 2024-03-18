@@ -26,7 +26,7 @@ The Yummy Chef is a web application designed to help users discover, save, and r
 
 4. You can use XAMPP or any other local development environment to run the application.
 
-5. Open your web browser and visit 'http://localhost/(folder name)' to access the The Yummy Chef.
+5. Open your web browser and visit 'http://localhost/(folder-name)' to access the The Yummy Chef.
 
 6. Alternatively, you can navigate to the project directory in your terminal and run the following command to start the application
 
