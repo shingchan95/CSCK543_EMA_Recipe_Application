@@ -1,19 +1,19 @@
 const slider = document.getElementById("myRange");
-const output = document.getElementById("Value")
-output.innerHTML = slider.value;
+const servingsOutput = document.getElementById("Value");
+const stars = document.getElementsByClassName("star");
+const ratingOutput = document.getElementById("output_rating");
+servingsOutput.innerHTML = slider.value;
 
 function scaleIngredients(servingsRatio) {
     const scaledIngredients = ingredients.map(function (ingredient) {
         if (ingredient.amount === null || ingredient.amount === "") {
-            return { ...ingredient, amount: "" };
-            // Check value is numerical before applying MATH
+            return {...ingredient, amount: ""};
+            // Check value is numerical before applying math
         } else if (!isNaN(parseFloat(ingredient.amount))) {
             let scaledAmount = ingredient.amount * servingsRatio;
             // Round to two decimal places
             scaledAmount = Math.round(scaledAmount * 100) / 100;
-            return { ...ingredient, amount: scaledAmount };
-        } else {
-            // If ingredient isn't a numerical value
+            return {...ingredient, amount: scaledAmount};
         }
         return ingredient;
     });
@@ -39,33 +39,58 @@ function updateIngredientsList(scaledIngredients) {
 
 // Update the slider and ingredients on input
 slider.oninput = function () {
-    output.innerHTML = this.value; // Update servings display
+    servingsOutput.innerHTML = this.value; // Update servings display
     const servingsRatio = this.value / originalServings; // Calculate the ratio
     scaleIngredients(servingsRatio); // Scale ingredients based on the ratio
 }
 
-
-// Star rating on the recipe
-let stars =
-    document.getElementsByClassName("star");
-let ratingOutput =
-    document.getElementById("output_rating");
-
 // Update the rating
-function gfg(n) {
-    remove();
-    for (let i = 0; i < n; i++) {
-        if (n == 1) cls = "one";
-        else if (n == 2) cls = "two";
-        else if (n == 3) cls = "three";
-        else if (n == 4) cls = "four";
-        else if (n == 5) cls = "five";
-        stars[i].className = "star " + cls;
-    }
-    output_rating.innerText = "Rating is: " + n + "/5";
+function saveRating(n) {
+    renderRating(n)
+    sendRatingToServer(n);
 }
 
-// Remove the pre-applied styling
+function renderRating(rating) {
+    remove();
+
+    // Apply different CSS classes based on rating
+    let cls = "";
+    if (rating == 1) cls = "one";
+    else if (rating == 2) cls = "two";
+    else if (rating == 3) cls = "three";
+    else if (rating == 4) cls = "four";
+    else if (rating == 5) cls = "five";
+
+    for (let i = 0; i < rating; i++) {
+        stars[i].className = "star " + cls;
+    }
+    ratingOutput.innerText = "Rating is: " + rating + "/5";
+}
+
+function sendRatingToServer(rating) {
+    fetch('/CSCK543_EMA_Recipe_Application/recipe', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=giveRating&recipeId=${recipeId}&rating=${rating}&category_id=1`,
+    })
+        .then(response => {
+            if (response.ok) {
+                // We need to check if there's a response before trying to parse it
+                if (response.headers.get('Content-Type').includes('application/json')) {
+                    return response.json();
+                }
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error.message);
+        });
+}
+
+// Remove the pre-applied styling (i.e., make the stars black)
 function remove() {
     let i = 0;
     while (i < 5) {
@@ -83,10 +108,8 @@ function saveBtn(recipeId) {
         },
         body: `action=saveFavorite&recipeId=${recipeId}`,
     })
-
         .then(response => {
-            console.log(response)
-            if (response.status == 200 || response.status == 204) {
+            if (response.ok) {
                 window.location.reload();
             } else {
                 throw new Error('Network response was not ok');
@@ -94,7 +117,6 @@ function saveBtn(recipeId) {
         })
         .catch(error => {
             console.error('Fetch error:', error.message);
-            // Handle fetch error
         });
 
 
@@ -109,28 +131,28 @@ function deleteBtn(recipeId) {
         },
     })
         .then(response => {
-            console.log(response)
             if (response.ok) {
-                return response.json(); // Parse JSON response
+                if (response.headers.get('Content-Type').includes('application/json')) {
+                    return response.json(); // Parse JSON response
+                }
             } else {
                 throw new Error('Network response was not ok');
             }
         })
         .then(data => {
             if (data && data.success) {
-                // Handle success message
                 console.log('Success:', data.message);
                 // Reload the page after successful operation
                 window.location.reload();
             } else if (data && data.error) {
                 console.error('Error:', data.error);
-                // Handle error message
             }
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            // Handle fetch error
         });
+}
 
-
+window.onload = function () {
+    renderRating(rating)
 }
