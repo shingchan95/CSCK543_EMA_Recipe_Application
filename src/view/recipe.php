@@ -42,32 +42,34 @@
                 </div>
             </div>
             <!-- Right box containing interactive features -->
-            <div class="right-box">
-                <section class="interactive-features">
-                    <!-- Button to save or delete recipe to/from favorites -->
-                    <?php if ($recipeDetails["isFavourite"] == 0): ?>
-                        <button class="save-recipe"
-                                onclick="saveBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Save Recipe
-                            to Favourites
-                        </button>
-                    <?php else: ?>
-                        <button class="save-recipe"
-                                onclick="deleteBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Delete
-                            Recipe to Favourites
-                        </button>
-                    <?php endif; ?>
-                    <!-- Star rating feature -->
-                    <div class="star-container">
-                        <span onclick="saveRating(1)" class="star">★</span>
-                        <span onclick="saveRating(2)" class="star">★</span>
-                        <span onclick="saveRating(3)" class="star">★</span>
-                        <span onclick="saveRating(4)" class="star">★</span>
-                        <span onclick="saveRating(5)" class="star">★</span>
-                    </div>
-                    <!-- Output rating display -->
-                    <div id="output_rating"></div>
-                </section>
-            </div>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
+                <div class="right-box">
+                    <section class="interactive-features">
+                        <!-- Button to save or delete recipe to/from favorites -->
+                        <?php if ($recipeDetails["isFavourite"] == 0): ?>
+                            <button class="save-recipe"
+                                    onclick="saveBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Save Recipe
+                                to Favourites
+                            </button>
+                        <?php else: ?>
+                            <button class="save-recipe"
+                                    onclick="deleteBtn('<?php echo htmlspecialchars($recipeDetails['id']); ?>')">Delete
+                                Recipe to Favourites
+                            </button>
+                        <?php endif; ?>
+                        <!-- Star rating feature -->
+                        <div class="star-container">
+                            <span onclick="saveRating(1)" class="star">★</span>
+                            <span onclick="saveRating(2)" class="star">★</span>
+                            <span onclick="saveRating(3)" class="star">★</span>
+                            <span onclick="saveRating(4)" class="star">★</span>
+                            <span onclick="saveRating(5)" class="star">★</span>
+                        </div>
+                        <!-- Output rating display -->
+                        <div id="output_rating"></div>
+                    </section>
+                </div>
+            <?php endif; ?>
         </section>
         <!-- Middle container containing ingredients and cooking method -->
         <div class="middle-container">
