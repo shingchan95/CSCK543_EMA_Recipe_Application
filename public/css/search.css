@@ -1,9 +1,11 @@
 #search_filter_container {
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 #search_filters {
     justify-content: center;
+    flex-wrap: wrap;
     background-color: lightcoral;
 }
 
@@ -12,7 +14,8 @@ main section * {
 }
 
 .card_image {
-    max-width: 100%; /* Ensure images are responsive */
+    max-width: 100%;
+    /* Ensure images are responsive */
     height: auto;
 }
 
@@ -24,4 +27,30 @@ main section * {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#filter-options {
+    display: flex;
+}
+
+
+@media (max-width: 1000px) {
+    main section * {
+        padding: 2px;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    main section * {
+        padding: 2px;
+    }
+}
+
+@media (max-width: 490px) {
+
+    main section * {
+        padding: 2px;
+    }
 }

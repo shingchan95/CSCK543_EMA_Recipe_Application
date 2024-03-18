@@ -7,13 +7,13 @@ servingsOutput.innerHTML = slider.value;
 function scaleIngredients(servingsRatio) {
     const scaledIngredients = ingredients.map(function (ingredient) {
         if (ingredient.amount === null || ingredient.amount === "") {
-            return {...ingredient, amount: ""};
+            return { ...ingredient, amount: "" };
             // Check value is numerical before applying math
         } else if (!isNaN(parseFloat(ingredient.amount))) {
             let scaledAmount = ingredient.amount * servingsRatio;
             // Round to two decimal places
             scaledAmount = Math.round(scaledAmount * 100) / 100;
-            return {...ingredient, amount: scaledAmount};
+            return { ...ingredient, amount: scaledAmount };
         }
         return ingredient;
     });
@@ -132,9 +132,9 @@ function deleteBtn(recipeId) {
     })
         .then(response => {
             if (response.ok) {
-                if (response.headers.get('Content-Type').includes('application/json')) {
-                    return response.json(); // Parse JSON response
-                }
+                // if (response.headers.get('Content-Type').includes('application/json')) {
+                return response.json(); // Parse JSON response
+                // }
             } else {
                 throw new Error('Network response was not ok');
             }
