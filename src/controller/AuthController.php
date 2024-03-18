@@ -9,16 +9,19 @@ require_once __DIR__ . '/../model/UserModel.php';
 class AuthController
 {
     private $userModel;
-
+    /**
+     * Constructor for AuthController.
+     * Initializes UserModel instance.
+     */
     public function __construct()
     {
         global $conn;
         $this->userModel = new UserModel($conn);
     }
 
-    /**
-     * Index method handles login and registration based on POST requests.
-     * Sets error messages in session if an exception occurs.
+     /**
+     * Index method handles login, registration, and account deletion based on POST requests.
+     * Sets error messages in session if an exception occurs during login, registration, or account deletion.
      */
     public function index()
     {
@@ -26,26 +29,26 @@ class AuthController
             // Check if login form is submitted
             if (isset($_POST['login_submit'])) {
                 try {
-                    $this->handleLogin();
-                } catch (Exception $e) {
-                    $_SESSION['login_error'] = $e->getMessage();
-                    header("Location: " . $_SESSION['current_page']);
+                    $this->handleLogin(); // Call handleLogin method
+                } catch (Exception $e) { 
+                    $_SESSION['login_error'] = $e->getMessage(); // Set login error message in session
+                    header("Location: " . $_SESSION['current_page']); // Redirect to current page
                 }
             } // Check if registration form is submitted
             elseif (isset($_POST['register_submit'])) {
                 try {
-                    $this->handleRegistration();
+                    $this->handleRegistration(); // Call handleRegistration method
                 } catch (Exception $e) {
-                    $_SESSION['register_error'] = $e->getMessage();
-                    header("Location: " . $_SESSION['current_page']);
+                    $_SESSION['register_error'] = $e->getMessage(); // Set registration error message in session
+                    header("Location: " . $_SESSION['current_page']); // Redirect to current page
                 }
             } // Check if delete account form is submitted
             elseif (isset($_POST['delete_submit'])) {
                 try {
-                    $this->handleAccountDeletion();
+                    $this->handleAccountDeletion(); // Call handleAccountDeletion method
                 } catch (Exception $e) {
-                    $_SESSION['register_error'] = $e->getMessage();
-                    header("Location: " . $_SESSION['current_page']);
+                    $_SESSION['register_error'] = $e->getMessage(); // Set registration error message in session
+                    header("Location: " . $_SESSION['current_page']);  // Redirect to current page
                 }
             }
         }

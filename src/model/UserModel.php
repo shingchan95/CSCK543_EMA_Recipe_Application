@@ -8,6 +8,12 @@ class UserModel
     // mysqli Database connection object
     private $conn;
 
+    /**
+     * Constructor for UserModel.
+     * Initializes the database connection.
+     *
+     * @param object $conn Database connection object
+     */
     public function __construct($conn)
     {
         $this->conn = $conn;
@@ -59,7 +65,7 @@ class UserModel
     }
 
     /**
-     * Get a user by their username.
+     * Get a user by the username.
      *
      * @param string $username Username of the user
      * @return array|null User data if found, null otherwise
@@ -79,6 +85,12 @@ class UserModel
         return null;
     }
 
+     /**
+     * Get a user by the ID.
+     *
+     * @param int $id ID of the user
+     * @return array|null User data if found, null otherwise
+     */
     public function getUserById($id)
     {
         $sql = "SELECT * FROM user WHERE id = ?";
@@ -95,7 +107,7 @@ class UserModel
     }
 
     /**
-     * Get a user by their email.
+     * Get a user by the email.
      *
      * @param string $email Email of the user
      * @return array|null User data if found, null otherwise
@@ -113,7 +125,7 @@ class UserModel
     }
 
     /**
-     * Update the last login time for a user.
+     * Update the last login time of a user.
      *
      * @param int $userId ID of the user
      * @return void

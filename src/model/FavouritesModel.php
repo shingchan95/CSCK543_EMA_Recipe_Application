@@ -1,11 +1,24 @@
 <?php
 class FavouritesModel {
     private $conn;
- 
+    /**
+     * Constructor for FavouritesModel.
+     * Initializes the database connection.
+     *
+     * @param $conn Database connection object
+     */
     public function __construct($conn) {
         $this->conn = $conn;
     }
- 
+    
+    /**
+     * Adds a recipe to the user's favorites.
+     *
+     * @param int $userId User ID
+     * @param int $recipeId Recipe ID
+     * @return array Array indicating success or failure of the operation
+     * @throws Exception If the operation fails
+     */
     public function addToFavorites($userId, $recipeId) {
         // Check if the recipe is already in the user's favorites
         $sql = "SELECT 1 FROM favourite WHERE user_id = ? AND recipe_id = ?";
@@ -32,6 +45,15 @@ class FavouritesModel {
 
         }
     }
+
+     /**
+     * Deletes a recipe from the user's favorites.
+     *
+     * @param int $recipeId Recipe ID
+     * @param int $userId User ID
+     * @return array Array indicating success or failure of the operation
+     * @throws Exception If the operation fails
+     */
     public function deleteFavorites($recipeId, $userId) {
         // Check if the recipe exists in the user's favorites
         if ($this -> isFavourite($userId, $recipeId)) {
@@ -52,6 +74,14 @@ class FavouritesModel {
         }
     }
 
+
+     /**
+     * Checks if a recipe is in the user's favorites.
+     *
+     * @param int $userId User ID
+     * @param int $recipeId Recipe ID
+     * @return bool True if the recipe is in favorites, false otherwise
+     */
     public function isFavourite($userId, $recipeId) {
         $sql = "SELECT 1 FROM favourite WHERE user_id = ? AND recipe_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -62,6 +92,12 @@ class FavouritesModel {
         return $result->num_rows > 0;
     }
 
+    /**
+     * Retrieves the user's favorite recipes.
+     *
+     * @param int $userId User ID
+     * @return array Array of favorite recipes
+     */
     public function getFavouriteRecipes($userId){
 
         $sql = "SELECT *

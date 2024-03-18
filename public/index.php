@@ -28,27 +28,27 @@ if (!empty($segments[1])) {
     switch ($segments[1]) {
         case 'home':
             // Route to home page
-            $_SESSION['current_page'] = $segments[1];
-            $homeController->index();
+            $_SESSION['current_page'] = $segments[1]; // Set current page in session
+            $homeController->index(); // Call index method of HomeController
             break;
 
         case 'profile':
             // Route to profile page, passing user ID for authentication
-            $_SESSION['current_page'] = $segments[1];
-            $profileController->index($user_id);
+            $_SESSION['current_page'] = $segments[1]; // Set current page in session
+            $profileController->index($user_id); // Call index method of ProfileController with user ID
             break;
 
         case 'recipe':
             if (!empty($segments[2]) && is_numeric($segments[2])) {
                 if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-                    $recipeId = $segments[2];
-                    $recipeController->handleDeleteFavorite($user_id, $recipeId);
+                    $recipeId = $segments[2]; // Get recipe ID from URL segment
+                    $recipeController->handleDeleteFavorite($user_id, $recipeId);// Call handleDeleteFavorite method of RecipeController
                 }
                 else{
                     // If recipe ID is provided, show recipe details
-                    $_SESSION['current_page'] = $segments[1];
-                    $recipeId = intval($segments[2]);
-                    $recipeController->showRecipe($recipeId, $user_id);
+                    $_SESSION['current_page'] = $segments[1];// Set current page in session
+                    $recipeId = intval($segments[2]);// Convert recipe ID to integer
+                    $recipeController->showRecipe($recipeId, $user_id);// Call showRecipe method of RecipeController with recipe ID and user ID
                 }
             }
              else {

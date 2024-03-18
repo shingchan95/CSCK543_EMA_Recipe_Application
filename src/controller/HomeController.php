@@ -13,7 +13,10 @@ class HomeController
 {
     private $userModel;
     private $recipeModel;
-
+    /**
+     * Constructor for HomeController.
+     * Initializes UserModel and recipeModel instance.
+     */
 
     public function __construct()
     {
@@ -40,18 +43,6 @@ class HomeController
 
         }
     }
-
-    // public function getRecipeByDietId($dietId) {
-    //     $recipes = $this->recipeModel->getRecipeByDietId($dietId);
-    //     $this->render('home', ['recipes' => $recipes]);
-    // }
-
-    // public function searchRecipes($searchTerm) {
-    //     $recipes = $this->recipeModel->searchRecipes($searchTerm);
-    //     // $recipes = $this->recipeModel->getRecipeByDietId($searchTerm);
-    //     $this->render('home', ['recipes' => $recipes]);
-    // }
-
 
     /**
      * Renders a view with data.
