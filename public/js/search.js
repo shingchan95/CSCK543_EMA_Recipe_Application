@@ -39,7 +39,7 @@ function renderRecipeList(filters) {
         const addedDate = new Date(recipe.added)
         divElement.innerHTML = `
             <h3>${recipe.recipe}</h3>
-            <img class="card_image" src="/image/600/${recipe.image_path}" alt="Recipe Image">
+            <img class="card_image" src="/image/600/${recipe.image_path}" alt="${recipe.recipe}">
             <p><b>Diet: </b>${recipe.diet}</p>
             <p><b>Course: </b>${recipe.course}</p>
             <p><b>Preparation: </b>${recipe.preparation} minutes</p>

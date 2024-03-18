@@ -17,8 +17,8 @@
                 <!-- Verify image is available -->
                 <?php if (!empty($recipeDetails["image_path"])): ?>
                     <img src="/image/600/<?php echo htmlspecialchars($recipeDetails["image_path"]); ?>"
-                         alt="Recipe Photo"
-                         class="recipe-photo"><?php else: ?>
+                        alt="<?php echo$recipeDetails['recipe']?>"
+                        class="recipe-photo"><?php else: ?>
                     <!-- If no image available -->
                     <img src="default-recipe-photo.jpg" alt="No Photo Available" class="recipe-photo"><?php endif; ?>
             </div>

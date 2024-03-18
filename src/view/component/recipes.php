@@ -10,7 +10,7 @@ function displayRecipes($recipes, $addRemoveButton)
             echo '<button class="remove_favorite_btn" data-recipe-id="' . htmlspecialchars($recipe['recipe_id']) . '">X</button>';
         }
         echo '<h3>' . htmlspecialchars($recipe['recipe']) . '</h3>';
-        echo '<img class="card_image" src="/image/600/' . htmlspecialchars($recipe['image_path']) . '" alt="Recipe Image">';
+        echo '<img class="card_image" src="/image/600/' . htmlspecialchars($recipe['image_path']) . '" alt="'.htmlspecialchars($recipe['recipe']). '">';
         echo '<p><b>Diet: </b>' . htmlspecialchars($recipe['diet']) . '</p>';
         echo '<p><b>Course: </b>' . htmlspecialchars($recipe['course']) . '</p>';
         echo '<p><b>Preparation: </b>' . htmlspecialchars($recipe['preparation']) . ' minutes</p>';
