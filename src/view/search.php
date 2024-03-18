@@ -91,7 +91,7 @@ function filterRepeated($array, $keyword): array
                     <option value="author">Author</option>
                     <option value="preparation">Preparation Time</option>
                     <option value="cooking">Cooking Time</option>
-                    <option value="added">Added Date</option>
+                    <option value="added">Date (Most Recent)</option>
                 </select>
             </div>
         </div>
