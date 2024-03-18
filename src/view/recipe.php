@@ -51,11 +51,11 @@
                         </button>
                     <?php endif; ?>
                     <div class="star-container">
-                        <span onclick="gfg(1)" class="star">★</span>
-                        <span onclick="gfg(2)" class="star">★</span>
-                        <span onclick="gfg(3)" class="star">★</span>
-                        <span onclick="gfg(4)" class="star">★</span>
-                        <span onclick="gfg(5)" class="star">★</span>
+                        <span onclick="saveRating(1)" class="star">★</span>
+                        <span onclick="saveRating(2)" class="star">★</span>
+                        <span onclick="saveRating(3)" class="star">★</span>
+                        <span onclick="saveRating(4)" class="star">★</span>
+                        <span onclick="saveRating(5)" class="star">★</span>
                     </div>
                     <div id="output_rating"></div>
 
@@ -103,11 +103,6 @@
                 <?php endif; ?>
             </section>
         </div>
-
-        <!-- Dynamically generated user comments -->
-        <section class="bottom-container">
-            <h2>User Comments</h2>
-        </section>
     <?php else: ?>
         <p>Recipe not found.</p>
     <?php endif; ?>
@@ -116,11 +111,10 @@
 <?php include 'component/footer.php'; ?>
 
 <script>
-    //JavaScript for rating recipes - Placeholder
-    //JavaScript for favourite recipes - Placeholder
-    // JavaScript for Scaling Servings
     const originalServings = <?php echo json_encode($recipeDetails['servings']); ?>;
     const ingredients = <?php echo json_encode($recipeDetails['ingredients']); ?>;
+    const recipeId = <?php echo json_encode($recipeDetails['id']); ?>;
+    const rating = "<?php echo isset($recipeDetails['ratingC1']) ? htmlspecialchars($recipeDetails['ratingC1']) : ''; ?>";
 </script>
 <script src="/js/recipe.js"></script>
 <script src="/js/script.js"></script>

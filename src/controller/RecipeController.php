@@ -6,12 +6,15 @@ require_once __DIR__ . '/../model/UserModel.php';
 require_once __DIR__ . '/../model/RecipeModel.php';
 require_once __DIR__ . '/../model/FavouritesModel.php';
 require_once __DIR__ . '/../model/RatingModel.php';
-class RecipeController {
+
+class RecipeController
+{
     private $recipeModel;
     private $favouritesModel;
     private $ratingModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         global $conn;
         $this->recipeModel = new RecipeModel($conn);
         $this->favouritesModel = new FavouritesModel($conn);
@@ -24,31 +27,31 @@ class RecipeController {
      * Handles actions like saving favorite and giving ratings based on POST requests.
      * If no action is specified, renders the recipe view.
      */
-    public function index($user_id) {
+    public function index($userId)
+    {
         // Handle POST requests
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
-            $action = $_POST['action']; 
-            switch ($action) { 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+            $action = $_POST['action'];
+            switch ($action) {
                 // Check the value of the action parameter
-                case 'saveFavorite': 
+                case 'saveFavorite':
                     // Handlesaving favorite recipes
-                    $this->handleSaveFavorite($user_id);
-                    break; 
-      
+                    $this->handleSaveFavorite($userId);
+                    break;
+
                 case 'giveRating':
                     // Handle giving favorite recipes
-                    $this->handleGiveRating($user_id);
-                    break; 
-                default: 
-                      // If the action parameter is invalid, echo error message
-                      http_response_code(400);
-                      echo "Invalid action"; 
-                      break; 
+                    $this->handleGiveRating($userId);
+                    break;
+                default:
+                    // If the action parameter is invalid, echo error message
+                    http_response_code(400);
+                    echo "Invalid action";
+                    break;
             }
-        }
-        else{
+        } else {
             // If the request method is not POST or action parameter is not set, render the recipe view
-            include __DIR__. '/../view/recipe.php';
+            include __DIR__ . '/../view/recipe.php';
         }
     }
 
@@ -60,7 +63,8 @@ class RecipeController {
      * @param int $recipeId The ID of the recipe to show.
      * @throws Exception if recipe details, steps, tips, or ingredients are not found.
      */
-    public function showRecipe($recipeId, $userId) {
+    public function showRecipe($recipeId, $userId)
+    {
         try {
             // Get recipe details by ID
             $recipeDetails = $this->recipeModel->getRecipeDetailsById($recipeId);
@@ -77,22 +81,22 @@ class RecipeController {
             $ingredients = $this->recipeModel->getIngredientsByRecipeId($recipeId);
 
             // If a user is logged in, get their ratings for the recipe
-            if($userId){
+            if ($userId) {
                 $ratingC1 = $this->ratingModel->getRating($userId, $recipeId, 1);
-                $ratingC2 = $this->ratingModel->getRating($userId, $recipeId, 2); 
+                $ratingC2 = $this->ratingModel->getRating($userId, $recipeId, 2);
                 $ratingC3 = $this->ratingModel->getRating($userId, $recipeId, 3);
 
                 $recipeDetails['ratingC1'] = $ratingC1;
                 $recipeDetails['ratingC2'] = $ratingC2;
                 $recipeDetails['ratingC3'] = $ratingC3;
             }
-    
+
             // Add steps, tips, and ingredients to recipe details
             $recipeDetails['isFavourite'] = $isFavourite;
             $recipeDetails['steps'] = $steps;
             $recipeDetails['tips'] = $tips;
             $recipeDetails['ingredients'] = $ingredients;
-          
+
             // Render the recipe view with recipe details
             $this->render('recipe', ['recipeDetails' => $recipeDetails]);
         } catch (Exception $e) {
@@ -106,14 +110,15 @@ class RecipeController {
      * Saves the recipe as a favorite for the user.
      * Throws an exception if an error occurs during the operation.
      *
-     * @param int $user_id The ID of the current user.
+     * @param int $userId The ID of the current user.
      * @throws Exception if an error occurs during favorite saving.
      */
-    private function handleSaveFavorite($user_id){
+    private function handleSaveFavorite($userId)
+    {
         if (isset($_POST['recipeId'])) {
             $recipeId = $_POST['recipeId'];
             try {
-                $this->favouritesModel->addToFavorites($user_id, $recipeId);
+                $this->favouritesModel->addToFavorites($userId, $recipeId);
             } catch (Exception $e) {
                 http_response_code(500);
                 echo json_encode(['error' => $e->getMessage()]);
@@ -123,7 +128,7 @@ class RecipeController {
             echo json_encode(['error' => 'Recipe ID not provided']);
         }
     }
-      
+
     /**
      * Adds a rating for the recipe given by the user.
      * Throws an exception if an error occurs during the operation.
@@ -131,14 +136,15 @@ class RecipeController {
      * @param int $userId The ID of the current user.
      * @throws Exception if an error occurs during rating addition.
      */
-    private function handleGiveRating($user_id) {
+    private function handleGiveRating($userId)
+    {
         if (isset($_POST['recipeId'], $_POST['rating'], $_POST['category_id'])) {
             $recipeId = $_POST['recipeId'];
             $rating = $_POST['rating'];
-            $category_id = $_POST['category_id'];
+            $categoryId = $_POST['category_id'];
             try {
                 // Add the rating for the recipe by the user
-                $this->ratingModel->addRating($recipeId, $user_id, $rating, $category_id);
+                $this->ratingModel->addRating($userId, $recipeId, $rating, $categoryId);
             } catch (Exception $e) {
                 http_response_code(500);
                 // Echo error message if an exception occurs
@@ -150,20 +156,20 @@ class RecipeController {
         }
     }
 
-    public function handleDeleteFavorite($user_id, $recipeId) {
+    public function handleDeleteFavorite($userId, $recipeId)
+    {
         try {
             // Try to delete the recipe as favorite
-            // $recipeId = $_POST['recipeId'];
-            $this->favouritesModel->deleteFavorites($recipeId, $user_id); 
+            $this->favouritesModel->deleteFavorites($recipeId, $userId);
             // Respond with success message
             echo json_encode(['success' => true, 'message' => 'Recipe removed from favorites successfully.']);
         } catch (Exception $e) {
             http_response_code(500);
             // If an exception occurs during favorite deletion, echo error message
-            echo json_encode(['error' => $e->getMessage()]);   
+            echo json_encode(['error' => $e->getMessage()]);
         }
-    }    
-    
+    }
+
 
     /**
      * Renders a view with data.
@@ -172,12 +178,14 @@ class RecipeController {
      * @param array $data The data to be passed to the view.
      */
 
-    public function render($view, $data = []) {
+    public function render($view, $data = [])
+    {
         if (!empty($data)) {
             extract($data);
         }
         include __DIR__ . "/../view/$view.php";
     }
-    
+
 }
+
 ?>
