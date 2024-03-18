@@ -82,7 +82,7 @@ function sortRecipes() {
             return a[sortMethod] - b[sortMethod]; // Sort by numerical values directly
 
         } else if (sortMethod === "added") {
-            return new Date(a[sortMethod]) - new Date(b[sortMethod]); // Sort by date values
+            return new Date(b[sortMethod]) - new Date(a[sortMethod]); // Sort by date values
 
         } else {
             return a[sortMethod].localeCompare(b[sortMethod]); // Sort by string values
