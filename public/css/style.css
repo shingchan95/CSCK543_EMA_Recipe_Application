@@ -25,7 +25,8 @@ nav {
 }
 
 nav ul {
-    list-style-type: none; /* Remove list item's dots */
+    list-style-type: none;
+    /* Remove list item's dots */
 }
 
 nav ul li a:hover:not(.current_page) {
@@ -43,7 +44,7 @@ nav ul li a {
 }
 
 #user_login {
-    padding-right: 40px;
+    margin-right: 40px;
     cursor: pointer;
     align-items: center;
 }
@@ -163,7 +164,8 @@ nav ul li a {
     color: white;
 }
 
-.close_btn, .remove_favorite_btn {
+.close_btn,
+.remove_favorite_btn {
     margin-left: 15px;
     color: black;
     font-weight: bold;
@@ -180,7 +182,8 @@ nav ul li a {
 }
 
 .card_image {
-    max-width: 100%; /* Ensure images are responsive */
+    max-width: 100%;
+    /* Ensure images are responsive */
     height: auto;
 }
 
@@ -224,7 +227,12 @@ nav ul li a {
         display: none;
     }
 
-    #user_login {
-        padding-right: 0;
+    #navbar {
+        justify-content: center;
     }
+
+    nav ul li a {
+        padding: 5px;
+    }
+
 }

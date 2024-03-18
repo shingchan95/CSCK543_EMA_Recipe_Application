@@ -32,44 +32,46 @@ function filterRepeated($array, $keyword): array
         <div class="container" id="search_filter_container">
             <div id="search_filters" class="centered_container">
                 <h3>Filter by: </h3>
-                <div>
-                    <p>Diet</p>
-                    <select id="diet_filter" onchange="updateFilters()">
-                        <option value="all">All Diets</option>
-                        <?php
-                        $uniqueDiets = filterRepeated($recipes, "diet");
-                        foreach ($uniqueDiets as $diet) {
-                            echo "<option value='" . htmlspecialchars($diet) . "'>" .
-                                htmlspecialchars($diet) . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div>
-                    <p>Course</p>
-                    <select id="course_filter" onchange="updateFilters()">
-                        <option value="all">All Courses</option>
-                        <?php
-                        $uniqueCourses = filterRepeated($recipes, "course");
-                        foreach ($uniqueCourses as $course) {
-                            echo "<option value='" . htmlspecialchars($course) . "'>" .
-                                htmlspecialchars($course) . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div>
-                    <p>Author</p>
-                    <select id="author_filter" onchange="updateFilters()">
-                        <option value="all">All Authors</option>
-                        <?php
-                        $uniqueAuthors = filterRepeated($recipes, "author");
-                        foreach ($uniqueAuthors as $author) {
-                            echo "<option value='" . htmlspecialchars($author) . "'>" .
-                                htmlspecialchars($author) . "</option>";
-                        }
-                        ?>
-                    </select>
+                <div id ="filter-options">
+                    <div>
+                        <p>Diet</p>
+                        <select id="diet_filter" onchange="updateFilters()">
+                            <option value="all">All Diets</option>
+                            <?php
+                            $uniqueDiets = filterRepeated($recipes, "diet");
+                            foreach ($uniqueDiets as $diet) {
+                                echo "<option value='" . htmlspecialchars($diet) . "'>" .
+                                    htmlspecialchars($diet) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div>
+                        <p>Course</p>
+                        <select id="course_filter" onchange="updateFilters()">
+                            <option value="all">All Courses</option>
+                            <?php
+                            $uniqueCourses = filterRepeated($recipes, "course");
+                            foreach ($uniqueCourses as $course) {
+                                echo "<option value='" . htmlspecialchars($course) . "'>" .
+                                    htmlspecialchars($course) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div>
+                        <p>Author</p>
+                        <select id="author_filter" onchange="updateFilters()">
+                            <option value="all">All Authors</option>
+                            <?php
+                            $uniqueAuthors = filterRepeated($recipes, "author");
+                            foreach ($uniqueAuthors as $author) {
+                                echo "<option value='" . htmlspecialchars($author) . "'>" .
+                                    htmlspecialchars($author) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>               
                 </div>
             </div>
             <div id="sort_features" class="centered_container">
