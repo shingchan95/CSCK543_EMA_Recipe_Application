@@ -13,6 +13,10 @@ class RecipeController
     private $favouritesModel;
     private $ratingModel;
 
+    /**
+     * Constructor for RecipeController.
+     * Initializes recipeModel, favouritesModel and ratingModel instance.
+     */
     public function __construct()
     {
         global $conn;
@@ -61,6 +65,7 @@ class RecipeController
      * Handles exceptions if any details are not found.
      *
      * @param int $recipeId The ID of the recipe to show.
+     * @param int $userId The ID of the current user.
      * @throws Exception if recipe details, steps, tips, or ingredients are not found.
      */
     public function showRecipe($recipeId, $userId)
@@ -82,10 +87,14 @@ class RecipeController
 
             // If a user is logged in, get their ratings for the recipe
             if ($userId) {
+                // Get category 1 rating
                 $ratingC1 = $this->ratingModel->getRating($userId, $recipeId, 1);
+                // Get category 2 rating
                 $ratingC2 = $this->ratingModel->getRating($userId, $recipeId, 2);
+                // Get category 3 rating
                 $ratingC3 = $this->ratingModel->getRating($userId, $recipeId, 3);
 
+                // Add all Category 1,2 and 3 do recipe details
                 $recipeDetails['ratingC1'] = $ratingC1;
                 $recipeDetails['ratingC2'] = $ratingC2;
                 $recipeDetails['ratingC3'] = $ratingC3;
@@ -156,6 +165,14 @@ class RecipeController
         }
     }
 
+    /**
+     * Delete the favorite recipe for the user.
+     * Throws an exception if an error occurs during the operation.
+     *
+     * @param int $userId The ID of the current user.
+     * @param int $recipeId The ID of the recipe to delete.
+     * @throws Exception if an error occurs during favorite saving.
+     */
     public function handleDeleteFavorite($userId, $recipeId)
     {
         try {

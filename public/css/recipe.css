@@ -1,244 +1,381 @@
-.top-container, .middle-container, .bottom-container {
-    border: 1px solid #ccc; /* Adds a border */
-    padding: 20px;
-    margin-bottom: 30px; /* Increases spacing */
-    background-color: #fff; /* Ensures background is white */
-}
-
-.top-container {
-    display: flex;
+.top-container,
+.middle-container,
+.bottom-container {
+    /* Adds a border */
     border: 1px solid #ccc;
+    /* Adds padding */
     padding: 20px;
+    /* Increases spacing */
     margin-bottom: 30px;
+    /* Ensures background is white */
     background-color: #fff;
 }
 
-.left-box, .middle-box, .right-box {
+/* Styling for the top container */
+.top-container {
+    /* Displays items as flex */
     display: flex;
+    /* Adds a border */
+    border: 1px solid #ccc;
+    /* Adds padding */
+    padding: 20px;
+    /* Increases spacing */
+    margin-bottom: 30px;
+    /* Ensures background is white */
+    background-color: #fff;
+}
+
+/* Styling for the left, middle, and right boxes */
+.left-box,
+.middle-box,
+.right-box {
+    /* Displays items as flex */
+    display: flex;
+    /* Centers content horizontally */
     justify-content: center;
+    /* Centers content vertically */
     align-items: center;
+    /* Adds padding */
     padding: 10px;
 }
 
-.left-box, .recipe-photo {
+/* Styling for the left box and recipe photo */
+.left-box,
+.recipe-photo {
+    /* Sets flex basis */
     flex-basis: 20%;
+    /* Sets width to 100% */
     width: 100%;
+    /* Sets maximum width */
     max-width: 600px;
+    /* Sets height to auto */
     height: auto;
+    /* Displays as block */
     display: block;
-    margin: 0 auto 20px; /* Centers the image and adds space below */
+    /* Centers the image and adds space below */
+    margin: 0 auto 20px;
 }
 
+/* Styling for the middle box */
 .middle-box {
+    /* Sets flex basis */
     flex-basis: 60%;
 }
 
+/* Styling for the right box */
 .right-box {
+    /* Sets flex basis */
     flex-basis: 20%;
 }
 
 
+/* Styling for stars */
 .star {
+    /* Sets font size */
     font-size: 30px;
+    /* Sets cursor to pointer */
     cursor: pointer;
-  }
-   
-  .one {
+}
+
+/* Styling for star ratings */
+.one,
+.two,
+.three,
+.four,
+.five {
+    /* Sets color */
     color: rgb(255, 106, 0);
-  }
-   
-  .two {
-    color: rgb(255, 106, 0);
-  }
-   
-  .three {
-    color: rgb(255, 106, 0);
-  }
-   
-  .four {
-    color: rgb(255, 106, 0);
-  }
-   
-  .five {
-    color: rgb(255, 106, 0);
-  }
+}
 
 
-/* Slider details*/
+/* Slider details */
 
+/* Styling for the slide container */
 .slideContainer {
+    /* Sets width */
     width: 75%;
+    /* Adds padding */
     padding-top: 10px;
 }
 
+
+/* Styling for the slider */
 .slider {
+    /* Removes default appearance for webkit browsers */
     -webkit-appearance: none;
+    /* Removes default appearance */
     appearance: none;
+    /* Sets width to 100% */
     width: 100%;
+    /* Sets height */
     height: 20px;
+    /* Sets background color */
     background: #d3d3d3;
+    /* Removes outline */
     outline: none;
+    /* Sets opacity */
     opacity: 0.7;
+    /* Adds transition for webkit browsers */
     -webkit-transition: .2s;
+    /* Adds transition */
     transition: .2s;
+    /* Sets border radius */
     border-radius: 5px;
+    /* Adds box shadow */
     box-shadow: 0px 1px 10px 1px black;
 }
 
+/* Hover styling for the slider */
 .slider:hover {
+    /* Sets opacity to 1 on hover */
     opacity: 1;
 }
 
-/* Slider for all browsers */
+/* Styling for the slider thumb for webkit browsers */
 .slider::webkit-slider-thumb {
+    /* Removes default appearance */
     -webkit-appearance: none;
+    /* Removes default appearance */
     appearance: none;
+    /* Sets width */
     width: 40px;
+    /* Sets height */
     height: 40px;
+    /* Sets background color */
     background: white;
+    /* Sets border radius */
     border-radius: 50%;
+    /* Sets cursor to pointer */
     cursor: pointer;
 }
 
-/* Slider for Firefox */
+
+/* Styling for the slider thumb for Firefox */
 .slider::moz-range-thumb {
+    /* Sets width */
     width: 40px;
+    /* Sets height */
     height: 40px;
+    /* Sets background color */
     background: #4caf50;
+    /* Sets border radius */
     border-radius: 50%;
+    /* Sets cursor to pointer */
     cursor: pointer;
 }
 
-/* Value display for slider */
+/* Styling for the value display of the slider */
 .slideContainer p {
+    /* Sets color */
     color: #333;
+    /* Sets font size */
     font-size: 16px;
+    /* Adds top margin */
     margin-top: 10px;
 }
 
-.recipe-intro h1, .ingredients-time h2, .cooking-method h2, .bottom-container h2 {
+/* Styling for various headings */
+.recipe-intro h1,
+.ingredients-time h2,
+.cooking-method h2,
+.bottom-container h2 {
+    /* Sets color */
     color: #333;
 }
 
-.ingredients, .steps {
+/* Styling for ingredients and steps */
+.ingredients,
+.steps {
+    /* Adds bottom margin */
     margin-bottom: 20px;
+    /* Aligns text to the left */
     text-align: left;
 }
 
+/* Styling for comments */
 .comment {
-    border-bottom: 1px solid #eee; /* Lighter border for comments */
+    /* Adds bottom border */
+    border-bottom: 1px solid #eee;
+    /* Adds bottom padding */
     padding-bottom: 10px;
+    /* Adds bottom margin */
     margin-bottom: 10px;
 }
 
-.interactive-features button, .interactive-features select {
+/* Styling for interactive features buttons and selects */
+.interactive-features button,
+.interactive-features select {
+    /* Displays as block */
     display: block;
+    /* Adds top margin */
     margin-top: 10px;
+    /* Adds bottom margin */
     margin-bottom: 10px;
 }
 
+/* Styling for save recipe button */
 .save-recipe {
+    /* Sets background color */
     background-color: #007bff;
+    /* Sets text color */
     color: white;
+    /* Adds padding */
     padding: 10px 20px;
+    /* Removes border */
     border: none;
+    /* Sets cursor to pointer */
     cursor: pointer;
 }
 
+/* Hover styling for save recipe button */
 .save-recipe:hover {
+    /* Sets background color on hover */
     background-color: #0056b3;
 }
 
+/* Styling for rate recipe */
 .rate-recipe {
+    /* Adds padding */
     padding: 5px;
 }
 
-/*Middle container styling*/
-
+/* Styling for the middle container */
 .middle-container {
+    /* Displays items as flex */
     display: flex;
+    /* Aligns items to space between */
     justify-content: space-between;
 }
 
-.ingredients-time, .cooking-method {
+/* Styling for ingredients-time and cooking-method lists */
+.ingredients-time,
+.cooking-method {
+    /* Sets list style position */
     list-style-position: inside;
+    /* Adds right padding */
     padding-right: 20px;
+    /* Adds bottom margin */
     margin-bottom: 20px;
 }
 
-.ingredients-time li, .cooking-method li, .steps li {
+/* Styling for ingredients-time and cooking-method list items */
+.ingredients-time li,
+.cooking-method li,
+.steps li {
+    /* Adds bottom margin */
     margin-bottom: 5px;
+    /* Adds right padding */
     padding-right: 10px;
 }
 
+/* Styling for ingredients-time */
 .ingredients-time {
-    flex: 0 0 30%; /* Fixes width to 30% and prevents it from growing or shrinking */
-    max-width: 30%; /* Ensures it does not exceed 30% width */
+    /* Sets flex basis */
+    flex: 0 0 30%;
+    /* Sets maximum width */
+    max-width: 30%;
+    /* Displays items as flex */
     display: flex;
+    /* Sets flex direction to column */
     flex-direction: column;
+    /* Aligns items to center */
     align-items: center;
 }
 
+/* Styling for cooking-method */
 .cooking-method {
-    flex: 0 0 70%; /* Fixes width to 70% and prevents it from growing or shrinking */
-    max-width: 70%; /* Ensures it does not exceed 70% width */
+    /* Sets flex basis */
+    flex: 0 0 70%;
+    /* Sets maximum width */
+    max-width: 70%;
 }
 
+/* Styling for the interactive features */
 .interactive-features {
+    /* Displays items as flex */
     display: flex;
+    /* Sets flex direction to column */
     flex-direction: column;
+    /* Aligns items to center */
     align-items: center;
 }
 
 @media (max-width: 768px) {
+
+    /* Styling for smaller screens */
     .top-container {
-        flex-direction: column; /* Stacks the flex items vertically */
+        /* Stacks the flex items vertically */
+        flex-direction: column;
     }
 
-    .left-box, .middle-box, .right-box {
+    /* Reordering items for smaller screens */
+    .left-box,
+    .middle-box,
+    .right-box {
+        /* Sets order */
         order: 1;
     }
 
     .left-box {
+        /* Sets order */
         order: -3;
     }
 
     .middle-box {
+        /* Sets order */
         order: -1;
     }
 
     .right-box {
         order: -2;
+        /* Sets order */
     }
 
-    /* Specific styles inside right box */
+    /* Styling for right box interactive features */
     .right-box .interactive-features {
+        /* Displays items as flex */
         display: flex;
+        /* Aligns items to space around */
         justify-content: space-around;
+        /* Allows wrapping */
         flex-wrap: wrap;
     }
 
-    .right-box .save-recipe, .right-box .rate {
+    /* Styling for save recipe and rate buttons */
+    .right-box .save-recipe,
+    .right-box .rate {
+        /* Sets flex basis */
         flex: 1 1 auto;
+        /* Sets minimum width */
         min-width: 120px;
+        /* Aligns text to center */
         text-align: center;
+        /* Adds margin */
         margin: 20px;
     }
 
+    /* Styling for middle container */
     .middle-container {
+        /* Stacks the flex items vertically */
         flex-direction: column;
     }
 
     /* Ensures text wraps within the containers */
-    .ingredients li, .cooking-method li, .steps li {
+    .ingredients li,
+    .cooking-method li,
+    .steps li {
+        /* Allows text wrapping */
         word-wrap: break-word;
     }
 
-    .ingredients-time, .cooking-method {
+    /* Styling for ingredients-time and cooking-method */
+    .ingredients-time,
+    .cooking-method {
+        /* Sets flex basis */
         flex: 0 0 100%;
+        /* Sets maximum width */
         max-width: 100%;
+        /* Sets width */
         width: 108%;
     }
 }
-
-

@@ -1,56 +1,75 @@
+/* Styling for the search filter container */
 #search_filter_container {
+    /* Centers items horizontally */
     justify-content: center;
+    /* Allows items to wrap when necessary */
     flex-wrap: wrap;
 }
 
+/* Styling for the search filters */
 #search_filters {
+    /* Centers items horizontally */
     justify-content: center;
+    /* Allows items to wrap when necessary */
     flex-wrap: wrap;
+    /* Sets background color */
     background-color: lightcoral;
 }
 
+/* Padding for all elements inside main section */
 main section * {
+    /* Adds padding to all elements */
     padding: 5px;
 }
 
+/* Styling for card images */
 .card_image {
+    /* Ensures images are responsive */
     max-width: 100%;
-    /* Ensure images are responsive */
+    /* Allows images to maintain aspect ratio */
     height: auto;
 }
 
+/* Adjusting height for sort select */
 #sort_select {
+    /* Sets height to fit content */
     height: fit-content;
 }
 
+/* Centered container */
 .centered_container {
+    /* Displays items as flex */
     display: flex;
+    /* Centers items vertically */
     align-items: center;
+    /* Centers items horizontally */
     justify-content: center;
 }
 
+/* Styling for filter options */
 #filter-options {
+    /* Displays items as flex */
     display: flex;
 }
 
-
+/* Media queries for smaller screens */
 @media (max-width: 1000px) {
     main section * {
+        /* Decreases padding for smaller screens */
         padding: 2px;
     }
-
 }
 
 @media (max-width: 750px) {
-
     main section * {
+        /* Decreases padding for smaller screens */
         padding: 2px;
     }
 }
 
 @media (max-width: 490px) {
-
     main section * {
+        /* Decreases padding for smaller screens */
         padding: 2px;
     }
 }

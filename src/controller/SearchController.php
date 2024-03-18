@@ -7,14 +7,13 @@ require_once __DIR__ . '/../model/RecipeModel.php';
 
 class SearchController
 {
-
-    /**
-     * @var UserModel $userModel The UserModel instance.
-     * @var RecipeModel $recipeModel The RecipeModel instance.
-     */
     private $userModel;
     private $recipeModel;
 
+    /**
+     * Constructor for SearchController.
+     * Initializes recipeModel, userModel instance.
+     */
     public function __construct()
     {
         global $conn;

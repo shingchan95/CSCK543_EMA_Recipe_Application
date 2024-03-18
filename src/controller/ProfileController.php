@@ -9,6 +9,10 @@ class ProfileController
     private $favouritesModel;
     private $userModel;
 
+    /**
+     * Constructor for ProfileController.
+     * Initializes userModel and favouritesModel instance.
+     */
     public function __construct()
     {
         global $conn;

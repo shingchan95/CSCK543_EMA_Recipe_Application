@@ -1,11 +1,22 @@
 <?php
 class RecipeModel {
+    /**
+     * Constructor for RecipeModel.
+     * Initializes the database connection.
+     *
+     * @param $conn Database connection object
+     */
     private $conn;
  
     public function __construct($conn) {
         $this->conn = $conn;
     }
- 
+    
+     /**
+     * Get all recipes from the database.
+     *
+     * @return array Array of recipes
+     */
     public function getAllRecipes() {
         $sql = "SELECT * FROM recipe_view";
         $result = $this->conn->query($sql);
@@ -16,7 +27,14 @@ class RecipeModel {
             return [];
         }
     }
- 
+
+    /**
+     * Get recipes by diet ID from the database.
+     *
+     * @param int $dietId Diet ID
+     * @return array Array of recipes matching the diet ID
+     */
+
     public function getRecipeByDietId($dietId) {
         $sql = "SELECT * FROM recipe_view WHERE diet_id <= ?";
         $stmt = $this->conn->prepare($sql);
@@ -32,6 +50,12 @@ class RecipeModel {
         }
     }
  
+    /**
+     * Searches recipes in the database by various criteria.
+     *
+     * @param string $searchTerm Search term
+     * @return array Array of recipes matching the search criteria
+     */
     public function searchRecipes($searchTerm) {
         $sql = "SELECT DISTINCT r.*
                 FROM recipe_view AS r
@@ -53,6 +77,14 @@ class RecipeModel {
             return [];
         }
     }
+
+    /**
+     * Searches recipes in the database by a specific type.
+     *
+     * @param string $searchTerm Search term
+     * @param string $searchType Type of search (course, author, diet, ingredient)
+     * @return array Array of recipes matching the search criteria
+     */
     public function searchRecipesWithType($searchTerm, $searchType) {
         //course, author, diet, ingredient
         $sql = "SELECT DISTINCT r.* FROM recipe_view AS r
@@ -72,7 +104,12 @@ class RecipeModel {
         }
     }
  
- 
+    /**
+     * Get all saved recipes for a user from the database.
+     *
+     * @param int $userId User ID
+     * @return array Array of saved recipes for the user
+     */
     public function getAllSavedRecipes($userId) {
         $sql = "SELECT r.* FROM recipe AS r JOIN saved_recipes AS sr ON r.id = sr.recipe_id WHERE sr.user_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -87,7 +124,12 @@ class RecipeModel {
         }
     }
  
-    
+    /**
+     * Get a recipe by its ID from the database.
+     *
+     * @param int $recipeId Recipe ID
+     * @return array|null Recipe details or null if not found
+     */
     public function getRecipeByID($recipeId) {
         $sql = "SELECT * FROM recipe_view WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -101,7 +143,15 @@ class RecipeModel {
             return null;
         }
     }
+    
  
+
+    /**
+     * Get recipe details by its ID from the database.
+     *
+     * @param int $recipeId Recipe ID
+     * @return array Recipe details
+     */
     public function getRecipeDetailsById($recipeId) {
         $sql = "SELECT * FROM recipe_view
                 WHERE id = ?";
@@ -112,7 +162,14 @@ class RecipeModel {
  
         return $result->fetch_assoc();
     }
- 
+    
+  
+      /**
+     * Get recipe steps by its ID from the database.
+     *
+     * @param int $recipeId Recipe ID
+     * @return array Recipe steps
+     */
     public function getStepsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -139,7 +196,14 @@ class RecipeModel {
  
         return $steps;
     }
- 
+    
+  
+    /**
+     * Get recipe tips by its ID from the database.
+     *
+     * @param int $recipeId Recipe ID
+     * @return array Recipe tips
+     */
     public function getTipsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -166,6 +230,13 @@ class RecipeModel {
         return $tips;
     }
  
+    
+    /**
+     * Get recipe ingredients by its ID from the database.
+     *
+     * @param int $recipeId Recipe ID
+     * @return array Recipe ingredients
+     */
     public function getIngredientsByRecipeId($recipeId) {
         $sql = "
             SELECT
@@ -194,7 +265,12 @@ class RecipeModel {
  
         return $ingredients;
     }
- 
+    
+    /**
+     * Get featured recipes from the database.
+     *
+     * @return array Array of featured recipes
+     */
     public function getFeaturedRecipes() {
         $sql = "SELECT * FROM recipe_view
         WHERE featured = '1'";
