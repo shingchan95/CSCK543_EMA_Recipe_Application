@@ -1,78 +1,113 @@
+/* Styling for the main section */
 main section {
+    /* Add shadow effect */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Add padding */
     padding: 15px;
 }
 
+/* Styling for the homepage body */
 #homepage_body {
+    /* Center content horizontally */
     justify-content: center;
 }
 
+/* Styling for the feature recipe list */
 #feature_recipe_list {
+    /* Remove default margin */
     margin: 0;
 }
 
+/* Styling for the introductory image */
 #intro_image {
+    /* Set maximum width */
     max-width: 500px;
+    /* Set maximum height */
     max-height: 500px;
+    /* Add padding */
     padding: 15px;
 }
 
+/* Styling for the introductory content */
 #intro_content {
+    /* Set font size */
     font-size: 18px;
+    /* Center content vertically */
     align-items: center;
+    /* Add padding */
     padding: 15px;
 }
 
-@media (max-width: 1000px) {
 
+/* Media queries for smaller screens */
+@media (max-width: 1000px) {
     #intro_image {
+        /* Adjust maximum width */
         max-width: 375px;
+        /* Adjust maximum height */
         max-height: 375px;
     }
 
     #intro_content {
+        /* Adjust font size */
         font-size: 16px;
     }
 }
 
 @media (max-width: 750px) {
-
     #intro_image {
+        /* Adjust maximum width */
         max-width: 300px;
+        /* Adjust maximum height */
         max-height: 300px;
     }
 
     #intro_content {
+        /* Adjust font size */
         font-size: 16px;
+        /* Arrange content in a column */
         flex-direction: column;
+        /* Center content vertically */
         justify-content: center;
+        /* Center content horizontally */
         align-items: center;
     }
 }
 
 @media (max-width: 450px) {
     #intro_image {
+        /* Adjust maximum width */
         max-width: 200px;
+        /* Adjust maximum height */
         max-height: 200px;
     }
 }
 
 @media (max-width: 330px) {
-
     #intro_image {
+        /* Adjust maximum width */
         max-width: 150px;
+        /* Adjust maximum height */
         max-height: 150px;
     }
 
+    /* Styling for form select elements */
     .form_select {
+        /* Adjust font size */
         font-size: 16px;
+        /* Add top margin */
         margin-top: 5px;
+        /* Add padding */
         padding: 5px;
+        /* Reset minimum width */
         min-width: 0;
     }
 
+    /* Styling for form input elements */
     .form_input {
         min-width: 0;
+        /* Reset minimum width */
         max-width: 125px;
+        /* Adjust maximum width */
     }
 }

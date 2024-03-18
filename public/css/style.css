@@ -1,238 +1,365 @@
+/* Body styling */
 body {
+    /* Sets font family */
     font-family: Arial, sans-serif;
+    /* Sets default font size */
     font-size: medium;
+    /* Sets text color */
     color: black;
+    /* Centers text horizontally */
     text-align: center;
 }
 
+/* Styling for the main section */
 main {
+    /* Sets margin around the main section */
     margin: 20px auto;
+    /* Sets padding inside the main section */
     padding: 20px;
+    /* Adds a shadow effect */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sets maximum width of the main section */
     max-width: 1400px;
 }
 
+/* Styling for the footer */
 footer {
+    /* Sets background color */
     background-color: lightcoral;
+    /* Sets padding inside the footer */
     padding: 30px;
 }
 
+/* Styling for the navigation */
 nav {
+    /* Resets margin */
     margin: 0;
+    /* Sets padding inside the navigation */
     padding: 5px;
+    /* Centers items vertically */
     align-items: center;
+    /* Sets background color */
     background-color: lightcoral;
 }
 
+/* Styling for navigation links */
 nav ul {
+    /* Removes list item's dots */
     list-style-type: none;
-    /* Remove list item's dots */
 }
 
 nav ul li a:hover:not(.current_page) {
+    /* Background color on hover */
     background-color: lightblue;
 }
 
 nav ul li a {
+    /* Sets padding around navigation links */
     padding: 10px;
+    /* Removes underline */
     text-decoration: none;
+    /* Sets text color */
     color: black;
 }
 
+/* Styling for the navbar */
 #navbar {
+    /* Aligns items with space between them */
     justify-content: space-between;
 }
 
+/* Styling for the user login */
 #user_login {
+    /* Sets margin on the right side */
     margin-right: 40px;
+    /* Sets cursor to pointer */
     cursor: pointer;
+    /* Centers items vertically */
     align-items: center;
 }
 
+/* Container styling */
 .container {
+    /* Displays items as flex */
     display: flex;
 }
 
+/* Styling for the logo image */
 #image_logo {
+    /* Sets maximum height */
     max-height: 150px;
+    /* Allows width to adjust automatically */
     width: auto;
 }
 
+/* Styling for the current page link */
 .current_page {
+    /* Sets background color for current page */
     background-color: deepskyblue;
 }
 
-
+/* Header container styling */
 #header_container {
+    /* Centers items vertically */
     align-items: center;
+    /* Aligns items with space between them */
     justify-content: space-between;
 }
 
+/* Header catchphrase styling */
 #header_catchphrase {
+    /* Sets left padding */
     padding-left: 15px;
 }
 
+/* Logo container styling */
 #logo_container {
-    align-items: center;
+    /* Centers items vertically */
     min-width: 30%;
+    /* Sets minimum width */
+    align-items: center;
 }
 
+/* Styling for the search bar */
 #search_bar {
+    /* Sets width */
     width: 80%;
+    /* Aligns items to the end */
     justify-content: end;
 }
 
+/* Form input styling */
 .form_input {
+    /* Sets text color */
     color: #4a4a4a;
+    /* Sets font size */
     font-size: 16px;
+    /* Inherits width */
     width: inherit;
+    /* Sets minimum width */
     min-width: 400px;
+    /* Sets padding */
     padding: 10px;
 }
 
+/* Form select styling */
 .form_select {
+    /* Sets font size */
     font-size: 16px;
-    padding: 10px
+    /* Sets padding */
+    padding: 10px;
 }
 
+/* Form submit button styling */
 .form_submit_button {
+    /* Sets margin */
     margin: 10px;
+    /* Sets font size */
     font-size: large;
+    /* Sets padding */
     padding: 15px;
+    /* Sets background color */
     background-color: lightcoral;
 }
 
+/* Styling for the search form button */
 #search_form_button {
+    /* Sets background image */
     background-image: url("../image/search_icon.svg");
+    /* Sets background size */
     background-size: contain;
+    /* Prevents background from repeating */
     background-repeat: no-repeat;
+    /* Centers background image */
     background-position: center;
+    /* Makes background transparent */
     background-color: transparent;
+    /* Sets width */
     width: 40px;
+    /* Sets height */
     height: 40px;
+    /* Removes border */
     border: 0;
+    /* Sets cursor to pointer */
     cursor: pointer;
 }
 
+/* Hover effect for form submit */
 .form_submit:hover {
+    /* Background color on hover */
     background-color: lightblue;
 }
 
+/* Logout form styling */
 #logout_form {
+    /* Sets left padding */
     padding-left: 10px;
+    /* Centers items vertically */
     align-items: center;
+    /* Resets margin */
     margin: 0;
 }
 
-/* Auth Modal */
-
+/* Modal styling */
 .modal {
+    /* Hides the modal by default */
     display: none;
+    /* Fixes position */
     position: fixed;
+    /* Sets z-index */
     z-index: 1;
+    /* Sets top padding */
     padding-top: 100px;
+    /* Sets left position */
     left: 0;
+    /* Sets top position */
     top: 0;
+    /* Sets width */
     width: 100%;
+    /* Sets height */
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
+    /* Enables scrolling */
     background-color: rgba(0, 0, 0, 0.4);
+    /* Sets background color */
+    overflow: auto;
 }
 
+/* Modal content styling */
 .modal_content {
+    /* Sets background color */
     background-color: #fefefe;
+    /* Centers modal content horizontally */
     margin: auto;
+    /* Sets padding */
     padding: 20px;
+    /* Sets border */
     border: 1px solid #888;
+    /* Sets width */
     width: 80%;
 }
 
+/* Register form styling */
 #register_form {
+    /* Hides the register form by default */
     display: none;
 }
 
+/* Form div styling */
 .form_div {
+    /* Displays items as grid */
     display: grid;
+    /* Centers items both horizontally and vertically */
     place-content: center;
+    /* Sets padding */
     padding: 10px;
 }
 
+/* Alert styling */
 .alert {
+    /* Sets padding */
     padding: 20px;
+    /* Sets background color */
     background-color: #f44336;
+    /* Sets text color */
     color: white;
 }
 
+/* Close button and remove favorite button styling */
 .close_btn,
 .remove_favorite_btn {
+    /* Sets left margin */
     margin-left: 15px;
+    /* Sets text color */
     color: black;
+    /* Sets font weight */
     font-weight: bold;
+    /* Floats button to the right */
     float: right;
+    /* Sets font size */
     font-size: 22px;
+    /* Sets line height */
     line-height: 20px;
+    /* Sets cursor to pointer */
     cursor: pointer;
+    /* Adds transition effect */
     transition: 0.3s;
+    /* Sets z-index */
     z-index: 1;
 }
 
+/* Hover effect for close button */
 .close_btn:hover {
+    /* Text color on hover */
     color: white;
 }
 
+/* Styling for card images */
 .card_image {
+    /* Ensures images are responsive */
     max-width: 100%;
-    /* Ensure images are responsive */
+    /* Allows images to maintain aspect ratio */
     height: auto;
 }
 
+/* Recipe container styling */
 .recipe_container {
+    /* Displays items as flex */
     display: flex;
+    /* Allows items to wrap */
     flex-wrap: wrap;
+    /* Centers items horizontally */
     justify-content: center;
+    /* Sets gap between items */
     gap: 20px;
+    /* Sets padding */
     padding: 20px;
 }
 
+/* Card styling */
 .card {
+    /* Adds box shadow */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* Adds transition effect */
     transition: 0.3s;
 }
 
+/* Hover effect for cards */
 .card:hover {
+    /* Adds box shadow on hover */
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    /* Sets cursor to pointer */
     cursor: pointer;
 }
 
-
+/* Media queries for smaller screens */
 @media (max-width: 1000px) {
 
+    /* Adjusts minimum width for form input */
     .form_input {
         min-width: 300px;
     }
-
 }
 
 @media (max-width: 750px) {
-
     .form_input {
+        /* Adjusts minimum width for form input */
         min-width: 200px;
     }
 }
 
 @media (max-width: 490px) {
-
     #search_bar {
+        /* Hides search bar */
         display: none;
     }
 
     #navbar {
+        /* Centers items horizontally */
         justify-content: center;
     }
 
     nav ul li a {
+        /* Adjusts padding for navigation links */
         padding: 5px;
     }
-
 }
